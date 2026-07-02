@@ -1,0 +1,90 @@
+/* ============================================================
+   DESIGN TOKENS — extracted from Figma "My personal website"
+   Color System: Light / Dark modes
+   Spacing & Radius: single-mode defaults
+   ============================================================ */
+
+:root {
+  /* ── Backgrounds ── */
+  --bg-primary:    #FFFFFF;
+  --bg-secondary:  #F5F5F5;
+  --bg-tertiary:   #EBEBEB;
+  --bg-warm:       #F4F3F0;
+
+  /* ── Text ── */
+  --text-primary:   #0D0D0D;
+  --text-secondary: #555555;
+  --text-tertiary:  #717171; /* darkened from #9A9A9A — original failed WCAG AA (2.81:1) as real text */
+  --text-inverse:   #FFFFFF;
+
+  /* ── Accent ── */
+  --accent-blue:       #1D4ED8;
+  --accent-blue-light: #3B82F6;
+  --accent-green:      #22C55E;
+  --accent-error:      #EB3232;
+
+  /* ── Borders ── */
+  --border-default: rgba(0, 0, 0, 0.07);
+  --border-accent:  #1D4ED8;
+
+  /* ── Surfaces ── */
+  --surface-dark-card:  #080808;
+  --surface-light-card: #FFFFFF;
+
+  /* ── Spacing ── */
+  --space-2:   2px;
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-20:  20px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-80:  80px;
+  --space-96:  96px;
+  --space-110: 110px;
+  --space-120: 120px;
+
+  /* ── Border Radius ── */
+  --radius-none:   0px;
+  --radius-xs:     4px;
+  --radius-sm:     8px;
+  --radius-md:     12px;
+  --radius-lg:     20px;
+  --radius-xl:     24px;
+  --radius-pill:   50px;
+
+  /* ── Layout ── */
+  --nav-height:       68px;
+  --container-max:    1200px;
+  --container-pad:    clamp(24px, 5vw, 120px);
+
+  /* ── Typography ── */
+  --font-latin:  'IBM Plex Sans', sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', sans-serif;
+
+  /* ── Transitions ── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+}
+
+/* ── Dark mode overrides ── */
+[data-theme="dark"] {
+  --bg-primary:    #0D0D0D;
+  --bg-secondary:  #171717;
+  --bg-tertiary:   #1E1E1E;
+  --bg-warm:       #191816;
+
+  --text-primary:   #F5F5F5;
+  --text-secondary: #999999;
+  --text-tertiary:  #8F8F8F; /* lightened from #616161 — original failed WCAG AA (3.14:1) as real text */
+  --text-inverse:   #0D0D0D;
+
+  --border-default: rgba(255, 255, 255, 0.08);
+
+  --surface-light-card: #171717;
+}

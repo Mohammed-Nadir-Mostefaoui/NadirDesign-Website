@@ -1,0 +1,2857 @@
+/* ============================================================
+   MAIN STYLESHEET  ·  Personal Website V2
+   Sections: Fonts · Base · Buttons · Navbar · Hero · Responsive
+   ============================================================ */
+
+/* ============================================================
+   INTRO OVERLAY
+   ============================================================ */
+
+/* Lock scroll while intro plays */
+.intro-active {
+  overflow: hidden;
+}
+
+/* Full-screen overlay — bg matches current theme (set before paint) */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Exit transition */
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.65s;
+}
+
+#intro-overlay.intro-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Wrapper: positions sig + underline together */
+.intro-sig-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* The signature SVG — scaled up for stage presence */
+.intro-sig {
+  width: clamp(200px, 28vw, 340px);
+  height: auto;
+  color: var(--text-primary);
+  display: block;
+  /* Reveal: clip sweeps left → right, like a pen writing */
+  clip-path: inset(0 100% 0 0);
+  animation: sig-write 1.3s cubic-bezier(0.76, 0, 0.24, 1) 0.25s forwards;
+}
+
+@keyframes sig-write {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0%   0 0); }
+}
+
+/* Language variant: only one signature shows at a time, picked by [dir]
+   (which is set synchronously before paint — see the pre-paint script in
+   <head> — so there's no flash of the wrong one). */
+.intro-sig--ar { display: none; }
+[dir="rtl"] .intro-sig--en { display: none; }
+[dir="rtl"] .intro-sig--ar { display: block; }
+
+/* Arabic reveal: mirror the wipe so it draws right → left, matching the
+   script's actual writing direction, instead of reusing the LTR sweep. */
+[dir="rtl"] .intro-sig {
+  clip-path: inset(0 0 0 100%);
+  animation-name: sig-write-rtl;
+}
+@keyframes sig-write-rtl {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0 0 0 0%); }
+}
+
+/* Overlay exit: logo fades + lifts slightly */
+#intro-overlay.intro-done .intro-sig-wrap {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* ── Google Fonts ──────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+/* ── Base ──────────────────────────────────────────────────── */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-latin);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  letter-spacing: 0.015em;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  overflow-x: hidden;
+}
+
+[dir="rtl"] body {
+  font-family: var(--font-arabic);
+  letter-spacing: 0; /* Arabic script must not have letter spacing */
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast);
+}
+
+/* Motion-led hover, same for both variants: a lift + shadow, no color swap.
+   The arrow icon is collapsed to 0 width/opacity at rest and slides in on
+   hover — see the .btn-arrow rules below. */
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Arrow icon: add `<svg class="btn-arrow">...</svg>` as the last child of
+   any .btn. Uses currentColor, so it automatically matches each variant's
+   text color in both themes with no extra rules needed. */
+.btn-arrow {
+  flex-shrink: 0;
+  width: 0;
+  opacity: 0;
+  transform: translateX(-6px);
+  margin-inline-start: -8px; /* collapses the flex `gap` while width is 0 */
+  overflow: visible;
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.25s ease,
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              margin-inline-start 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn:hover .btn-arrow {
+  width: 14px;
+  opacity: 1;
+  transform: translateX(0);
+  margin-inline-start: 0;
+}
+[dir="rtl"] .btn-arrow { transform: translateX(6px) scaleX(-1); }
+[dir="rtl"] .btn:hover .btn-arrow { transform: translateX(0) scaleX(-1); }
+
+/* Primary: dark fill, white text */
+.btn-dark {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+}
+.btn-dark:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+[data-theme="dark"] .btn-dark:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+/* Secondary: light gray fill + border — matches Figma #F5F5F5 */
+.btn-ghost-fill {
+  background-color: #F5F5F5;
+  color: var(--text-secondary);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+.btn-ghost-fill:hover {
+  background-color: #EBEBEB;
+  color: var(--text-primary);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+[data-theme="dark"] .btn-ghost-fill {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-color: var(--border-default);
+}
+[data-theme="dark"] .btn-ghost-fill:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Anchor-jump landing offset — the navbar is fixed and sits on top of the
+   page, so a bare #section jump (from any nav link, the hero CTAs, or the
+   footer) would otherwise land the section flush under it with its
+   heading clipped. This applies to every in-page anchor site-wide, not
+   just the mobile menu, since they all share the same fixed navbar. */
+html {
+  scroll-padding-top: calc(var(--nav-height) + 16px);
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background-color: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  border-bottom: 1px solid var(--border-default);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color var(--transition-slow), border-color var(--transition-slow),
+              box-shadow var(--transition-slow);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+}
+
+.nav-inner {
+  height: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+/* ── Logo ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-primary);
+  transition: opacity var(--transition-fast);
+}
+.nav-logo:hover { opacity: 0.65; }
+
+.nav-logo img {
+  height: 30px;
+  width: auto;
+  filter: none;
+  transition: filter var(--transition-slow);
+}
+[data-theme="dark"] .nav-logo img {
+  filter: invert(1);
+}
+
+/* Language-specific mark: swap via [dir], same sizing/dark-mode invert
+   applies to both since both match the plain ".nav-logo img" rule above. */
+.nav-logo-img--ar { display: none; }
+[dir="rtl"] .nav-logo-img--en { display: none; }
+[dir="rtl"] .nav-logo-img--ar { display: block; }
+
+/* ── Links ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary);
+}
+.nav-link .chevron {
+  opacity: 0.5;
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+}
+.nav-link:hover .chevron { opacity: 0.8; }
+
+/* ── Nav End ── */
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  flex-shrink: 0;
+}
+
+/* ── Language Switcher ── */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  background-color: #EBEBEB;
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  gap: 2px;
+  transition: background-color var(--transition-slow);
+}
+[data-theme="dark"] .lang-switcher {
+  background-color: var(--bg-tertiary);
+}
+[data-theme="dark"] .lang-btn:not(.active) {
+  color: var(--text-secondary);
+}
+[data-theme="dark"] .theme-toggle {
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.lang-btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary); /* text-tertiary failed AA against the switcher pill bg */
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  line-height: 1;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+.lang-btn:hover { color: var(--text-primary); }
+.lang-btn.active {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+/* Arabic button — bigger font */
+.lang-btn[data-lang-btn="ar"] {
+  font-family: var(--font-arabic);
+  font-size: 16px;
+}
+
+/* ── Theme Toggle ── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-default);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.theme-toggle svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.icon-sun  { display: none; }
+.icon-moon { display: block; }
+[data-theme="dark"] .icon-sun  { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+/* ── Mobile-only nav extras (hidden on desktop) ── */
+.nav-mobile-cta,
+.nav-mobile-controls { display: none; }
+
+/* ── Mobile Hamburger ── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+/* ============================================================
+   CUSTOM CURSOR  (pointer: fine / mouse devices only)
+   mix-blend-mode: difference = auto-inverts on any bg, zero mode logic
+   ============================================================ */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+  input, textarea, select { cursor: text !important; }
+
+  #cursor-dot {
+    position: fixed;
+    width: 5px; height: 5px;
+    background: #fff;
+    border-radius: 50%;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: width  0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                height 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.3s ease;
+  }
+  #cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9997;
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: width  0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.3s ease;
+  }
+
+  #cursor-dot.cur-visible  { opacity: 1; }
+  #cursor-ring.cur-visible { opacity: 1; }
+
+  /* Hover: dot grows into a filled circle, ring expands.
+     Resize width/height directly instead of transform:scale() — scaling a
+     5px element up stretches an already-rasterized bitmap and blurs the
+     edges. Resizing lets the browser redraw it crisply at 20px. */
+  #cursor-dot.cur-hover  { width: 20px; height: 20px; }
+  #cursor-ring.cur-hover { width: 56px; height: 56px; }
+
+  .intro-active #cursor-dot,
+  .intro-active #cursor-ring { opacity: 0 !important; }
+}
+
+/* ============================================================
+   HERO SECTION  —  Split layout
+   Left column: all content + stats (horizontal)
+   Right column: portrait photo card
+   ============================================================ */
+
+/* ── Dot grid texture — pure CSS, works in both modes ── */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] .hero::before {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px);
+}
+
+/* Lift hero content above the dot grid */
+.hero > * { position: relative; z-index: 1; }
+
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding-top: var(--nav-height);
+  /* Centers content on wide screens: kicks in beyond ~1240px viewport */
+  padding-inline: max(0px, calc(50vw - 620px));
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  transition: background-color var(--transition-slow);
+}
+
+/* ─── Left content column ────────────────────────────────── */
+.hero-content {
+  flex: 0 0 46%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding-block: 60px;
+  padding-left: clamp(24px, 8.3vw, 120px);
+  padding-right: clamp(20px, 3vw, 48px);
+  min-width: 0;
+}
+
+/* Availability badge */
+.hero-greeting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
+}
+
+.hero-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #22C55E;
+  flex-shrink: 0;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(0.82); }
+}
+
+/* H1 */
+.hero-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+}
+[dir="rtl"] .hero-title {
+  letter-spacing: 0;
+  /* Arabic glyphs with harakat need more vertical room; also scale down slightly
+     so the large display size doesn't overwhelm the column in RTL layout */
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.45;
+}
+
+/* Blue accent rule */
+.hero-divider {
+  width: 40px;
+  height: 2px;
+  background-color: #1D4ED8;
+  border-radius: 2px;
+}
+
+/* Bio */
+.hero-bio {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.72;
+  max-width: 320px;
+}
+
+/* CTA buttons */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ─── Stats  (horizontal row inside left column) ─────────── */
+.hero-stats {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 0 10px 16px;
+  border-left: 2.5px solid var(--accent-blue-light);
+  position: relative;
+}
+
+.stat-num {
+  font-size: clamp(26px, 2.3vw, 34px);
+  font-weight: 800;
+  color: var(--accent-blue-light);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  line-height: 1.35;
+  white-space: pre-line;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* RTL: flip border to right side */
+[dir="rtl"] .stat-item {
+  border-left: none;
+  border-right: 2.5px solid var(--accent-blue-light);
+  padding-left: 0;
+  padding-right: 16px;
+}
+
+/* Arabic needs a touch more size than Latin at small sizes to read comfortably */
+[dir="rtl"] .stat-label {
+  font-size: 13.5px;
+}
+
+/* Mobile-only grouping wrapper (see HTML). display:contents means it has zero
+   layout effect here — its children stay direct flex items of .hero-content,
+   exactly as before this element existed. */
+.hero-bottom-group { display: contents; }
+
+/* ─── Right portrait column ──────────────────────────────── */
+.hero-portrait-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;   /* card flush to right — outer margin = padding-right only */
+  padding: 32px clamp(24px, 8.3vw, 120px) 32px clamp(40px, 5vw, 80px);
+}
+
+.hero-portrait-img {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: clamp(16px, 2vw, 28px);
+  display: block;
+  background-color: var(--bg-secondary);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.10),
+              0 4px 16px  rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .hero-portrait-img {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.40),
+              0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* RTL desktop: image left, text right
+   flex-direction: row in RTL context flows items R→L,
+   so first child (text) lands on RIGHT, second (portrait) on LEFT */
+[dir="rtl"] .hero {
+  flex-direction: row;
+}
+[dir="rtl"] .hero-content {
+  /* Mirror LTR paddings: outer gap now on RIGHT, inner gap toward portrait (left) */
+  padding-left:  clamp(20px, 3vw, 48px);        /* inner — gap toward portrait on left */
+  padding-right: clamp(24px, 8.3vw, 120px);     /* outer — matches left edge gap in LTR */
+}
+[dir="rtl"] .hero-portrait-wrap {
+  /* Swap horizontal paddings: large outer on LEFT, small inner gap on RIGHT */
+  padding: 32px clamp(40px, 5vw, 80px) 32px clamp(24px, 8.3vw, 120px);
+}
+
+/* Below 900px, .hero switches to a centered single-column stack (see the
+   mobile hero block further down) — symmetric in both LTR and RTL, so no
+   direction-specific padding is needed. */
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ── Wide screens (≥ 1600px) ── */
+@media (min-width: 1600px) {
+  .nav-inner { padding-inline: 120px; }
+}
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .nav-inner { padding-inline: 48px; }
+  .hero-content { flex: 0 0 50%; }
+  .hero-stats { gap: 14px; }
+}
+
+/* ── New mobile card elements — hidden on desktop ─────────── */
+/* fit-content: wrapper hugs the image so the shadow doesn't bleed
+   into the transparent gap that would exist with width: 100% */
+.portrait-card-wrapper { width: fit-content; }
+.portrait-card-bg      { display: none; }
+.portrait-card-inner {
+  border-radius: clamp(16px, 2vw, 28px);
+  overflow: hidden;
+  position: relative;       /* anchors the glare ::after */
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* Glare — a radial highlight that follows cursor via CSS vars set by JS */
+.portrait-card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.07) 38%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.portrait-card-inner.is-tilted::after { opacity: 1; }
+
+/* Image scale when card tilts — parallax depth */
+.hero-portrait-img { transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.portrait-card-inner.is-tilted .hero-portrait-img { transform: scale(1.045); }
+
+/* ── Below 900px: hero becomes a single full-bleed image card,
+   all content overlaid on top via CSS Grid stacking ─────────
+   ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-inner  { padding-inline: 24px; }
+
+  /* Photo becomes a proper card in the normal flow, instead of a full-
+     bleed background with text overlaid on top of it. .hero-content goes
+     `display: contents` here (the same trick .hero-bottom-group already
+     uses on desktop, one level up) — that flattens greeting / title /
+     divider / bio / actions / stats into direct flex children of .hero,
+     alongside the portrait card, so `order` can slot the card in between
+     them without touching the HTML. Centered composition throughout:
+     with the image now a smaller, self-contained card rather than a
+     full-bleed backdrop, centering it and the text together reads as one
+     deliberate layout instead of a left-aligned column with a small
+     photo floating below it. */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    text-align: center;
+    padding: calc(var(--nav-height) + 28px) 24px calc(env(safe-area-inset-bottom) + 28px);
+    gap: 18px;
+  }
+
+  .hero-content { display: contents; }
+
+  /* .hero > * (further up) only lifts *direct* DOM children above the
+     dotted-grid ::before background — display: contents changes what
+     renders as a flex item, not the actual DOM parentage, so these
+     grandchildren need their own stacking to not get painted under it. */
+  .hero-greeting,
+  .hero-portrait-wrap,
+  .hero-title,
+  .hero-divider,
+  .hero-bio,
+  .hero-actions,
+  .hero-stats {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-greeting       { order: 1; }
+  .hero-portrait-wrap  { order: 2; }
+  .hero-title          { order: 3; }
+  .hero-divider        { order: 4; margin-inline: auto; }
+  .hero-bio            { order: 5; margin-inline: auto; }
+  .hero-actions        { order: 6; justify-content: center; }
+  .hero-stats          { order: 7; justify-content: center; }
+
+  .hero-title {
+    font-size: clamp(32px, 8.5vw, 48px);
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    max-width: 380px;
+  }
+
+  .hero-stats { gap: 24px; }
+
+  /* ── Photo: a real card, sized to be smaller and centered — not the
+     full-bleed backdrop this replaces. object-fit isn't cropping
+     anything here: width/height stay auto (natural ratio) capped by
+     max-width/max-height, so the browser scales the whole image down to
+     fit rather than cropping into a fixed frame — the full photo is
+     always visible. */
+  .hero-portrait-wrap {
+    flex: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .portrait-card-wrapper {
+    position: relative;
+  }
+
+  /* Ghost card — small offset behind the card for depth, sized to match
+     the smaller card via inset rather than the old full-bleed 100%. */
+  .portrait-card-bg {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 18px;
+    background-color: var(--bg-primary);
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.13) 1px, transparent 1px);
+    background-size: 24px 24px;
+    z-index: 0;
+    animation: ghost-float 3s ease-in-out infinite alternate;
+  }
+  [data-theme="dark"] .portrait-card-bg {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+  }
+
+  @keyframes ghost-float {
+    from { transform: translateY(0px); }
+    to   { transform: translateY(-6px); }
+  }
+
+  .portrait-card-inner {
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.16),
+                0 4px 14px  rgba(0, 0, 0, 0.08);
+  }
+  [data-theme="dark"] .portrait-card-inner {
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.5),
+                0 0 0 1px  rgba(255, 255, 255, 0.07);
+  }
+
+  .hero-portrait-img {
+    width: auto;
+    height: auto;
+    max-width: min(64vw, 280px);
+    max-height: 42vh;
+    object-fit: contain;
+    object-position: center;
+    aspect-ratio: unset; /* natural ratio — the desktop 3/4 + cover crop
+      is exactly what showing the full image undoes */
+    border-radius: 0; /* rounding lives on .portrait-card-inner, which
+      clips the image to match */
+    box-shadow: none;
+    display: block;
+  }
+}
+
+/* ── Small mobile (≤ 560px) ──
+   Only the language switcher stays on the persistent bar — quick access to
+   switch languages without opening the menu. The CTA and theme toggle are
+   dropped from the bar at these widths; they move into the mobile menu
+   instead, where everything (language, theme, and Contact) is already
+   duplicated in full (see .nav-mobile-cta / .nav-mobile-controls) — not
+   hidden, just relocated to where there's room to show them properly. */
+@media (max-width: 560px) {
+  .nav-end .btn           { display: none; }
+  .nav-end .theme-toggle  { display: none; }
+
+  /* .hero-content and .hero-bottom-group are `display: contents` at this
+     breakpoint (see the 900px block above) — padding/gap on either would
+     have no effect, since a `contents` element has no box of its own to
+     apply them to. The equivalent spacing lives on .hero itself. */
+  .hero { padding-inline: 16px; gap: 14px; }
+  .hero-title { font-size: clamp(30px, 9vw, 44px); }
+  .hero-portrait-img { max-width: min(58vw, 220px); max-height: 34vh; }
+}
+
+/* ── Mobile nav: open state ──
+   Scoped to the same breakpoint as the rest of the mobile nav (below).
+   Without this, growing the viewport past 900px while the menu is open
+   (rotating a tablet, or resizing a desktop window while previewing
+   breakpoints) would leave the full-screen overlay stuck on top of the
+   desktop layout, since .nav-toggle — the only way to close it — is
+   hidden again above 900px. JS also force-closes the menu on that same
+   breakpoint crossing, as a second safety net. */
+@media (max-width: 900px) {
+  /* Dim scrim behind the card — standard pop-up treatment: makes the menu
+     read as a distinct, prominent surface sitting above the page, and
+     doubles as a big "tap anywhere to close" target. */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  .nav-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Mobile nav: a proper pop-up card — floating below the navbar with
+     margin on every side, rounded corners and a real shadow, sized to
+     its content (not stretched edge-to-edge/top-to-bottom) so it reads
+     as one substantial, intentional surface instead of a bare list. */
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: calc(var(--nav-height) + 12px);
+    inset-inline: 12px;
+    max-height: calc(100dvh - var(--nav-height) - 24px);
+    background-color: var(--bg-primary);
+    border-radius: 22px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 28px 24px calc(env(safe-area-inset-bottom) + 24px);
+    gap: 22px;
+    z-index: 99;
+    overflow-y: auto;
+  }
+  .nav-links.open .nav-link {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .nav-links.open .nav-mobile-cta {
+    display: block;
+    margin-top: 4px;
+  }
+  .nav-links.open .nav-mobile-cta .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 16px;
+    padding: 15px;
+  }
+  .nav-links.open .nav-mobile-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-default);
+  }
+
+  /* This is the primary — often only — place to reach language and theme
+     on narrow phones (both drop off the persistent bar below 560px), so
+     they get roomier tap targets here than their bar-sized counterparts. */
+  .nav-links.open .nav-mobile-controls .lang-switcher {
+    padding: 5px;
+    gap: 4px;
+  }
+  .nav-links.open .nav-mobile-controls .lang-btn {
+    padding: 8px 14px;
+    font-size: 15px;
+  }
+  .nav-links.open .nav-mobile-controls .lang-btn[data-lang-btn="ar"] {
+    font-size: 17px;
+  }
+  .nav-links.open .nav-mobile-controls .theme-toggle {
+    width: 42px;
+    height: 42px;
+  }
+  .nav-links.open .nav-mobile-controls .theme-toggle svg {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+/* ============================================================
+   NAVBAR INTERACTIONS
+   ============================================================ */
+
+/* ── Navbar compact on scroll ── */
+.navbar {
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color var(--transition-slow),
+              border-color var(--transition-slow),
+              box-shadow var(--transition-slow);
+}
+.navbar.scrolled {
+  height: 54px;
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Logo: springy scale instead of bare opacity fade ── */
+.nav-logo {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity var(--transition-fast);
+}
+.nav-logo:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* ── Nav links: sliding blue underline ── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: var(--accent-blue);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+[dir="rtl"] .nav-link::after {
+  transform-origin: right center;
+}
+
+/* ── Chevron: rotates on hover ── */
+.nav-link:hover .chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ── Lang buttons: spring bounce on hover ── */
+.lang-btn {
+  transition: all var(--transition-fast),
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.lang-btn:not(.active):hover {
+  transform: scale(1.1);
+  color: var(--text-primary);
+}
+
+/* ── Theme toggle: icon spins on hover ── */
+.theme-toggle svg {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-toggle:hover svg {
+  transform: rotate(30deg);
+}
+
+/* ── Hamburger: smooth X morph ── */
+.nav-toggle span {
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1),
+              opacity 0.2s ease,
+              width 0.3s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile menu: slides down + fades in ── */
+@keyframes menu-drop {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 900px) {
+  .nav-links.open {
+    animation: menu-drop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* ── Mobile menu items: staggered fade-in ──
+     Plain positional selectors (not tied to the .nav-item class, which
+     only the first <li> carries) so every row — the 4 links, the "Contact
+     Me" CTA, and the lang/theme controls row — animates in, instead of
+     the last two rows appearing with no transition. */
+  .nav-links.open > li:nth-child(1) { animation: menu-item-in 0.3s 0.05s both; }
+  .nav-links.open > li:nth-child(2) { animation: menu-item-in 0.3s 0.10s both; }
+  .nav-links.open > li:nth-child(3) { animation: menu-item-in 0.3s 0.15s both; }
+  .nav-links.open > li:nth-child(4) { animation: menu-item-in 0.3s 0.20s both; }
+  .nav-links.open > li:nth-child(5) { animation: menu-item-in 0.3s 0.25s both; }
+  .nav-links.open > li:nth-child(6) { animation: menu-item-in 0.3s 0.30s both; }
+
+  /* Arabic: rows slide in from the right, matching RTL reading direction,
+     instead of reusing the LTR slide-from-left. */
+  [dir="rtl"] .nav-links.open > li { animation-name: menu-item-in-rtl; }
+}
+@keyframes menu-item-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes menu-item-in-rtl {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Empty scroll-anchor placeholder for the not-yet-built Articles/Insights
+   section (nav "Articles" link points to #insights). Left completely
+   unstyled it just shows the plain body background with no dot-grid
+   texture, breaking the pattern between .skills-section and .exp-section
+   in every theme/language. Give it the same flat bg + texture so the
+   page reads as continuous until real content replaces it. */
+#insights {
+  position: relative;
+  background-color: var(--bg-primary);
+}
+#insights::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+[data-theme="dark"] #insights::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+}
+
+/* ============================================================
+   EXPERIENCE SECTION
+   ============================================================ */
+
+.exp-section {
+  /* Same flat background as every other section (hero/work/skills all
+     use --bg-primary) so the page reads as one continuous surface with
+     no seam at the section boundary, in both light and dark mode. */
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: clamp(80px, 12vw, 160px) var(--container-pad);
+}
+.exp-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] .exp-section::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+}
+
+.exp-container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ── Section header ── */
+.exp-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exp-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exp-label-line {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background-color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.exp-label-text {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+[dir="rtl"] .exp-label-text {
+  font-size: 14px;
+}
+
+.exp-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.exp-title {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1.08;
+  color: var(--text-primary);
+}
+
+[dir="rtl"] .exp-title { letter-spacing: 0; }
+
+.exp-subtitle {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 400px;
+  flex-shrink: 0;
+}
+
+.exp-role {
+  color: var(--accent-blue-light);
+  white-space: nowrap;
+}
+
+.exp-country {
+  color: #E39B25;
+  font-weight: 700;
+}
+
+/* ── Description block ── */
+.exp-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.exp-desc p { margin: 0; }
+
+/* ── Tags ── */
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.exp-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+[dir="rtl"] .exp-tag {
+  font-size: 14px;
+}
+
+/* ── Multi-role (Data Master) ── */
+.exp-multi {
+  display: flex;
+  gap: 10px;
+}
+
+.exp-timeline-bar {
+  flex-shrink: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-blue-light) 0%,
+    var(--border-default) 100%
+  );
+  align-self: stretch;
+  margin-block: 2px;
+}
+
+.exp-roles {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.exp-role-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exp-role-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.exp-dates-small {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+[dir="rtl"] .exp-dates-small { font-size: 15px; }
+
+/* ── RTL adjustments ──
+   NOTE: with direction:rtl on <html>, flex rows automatically flow right→left.
+   DO NOT add flex-direction:row-reverse — that undoes RTL and produces LTR order.
+   Only override properties that genuinely need a physical change (padding, text-align, position). */
+[dir="rtl"] .exp-subtitle { text-align: right; }
+
+/* ── Dark mode ── */
+[data-theme="dark"] .exp-tag {
+  background-color: var(--bg-tertiary);
+}
+
+/* ── Responsive: tablet ── */
+@media (max-width: 900px) {
+  .exp-section {
+    padding-block: 64px;
+  }
+
+  .exp-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .exp-subtitle { max-width: 100%; }
+
+  .exp-role-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  [dir="rtl"] .exp-title-row   { flex-direction: column; }
+  [dir="rtl"] .exp-role-header { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .exp-tags { gap: 6px; }
+  .exp-tag  { font-size: 11px; padding: 0 10px; }
+  [dir="rtl"] .exp-tag { font-size: 12.5px; }
+}
+
+/* ============================================================
+   OPTION A — ACCORDION (elevated)
+   ============================================================ */
+/* .expa-section class removed — accordion is now the main #experience section */
+
+.expa-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border-default);
+}
+
+/* Each accordion item */
+.expa-item {
+  position: relative;
+  /* Not-selected resting fill — subtle off-white distinct from the
+     section's warm wash. Passes AA with the base --text-tertiary as-is
+     (4.63:1), no local darkening needed here. */
+  background-color: #F9F9F8;
+  border-bottom: 1px solid var(--border-default);
+  transition: background-color 240ms ease;
+}
+[data-theme="dark"] .expa-item {
+  /* #F9F9F8 is a light-mode-only value; dark mode uses --bg-primary
+     (#0D0D0D), matching the section itself and the rest of the page. */
+  background-color: var(--bg-primary);
+}
+/* The hover/open tint below mixes accent-blue into --bg-secondary, which
+   in light mode is slightly darker than this row's own #F9F9F8 resting
+   fill — that mix drops text-tertiary to 4.48:1 (just under AA 4.5:1) for
+   the small text used throughout each row (num, period, hint, peek,
+   location). Locally darken to #6B6B6B (4.89:1 resting / 4.76:1 on the
+   hover tint) here; dark mode is untouched (already 5.54:1+). */
+.expa-item { --text-tertiary: #6B6B6B; }
+[data-theme="dark"] .expa-item { --text-tertiary: #8F8F8F; }
+
+/* Left accent rail — scaleY 0→1 on hover / open */
+.expa-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent-blue-light);
+  transform: scaleY(0);
+  transform-origin: top center;
+  border-radius: 0 2px 2px 0;
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expa-item:hover::before,
+.expa-item--open::before {
+  transform: scaleY(1);
+}
+
+/* Hover / open: subtle blue-tinted lift off the item's own base fill */
+.expa-item:hover,
+.expa-item--open   { background-color: color-mix(in srgb, var(--accent-blue) 4%, var(--bg-secondary)); }
+
+/* Trigger row */
+.expa-trigger {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  /* Logical properties so this auto-mirrors for RTL: the chevron/period
+     end (right in Latin, left in Arabic) gets its own 24px of breathing
+     room instead of sitting flush against the row's edge. */
+  padding-block: 22px;
+  padding-inline-start: 16px;
+  padding-inline-end: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: start;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.expa-item--open .expa-company,
+.expa-item:hover  .expa-company { color: var(--text-primary); }
+
+/* Item number */
+.expa-num {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  font-feature-settings: 'tnum';
+  flex-shrink: 0;
+  min-width: 22px;
+  transition: color var(--transition-base);
+}
+
+[dir="rtl"] .expa-num { font-size: 14px; }
+
+/* accent-blue-light only clears AA contrast on dark backgrounds (5.28:1);
+   on white it drops to 3.68:1, below the 4.5:1 needed for text this small.
+   Use the darker accent-blue in light mode, accent-blue-light in dark mode. */
+.expa-item--open .expa-num,
+.expa-item:hover  .expa-num { color: var(--accent-blue); }
+
+[data-theme="dark"] .expa-item--open .expa-num,
+[data-theme="dark"] .expa-item:hover  .expa-num { color: var(--accent-blue-light); }
+
+/* Company + sublabel block */
+.expa-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.expa-company {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-secondary);
+  line-height: 1.2;
+  transition: color var(--transition-base);
+}
+
+[dir="rtl"] .expa-company { letter-spacing: 0; }
+
+/* Sublabel: role · location — always visible in trigger */
+.expa-sublabel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.expa-role-inline {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  transition: color var(--transition-base);
+}
+
+[dir="rtl"] .expa-role-inline { font-size: 15px; }
+
+.expa-item--open .expa-role-inline { color: var(--accent-blue); }
+[data-theme="dark"] .expa-item--open .expa-role-inline { color: var(--accent-blue-light); }
+
+.expa-role-sep { color: var(--text-tertiary); opacity: 0.45; }
+
+.expa-loc-sep {
+  font-size: 11.5px;
+  color: var(--border-default);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+[dir="rtl"] .expa-loc-sep { font-size: 13px; }
+
+.expa-loc-inline {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  /* opacity removed — stacking on top of text-tertiary pushed contrast to ~2:1, well under AA */
+}
+
+[dir="rtl"] .expa-loc-inline { font-size: 14.5px; }
+
+.expa-volunteer-badge {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #E39B25;
+  text-transform: uppercase;
+}
+
+[dir="rtl"] .expa-volunteer-badge { font-size: 13px; }
+
+/* Right group: hint pill + period + chevron */
+.expa-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* "N highlights" teaser — slides in on hover, hides when open */
+.expa-hint {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+[dir="rtl"] .expa-hint { font-size: 14px; }
+
+.expa-item:not(.expa-item--open):hover .expa-hint {
+  opacity: 1; /* was 0.65 — combined with text-tertiary it fell to ~2:1 contrast */
+  transform: translateX(0);
+}
+
+/* Period (dates) */
+.expa-period {
+  font-size: 13.5px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.expa-period strong { color: var(--text-secondary); font-size: 14.5px; }
+
+[dir="rtl"] .expa-period { font-size: 15px; }
+[dir="rtl"] .expa-period strong { font-size: 16px; }
+
+/* Chevron */
+.expa-chevron {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+.expa-item--open .expa-chevron { transform: rotate(180deg); color: var(--accent-blue-light); }
+.expa-item:hover  .expa-chevron { color: var(--text-secondary); }
+
+/* ── PEEK: one-line content teaser on hover ─────────────────── */
+.expa-peek {
+  position: relative;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding-left: 58px; /* 16px trigger padding + 22px num + 20px gap */
+  transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity    250ms ease;
+  font-size: 14px;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+[dir="rtl"] .expa-peek { font-size: 15.5px; }
+
+.expa-peek p { margin: 0; padding-bottom: 14px; }
+
+/* Gradient fade at bottom of peek window */
+.expa-peek::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 28px;
+  background: linear-gradient(to bottom, transparent, var(--bg-secondary));
+  pointer-events: none;
+}
+
+/* Reveal peek only on hover when item is closed */
+.expa-item:not(.expa-item--open):hover .expa-peek {
+  max-height: 70px;
+  opacity: 1;
+}
+
+/* Animated expand body — CSS grid trick for height:auto animation */
+.expa-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 380ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expa-item--open .expa-body { grid-template-rows: 1fr; }
+
+.expa-body-inner { overflow: hidden; }
+
+.expa-body-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0 28px 58px;
+}
+
+/* ── RTL accordion overrides ─────────────────────────────────
+   direction:rtl on <html> makes flex rows flow RIGHT→LEFT automatically.
+   DOM order [num][meta][right-group] naturally becomes:
+     RIGHT: 01 | Company + sublabel | period + chevron :LEFT   ✓
+   DOM order [role][sep][location] in sublabel naturally becomes:
+     RIGHT: role | · | location :LEFT   ✓
+   DOM order [role][dates] in role-header naturally becomes:
+     RIGHT: role | dates :LEFT   ✓
+   Only override PHYSICAL properties (padding, position, border-radius). */
+
+/* Trigger padding/text-align now use logical properties (padding-inline-*,
+   text-align:start) on the base rule, so they already auto-mirror here —
+   no [dir="rtl"] override needed. */
+
+/* Period: dates are on the LEFT side in RTL, so left-align text within the box */
+[dir="rtl"] .expa-period    { text-align: left; }
+
+/* Accent rail: move from left edge to right edge */
+[dir="rtl"] .expa-item::before { left: auto; right: 0; border-radius: 2px 0 0 2px; }
+
+/* Peek indent: mirror to right side */
+[dir="rtl"] .expa-peek      { padding-left: 0; padding-right: 58px; }
+
+/* Hint slide: in RTL, hint is rightmost in right-group (near center of trigger),
+   so it slides in from the right (positive X) — same physical direction as LTR */
+[dir="rtl"] .expa-hint      { transform: translateX(4px); }
+[dir="rtl"] .expa-item:not(.expa-item--open):hover .expa-hint { transform: translateX(0); }
+
+/* Body content indent: mirror to right */
+[dir="rtl"] .expa-body-content { padding: 8px 58px 28px 0; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .expa-trigger        { gap: 12px; flex-wrap: wrap; padding-inline-start: 12px; padding-inline-end: 16px; }
+  /* Right-group wraps to its own row; row-reverse puts chevron first (left edge in LTR) */
+  .expa-right          { flex: 0 0 100%; padding-left: 34px; flex-direction: row-reverse; justify-content: flex-start; }
+  .expa-company        { font-size: 16px; }
+  .expa-hint           { display: none; }
+  .expa-body-content   { padding-left: 34px; }
+  .expa-peek           { padding-left: 34px; }
+
+  /* RTL responsive: .expa-trigger padding already auto-mirrors (logical
+     properties); .expa-right still needs its physical padding/flex swapped. */
+  [dir="rtl"] .expa-right          { padding-left: 0; padding-right: 34px; flex-direction: row; justify-content: flex-end; }
+  [dir="rtl"] .expa-body-content   { padding-left: 0; padding-right: 34px; }
+  [dir="rtl"] .expa-peek           { padding-left: 0; padding-right: 34px; }
+}
+
+/* ============================================================
+   WORK / CASE STUDIES SECTION — interactive case-study explorer
+   ============================================================ */
+.work-section {
+  /* Same flat --bg-primary + dot-grid texture as the hero and every other
+     section — one continuous page background. Deliberately NOT
+     `overflow: hidden` — .work-tablist uses position:sticky on desktop,
+     which any overflow clipping on an ancestor would silently break.
+     Since the ::before below is sized with plain inset:0, it never
+     extends past this box, so no clipping is needed to contain it anyway. */
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: clamp(80px, 12vw, 160px) var(--container-pad);
+}
+.work-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] .work-section::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+}
+
+.work-container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ── Explorer shell ── */
+.work-explorer {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── Tab list (left rail) ── */
+.work-tablist {
+  position: sticky;
+  top: calc(var(--nav-height) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-inline-start: 3px;
+}
+
+.work-tab {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  text-align: start;
+  transition: background-color 0.25s ease;
+}
+
+.work-tab:hover {
+  background-color: rgba(0, 0, 0, 0.035);
+}
+[data-theme="dark"] .work-tab:hover {
+  background-color: rgba(255, 255, 255, 0.045);
+}
+
+.work-tab[aria-selected="true"] {
+  background-color: rgba(0, 0, 0, 0.045);
+}
+[data-theme="dark"] .work-tab[aria-selected="true"] {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.work-tab-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  padding-top: 2px;
+  transition: color 0.25s ease;
+  font-variant-numeric: tabular-nums;
+}
+
+.work-tab[aria-selected="true"] .work-tab-num {
+  color: var(--accent-blue);
+}
+[data-theme="dark"] .work-tab[aria-selected="true"] .work-tab-num {
+  color: var(--accent-blue-light);
+}
+
+.work-tab-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.work-tab-company {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+[dir="rtl"] .work-tab-company { font-size: 16px; }
+
+.work-tab-hook {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+[dir="rtl"] .work-tab-hook { font-size: 14.5px; }
+
+/* Short label — mobile-only compact tab text (see responsive block below).
+   Full titles wrap to 2 uneven lines at mobile tab widths; this keeps each
+   pill single-line and uniform height. */
+.work-tab-short { display: none; }
+
+/* Sliding active-tab indicator — position/size set by js/work.js */
+.work-tab-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  border-radius: 2px;
+  background-color: var(--accent-blue);
+  transform: translateY(0);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.3s ease;
+  pointer-events: none;
+}
+[data-theme="dark"] .work-tab-indicator {
+  background-color: var(--accent-blue-light);
+}
+[dir="rtl"] .work-tab-indicator { left: auto; right: 0; }
+
+/* ── Detail panels (right) ── */
+.work-panels {
+  position: relative;
+  background-color: var(--surface-light-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  overflow: hidden;
+  min-height: 520px;
+}
+[data-theme="dark"] .work-panels {
+  background-color: var(--bg-tertiary);
+}
+
+.work-panel {
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+
+.work-panel.is-active {
+  display: block;
+  animation: work-panel-in 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes work-panel-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.work-panel-ghost-num {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: clamp(120px, 16vw, 200px);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-primary);
+  opacity: 0.035;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+[dir="rtl"] .work-panel-ghost-num { right: auto; left: -10px; }
+
+.work-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.work-panel-tag {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+}
+[data-theme="dark"] .work-panel-tag { color: var(--accent-blue-light); }
+[dir="rtl"] .work-panel-tag { font-size: 14px; letter-spacing: 0; }
+
+.work-panel-nda {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-tertiary);
+}
+[dir="rtl"] .work-panel-nda { font-size: 13.5px; }
+
+.work-panel-title {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+[dir="rtl"] .work-panel-title { letter-spacing: 0; }
+
+.work-panel-meta {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+[dir="rtl"] .work-panel-meta { font-size: 16px; }
+
+/* ── Problem → Approach → Outcome flow ── */
+.work-panel-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.work-flow-step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.work-flow-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+[dir="rtl"] .work-flow-label { font-size: 13.5px; letter-spacing: 0; }
+
+.work-flow-step p {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+[dir="rtl"] .work-flow-step p { font-size: 16px; }
+
+/* Darker green in light mode only — plain accent-green fails AA (2.28:1)
+   on a white card at this weight/size; #15803D clears 4.5:1 (5.02:1). */
+.work-flow-step--outcome .work-flow-label { color: #15803D; }
+[data-theme="dark"] .work-flow-step--outcome .work-flow-label { color: var(--accent-green); }
+
+.work-flow-arrow {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  margin-top: 3px;
+  opacity: 0.5;
+}
+[dir="rtl"] .work-flow-arrow { transform: scaleX(-1); }
+
+/* ── Stats ── */
+.work-panel-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+  margin-bottom: 24px;
+}
+
+.work-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.work-stat-value {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.work-stat-num {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.work-stat-suffix {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+[data-theme="dark"] .work-stat-suffix { color: var(--accent-blue-light); }
+
+.work-stat-label {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  max-width: 140px;
+  line-height: 1.4;
+}
+[dir="rtl"] .work-stat-label { font-size: 14.5px; }
+
+.work-panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.work-panel-cta {
+  margin-top: 28px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .work-section { padding-block: 64px; }
+
+  .work-explorer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .work-tablist {
+    /* Was `static` — that breaks the indicator's positioning context (its
+       containing block becomes some distant ancestor instead of the
+       tablist), so it renders detached from the tabs entirely. Needs to
+       stay a positioned ancestor; just drop the desktop sticky behavior.
+       `top` must also be reset — `position:relative` still honors it, so
+       the desktop sticky offset (~nav-height + 24px) was shifting the
+       whole tab row down into the panel content below it. */
+    position: relative;
+    top: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    padding-inline-start: 0;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .work-tablist::-webkit-scrollbar { display: none; }
+
+  .work-tab {
+    flex-shrink: 0;
+    width: auto;
+    max-width: none;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--border-default);
+  }
+
+  .work-tab-company,
+  .work-tab-hook { display: none; }
+
+  .work-tab-short {
+    display: inline-block;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+  [dir="rtl"] .work-tab-short { font-size: 15px; }
+
+  .work-tab-indicator {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 0;
+    height: 3px;
+    transform: translateX(0);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s ease;
+  }
+  /* The unconditional `[dir="rtl"] .work-tab-indicator { right:0 }` rule
+     above (outside any media query) has higher specificity (0,2,0) than
+     the plain mobile rule (0,1,0) right above, so it was still winning on
+     RTL + mobile and pinning the indicator's anchor to the right edge —
+     the opposite of what the offsetLeft-based translateX math assumes.
+     Same fix pattern as the RTL mobile-hero width bug: re-declare at
+     matching specificity inside this media query so it actually wins. */
+  [dir="rtl"] .work-tab-indicator {
+    left: 0;
+    right: auto;
+  }
+
+  .work-panels {
+    padding: 28px 24px;
+    min-height: 0;
+  }
+
+  .work-panel-flow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .work-flow-arrow { display: none; }
+
+  .work-panel-ghost-num { display: none; }
+
+  .work-stat-label { max-width: none; }
+}
+
+/* ============================================================
+   SKILLS SECTION  (from Figma "SkillsSectionAlt")
+   ============================================================ */
+.skills-section {
+  /* Same flat --bg-primary + dot-grid texture as the hero and every other
+     section — one continuous page background. */
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: clamp(80px, 12vw, 160px) var(--container-pad);
+}
+.skills-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] .skills-section::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+}
+
+.skills-container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 48px;
+}
+
+/* Entrance: cards fade/slide up as they scroll into view, staggered per
+   card by js/skills.js via the --reveal-delay custom property. Decoupled
+   from the hover transition below (animation, not transition) so the two
+   never fight over the same `transform`/`opacity` properties. */
+@keyframes skill-card-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.skill-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+
+.skill-card.is-visible {
+  animation: skill-card-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* Cursor-following spotlight glow (desktop only — set via JS on mousemove).
+   Sits behind the header/tags via z-index below; a very light tint, so it
+   doesn't touch text contrast, just adds a "lit from the cursor" feel. */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(480px circle at var(--sk-x, 50%) var(--sk-y, 50%),
+    rgba(59, 130, 246, 0.12), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.skill-card:hover::before { opacity: 1; }
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blue-light);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .skill-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-card-line {
+  display: block;
+  width: 32px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--accent-blue-light);
+  flex-shrink: 0;
+  transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.skill-card:hover .skill-card-line { width: 48px; }
+
+.skill-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+}
+
+[dir="rtl"] .skill-card-title { letter-spacing: 0; }
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 35px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-light-card);
+  border: 1px solid var(--border-default);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  cursor: default;
+  transition: background-color 0.25s ease,
+              border-color 0.25s ease,
+              color 0.25s ease,
+              transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Tag hover: filled pill, dark blue (not accent-blue-light) — white text on
+   accent-blue-light is only 3.68:1, under AA; on the darker accent-blue
+   it's 6.7:1, which is why this uses the darker of the two blues. */
+.skill-tag:hover {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Dark mode: an explicit lighten-overlay instead of another bg token —
+   --surface-light-card and --bg-tertiary both resolve to the same dark
+   value, which would make the tag invisible against its own card. */
+[data-theme="dark"] .skill-tag {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+[data-theme="dark"] .skill-tag:hover {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .skills-section { padding-block: 64px; }
+  .skills-grid { grid-template-columns: 1fr; gap: 16px; }
+  .skill-card { padding: 24px; gap: 16px; }
+  .skill-tag { font-size: 12.5px; height: 32px; padding: 0 12px; white-space: normal; }
+}
+
+/* ============================================================
+   FOOTER — always-dark "signature" closing section.
+   Deliberately does NOT follow the light/dark toggle (matches the Figma
+   source, which hardcodes a black footer regardless of theme) — it reads
+   as a fixed closing statement for the page, like the intro overlay is a
+   fixed opening one. Implemented by re-declaring the core tokens scoped
+   to .site-footer with their dark-mode values, so every existing pattern
+   reused inside it (pills, cards, arrows) resolves correctly with zero
+   extra dark-mode overrides needed.
+   ============================================================ */
+.site-footer {
+  --bg-primary:      #0D0D0D;
+  --bg-secondary:    #171717;
+  --bg-tertiary:     #1E1E1E;
+  --text-primary:    #F5F5F5;
+  --text-secondary:  #999999;
+  --text-tertiary:   #8F8F8F;
+  --border-default:  rgba(255, 255, 255, 0.08);
+
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: clamp(72px, 10vw, 120px) var(--container-pad) 0;
+}
+
+/* Shared dot-grid texture — always the dark variant since this section
+   never follows the theme toggle. */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Giant faint wordmark behind everything — echoes the hero's opening
+   signature as a closing bookend. */
+.footer-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+.footer-watermark span {
+  font-size: clamp(120px, 22vw, 320px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.75;
+  color: var(--text-primary);
+  opacity: 0.04;
+  white-space: nowrap;
+  transform: translateY(18%);
+}
+[dir="rtl"] .footer-watermark span {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 7vw, 88px);
+}
+
+/* ── Intro: badge + heading + subtitle ── */
+.footer-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+}
+
+.footer-badge-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-green);
+  flex-shrink: 0;
+}
+.footer-badge-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--accent-green);
+  animation: footer-pulse 2.2s ease-out infinite;
+}
+@keyframes footer-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+.footer-heading {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.footer-subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ── Main: form + contacts, side by side ──
+   Plain flex-direction:row auto-flips visual order under [dir="rtl"]
+   (first DOM child lands on the right), matching the same convention
+   already used for .hero — no reordering or RTL override needed here. */
+.footer-main {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.footer-panel {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-panel-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+/* ── Contact form ── */
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 1;
+}
+
+.ff-field {
+  position: relative;
+  padding-top: 10px;
+  border-radius: var(--radius-md);
+}
+
+/* Cursor-following spotlight — same technique as .skill-card's mousemove
+   glow (see js/skills.js), reused here via --ff-x/--ff-y in footer.js.
+   Previews where the focus underline is about to draw in, so hovering a
+   field already feels responsive before the user clicks into it. */
+.ff-field::before {
+  content: '';
+  position: absolute;
+  inset: 4px -14px -6px;
+  border-radius: var(--radius-md);
+  background: radial-gradient(140px circle at var(--ff-x, 50%) var(--ff-y, 50%),
+    rgba(59, 130, 246, 0.16), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+.ff-field:hover::before { opacity: 1; }
+
+.ff-input {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px 0;
+  text-align: start;
+  caret-color: var(--accent-blue-light);
+  transition: border-color 0.25s ease;
+}
+.ff-input:focus { outline: none; }
+/* Hover brightens the resting track a touch — a quiet "this is
+   interactive" cue distinct from the blue focus underline below. */
+.ff-field:hover .ff-input { border-bottom-color: var(--text-tertiary); }
+.ff-textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.5;
+}
+
+.ff-label {
+  position: absolute;
+  z-index: 1;
+  inset-inline-start: 0;
+  top: 20px;
+  font-size: 16px;
+  color: var(--text-tertiary);
+  pointer-events: none;
+  transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+}
+.ff-field:hover .ff-label { color: var(--text-secondary); }
+.ff-input:focus ~ .ff-label,
+.ff-input:not(:placeholder-shown) ~ .ff-label {
+  top: -4px;
+  font-size: 12px;
+  color: var(--accent-blue-light);
+}
+
+.ff-underline {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  inset-inline: 0;
+  height: 2px;
+  background-color: var(--accent-blue-light);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+[dir="rtl"] .ff-underline { transform-origin: right center; }
+.ff-input:focus ~ .ff-underline { transform: scaleX(1); }
+
+.footer-submit {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 16px 30px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-blue);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              background-color 0.25s ease;
+}
+.footer-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.35);
+}
+.footer-submit-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.footer-submit .icon-check { display: none; }
+.footer-submit.is-sent {
+  background-color: var(--accent-green);
+}
+.footer-submit.is-sent:hover {
+  box-shadow: 0 10px 24px rgba(34, 197, 94, 0.35);
+}
+.footer-submit.is-sent .icon-send  { display: none; }
+.footer-submit.is-sent .icon-check { display: inline-flex; }
+
+/* ── Direct contacts ── */
+.footer-contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-contact {
+  position: relative;
+}
+
+/* Per-platform brand color, referenced by the hover states below */
+.footer-contact--email      { --fc-brand: var(--accent-blue-light); }
+.footer-contact--linkedin   { --fc-brand: #0A66C2; }
+.footer-contact--whatsapp   { --fc-brand: #25D366; }
+.footer-contact--instagram  { --fc-brand: #E1306C; }
+
+.fc-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease;
+}
+.footer-contact--email .fc-link {
+  padding-inline-end: 58px; /* clears the floating copy button */
+}
+.fc-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--fc-brand);
+  background-color: color-mix(in srgb, var(--fc-brand) 10%, var(--bg-secondary));
+}
+
+.fc-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.fc-icon svg { width: 17px; height: 17px; }
+.fc-link:hover .fc-icon {
+  background-color: var(--fc-brand);
+  color: #fff;
+  transform: rotate(-8deg) scale(1.08);
+}
+/* WhatsApp's brand green is too light for a white icon to read clearly
+   (1.98:1) — use a dark icon there instead (9.8:1). Every other brand
+   color already clears the 3:1 non-text contrast minimum with white. */
+.footer-contact--whatsapp .fc-link:hover .fc-icon {
+  color: #0D0D0D;
+}
+
+.fc-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.fc-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.fc-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+.fc-link:hover .fc-value { color: var(--fc-brand); }
+
+.fc-arrow {
+  flex-shrink: 0;
+  opacity: 0;
+  color: var(--text-tertiary);
+  transform: translateX(-6px);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.fc-link:hover .fc-arrow { opacity: 1; transform: translateX(0); }
+[dir="rtl"] .fc-arrow { transform: translateX(6px) scaleX(-1); }
+[dir="rtl"] .fc-link:hover .fc-arrow { transform: translateX(0) scaleX(-1); }
+.footer-contact--email .fc-arrow { display: none; }
+
+/* Copy-email button — floats over the email row's end edge */
+.fc-copy {
+  position: absolute;
+  inset-inline-end: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-default);
+  background-color: transparent;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.fc-copy:hover {
+  border-color: var(--accent-blue-light);
+  color: var(--accent-blue-light);
+}
+.fc-copy .icon-copied { display: none; }
+.fc-copy.is-copied {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+.fc-copy.is-copied .icon-copy   { display: none; }
+.fc-copy.is-copied .icon-copied { display: inline-flex; }
+
+.fc-copy-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  inset-inline-end: 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent-green);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  padding: 4px 9px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.fc-copy.is-copied .fc-copy-tip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Bottom bar ── */
+.footer-bottom {
+  border-top: 1px solid var(--border-default);
+  padding-block: 28px;
+  display: flex;
+  justify-content: center;
+}
+.footer-copyright {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+.footer-copyright span + span { margin-inline-start: 4px; }
+
+/* ── Scroll-in reveal — same fade/slide pattern as .skill-card-in ── */
+.footer-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.footer-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RTL: Arabic script reads slightly small at these sizes ── */
+[dir="rtl"] .footer-badge        { font-size: 14.5px; }
+[dir="rtl"] .footer-subtitle     { font-size: 17px; }
+[dir="rtl"] .footer-panel-title  { font-size: 19.5px; }
+[dir="rtl"] .ff-input,
+[dir="rtl"] .ff-label            { font-size: 17px; }
+[dir="rtl"] .ff-input:focus ~ .ff-label,
+[dir="rtl"] .ff-input:not(:placeholder-shown) ~ .ff-label { font-size: 13px; }
+[dir="rtl"] .footer-submit       { font-size: 16px; }
+[dir="rtl"] .fc-label            { font-size: 12.5px; }
+[dir="rtl"] .fc-value            { font-size: 16px; }
+[dir="rtl"] .footer-copyright    { font-size: 14px; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .site-footer { padding-top: 64px; }
+  .footer-main { flex-direction: column; gap: 48px; }
+  .footer-heading { font-size: clamp(28px, 7vw, 40px); }
+}
+
+@media (max-width: 640px) {
+  .footer-inner { gap: 48px; }
+  .footer-subtitle { font-size: 15px; }
+  [dir="rtl"] .footer-subtitle { font-size: 16px; }
+  .footer-submit { width: 100%; justify-content: center; }
+  .fc-value { max-width: 46vw; }
+}
+
+@media (max-width: 480px) {
+  .site-footer { padding-inline: 20px; }
+  .footer-badge { font-size: 12px; text-align: center; }
+  .fc-link { padding: 12px 14px; }
+  .footer-contact--email .fc-link { padding-inline-end: 52px; }
+}
+
+/* ============================================================
+   BACK TO TOP — floating button, shown once scrolled past the hero
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: calc(env(safe-area-inset-bottom) + 24px);
+  z-index: 50; /* above page content, below navbar (100) and the
+                  full-screen mobile menu (99) — sits behind the open
+                  menu instead of floating awkwardly on top of it */
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s ease,
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              visibility 0.3s,
+              background-color var(--transition-slow);
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+}
+.back-to-top svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Mirror to the opposite corner in Arabic, matching RTL reading direction */
+[dir="rtl"] .back-to-top {
+  right: auto;
+  left: 24px;
+}
+
+@media (max-width: 560px) {
+  .back-to-top {
+    right: 16px;
+    bottom: calc(env(safe-area-inset-bottom) + 16px);
+    width: 42px;
+    height: 42px;
+  }
+  [dir="rtl"] .back-to-top {
+    right: auto;
+    left: 16px;
+  }
+}
+
+/* Respects reduced-motion: fade only, no spring/slide */
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity 0.2s ease, visibility 0.2s;
+    transform: none;
+  }
+  .back-to-top:hover {
+    transform: none;
+  }
+}
+
