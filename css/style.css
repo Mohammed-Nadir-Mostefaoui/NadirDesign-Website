@@ -529,10 +529,19 @@ html {
 }
 [dir="rtl"] .hero-title {
   letter-spacing: 0;
-  /* Arabic glyphs with harakat need more vertical room; also scale down slightly
-     so the large display size doesn't overwhelm the column in RTL layout */
-  font-size: clamp(30px, 4vw, 52px);
   line-height: 1.45;
+}
+/* Desktop-only: the tuned-down display size below is specifically for the
+   wide two-column layout. Scoped to ≥901px so it doesn't outrank (via
+   selector specificity) the mobile .hero-title font-size set inside the
+   900px media query — same class of bug as the .hero flex-direction fix
+   above. */
+@media (min-width: 901px) {
+  [dir="rtl"] .hero-title {
+    /* Arabic glyphs with harakat need more vertical room; also scale down slightly
+       so the large display size doesn't overwhelm the column in RTL layout */
+    font-size: clamp(30px, 4vw, 52px);
+  }
 }
 
 /* Blue accent rule */
@@ -642,18 +651,25 @@ html {
 
 /* RTL desktop: image left, text right
    flex-direction: row in RTL context flows items R→L,
-   so first child (text) lands on RIGHT, second (portrait) on LEFT */
-[dir="rtl"] .hero {
-  flex-direction: row;
-}
-[dir="rtl"] .hero-content {
-  /* Mirror LTR paddings: outer gap now on RIGHT, inner gap toward portrait (left) */
-  padding-left:  clamp(20px, 3vw, 48px);        /* inner — gap toward portrait on left */
-  padding-right: clamp(24px, 8.3vw, 120px);     /* outer — matches left edge gap in LTR */
-}
-[dir="rtl"] .hero-portrait-wrap {
-  /* Swap horizontal paddings: large outer on LEFT, small inner gap on RIGHT */
-  padding: 32px clamp(40px, 5vw, 80px) 32px clamp(24px, 8.3vw, 120px);
+   so first child (text) lands on RIGHT, second (portrait) on LEFT.
+   Scoped to ≥901px only: these selectors ([dir="rtl"] + class) are more
+   specific than the plain-class mobile rules inside the 900px media query,
+   so left unscoped they'd win the cascade at mobile widths too and silently
+   overwrite flex-direction/padding there — wrapping in min-width keeps them
+   out of that fight entirely instead of relying on specificity to lose. */
+@media (min-width: 901px) {
+  [dir="rtl"] .hero {
+    flex-direction: row;
+  }
+  [dir="rtl"] .hero-content {
+    /* Mirror LTR paddings: outer gap now on RIGHT, inner gap toward portrait (left) */
+    padding-left:  clamp(20px, 3vw, 48px);        /* inner — gap toward portrait on left */
+    padding-right: clamp(24px, 8.3vw, 120px);     /* outer — matches left edge gap in LTR */
+  }
+  [dir="rtl"] .hero-portrait-wrap {
+    /* Swap horizontal paddings: large outer on LEFT, small inner gap on RIGHT */
+    padding: 32px clamp(40px, 5vw, 80px) 32px clamp(24px, 8.3vw, 120px);
+  }
 }
 
 /* Below 900px, .hero switches to a centered single-column stack (see the
@@ -776,7 +792,35 @@ html {
     max-width: 380px;
   }
 
-  .hero-stats { gap: 24px; }
+  .hero-stats {
+    gap: 14px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Mobile-only stat chips: replaces the desktop accent-bar layout with
+     small rounded cards, echoing the portrait card + pill buttons already
+     used at this breakpoint. Overriding [dir="rtl"] .stat-item explicitly
+     here too (not just .stat-item) so this treatment isn't outranked by
+     the higher-specificity RTL divider rule further up the file — the
+     same cascade trap fixed for .hero/.hero-title elsewhere in this file. */
+  .stat-item,
+  [dir="rtl"] .stat-item {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+    padding: 16px 8px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .stat-num   { font-size: clamp(22px, 6vw, 28px); }
+  .stat-label { font-size: 11px; }
+  [dir="rtl"] .stat-label { font-size: 12.5px; }
 
   /* ── Photo: a real card, sized to be smaller and centered — not the
      full-bleed backdrop this replaces. object-fit isn't cropping
