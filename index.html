@@ -27,11 +27,18 @@
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" id="favicon-link">
 
   <!-- Preload critical assets -->
-  <link rel="preload" href="assets/images/profile.png" as="image">
+  <link rel="preload" href="assets/images/profile.jpg" as="image">
 
-  <!-- Fonts -->
+  <!-- Fonts — a real <link> here (not the @import that used to live inside
+       style.css) so the browser's HTML preloader discovers and starts
+       fetching it immediately, in parallel with everything else in <head>.
+       @import is only discovered after style.css itself has been fully
+       fetched and parsed, adding a serial round-trip that delayed both
+       text rendering and the intro animation (which uses these fonts) on
+       first, cold-cache visits. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/reset.css">
@@ -285,7 +292,7 @@ experience</span>
           <!-- Main card: image (+ mobile scrim, added in CSS via ::before) -->
           <div class="portrait-card-inner">
             <img
-              src="assets/images/profile.png"
+              src="assets/images/profile.jpg"
               alt=""
               class="hero-portrait-img"
               loading="eager"
@@ -1006,7 +1013,7 @@ experience</span>
         <div class="footer-panel footer-form-panel footer-reveal">
           <h3 class="footer-panel-title" data-i18n="footer.form_title">Send a Message</h3>
 
-          <form class="footer-form" id="footer-form" novalidate>
+          <form class="footer-form" id="footer-form" novalidate action="https://formspree.io/f/mkolebgp" method="POST">
             <div class="ff-field">
               <input class="ff-input" type="text" id="ff-name" name="name" required autocomplete="name" placeholder=" ">
               <label class="ff-label" for="ff-name" data-i18n="footer.form_name">Name</label>
@@ -1032,6 +1039,8 @@ experience</span>
                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
               </span>
             </button>
+
+            <p class="ff-status" id="ff-status" role="status" aria-live="polite"></p>
           </form>
         </div>
 

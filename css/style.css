@@ -82,7 +82,11 @@
 }
 
 /* ── Google Fonts ──────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+/* Moved to a <link rel="stylesheet"> in index.html's <head> — @import
+   here was only discovered after this whole file was fetched and parsed,
+   serializing a round-trip that delayed first paint and the intro
+   animation on cold-cache visits. Keep the two in sync if this ever
+   changes. */
 
 /* ── Base ──────────────────────────────────────────────────── */
 html {
@@ -2317,7 +2321,23 @@ html {
   .skills-section { padding-block: 64px; }
   .skills-grid { grid-template-columns: 1fr; gap: 16px; }
   .skill-card { padding: 24px; gap: 16px; }
-  .skill-tag { font-size: 12.5px; height: 32px; padding: 0 12px; white-space: normal; }
+  /* Longer entries (e.g. "Web & Mobile Development — Basic Understanding")
+     need to wrap on mobile, but the desktop pill was a fixed 32px tall with
+     nowrap text forced into it — once wrapped, that fixed height clipped
+     the second line and squished it against the fully-rounded pill ends.
+     Auto height + a smaller radius (still rounded, just not a capsule)
+     fixes both: short tags still read as chips, long ones wrap cleanly
+     into a soft rounded rectangle instead of an overflowing pill. */
+  .skill-tag {
+    font-size: 12.5px;
+    height: auto;
+    min-height: 32px;
+    padding: 7px 14px;
+    border-radius: var(--radius-lg);
+    line-height: 1.4;
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 /* ============================================================
@@ -2366,10 +2386,19 @@ html {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  /* Lifted clear of the copyright bar (.footer-bottom, ~77px tall) instead
+     of sitting flush with the section edge where it used to get cropped
+     by overflow:hidden — the whole wordmark now reads as one deliberate
+     shape instead of a sliver of letters peeking off the bottom. */
+  padding-bottom: clamp(88px, 9vw, 112px);
   z-index: 0;
   pointer-events: none;
   user-select: none;
   overflow: hidden;
+  /* Soft fade-in from the top so the giant letters don't end in a hard
+     horizontal cutoff — a small creative touch instead of a flat crop. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 32%);
+          mask-image: linear-gradient(to bottom, transparent, #000 32%);
 }
 .footer-watermark span {
   font-size: clamp(120px, 22vw, 320px);
@@ -2377,9 +2406,8 @@ html {
   letter-spacing: -0.04em;
   line-height: 0.75;
   color: var(--text-primary);
-  opacity: 0.04;
+  opacity: 0.05;
   white-space: nowrap;
-  transform: translateY(18%);
 }
 [dir="rtl"] .footer-watermark span {
   font-family: var(--font-arabic);
@@ -2604,6 +2632,26 @@ html {
 }
 .footer-submit.is-sent .icon-send  { display: none; }
 .footer-submit.is-sent .icon-check { display: inline-flex; }
+
+.footer-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Inline status text (sending / sent / error) — empty and invisible until
+   JS sets content, so it never reserves visible space in the idle state */
+.ff-status {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  min-height: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.ff-status.is-visible { opacity: 1; }
+.ff-status.is-error   { color: var(--accent-error); }
 
 /* ── Direct contacts ── */
 .footer-contacts {

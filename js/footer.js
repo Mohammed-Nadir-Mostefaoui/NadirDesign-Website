@@ -1,5 +1,5 @@
 /* ============================================================
-   FOOTER — scroll-in reveal, contact form (mailto), copy-to-clipboard
+   FOOTER — scroll-in reveal, contact form (Formspree), copy-to-clipboard
    ============================================================ */
 (function () {
   const footer = document.querySelector('.site-footer');
@@ -32,39 +32,64 @@
     return (window.i18n && window.i18n.t(key)) || fallback;
   }
 
-  /* ── Contact form → opens the visitor's email client via mailto: ──
-     No backend on this static site, so a mailto link is the simplest
-     option that actually works from a file:// or any static host. */
+  /* ── Contact form → submits to Formspree via fetch (AJAX) ──
+     Keeps the visitor on the page (no redirect to Formspree's own thank-you
+     page) so the button/status text can show sending → sent → error states
+     inline. The form also carries a real action="…" + method="POST" in the
+     HTML as a no-JS fallback: if fetch is unavailable for some reason, the
+     browser still submits the form natively straight to Formspree. */
   const form   = document.getElementById('footer-form');
   const submit = document.getElementById('footer-submit');
   const label  = submit ? submit.querySelector('.footer-submit-label') : null;
+  const status = document.getElementById('ff-status');
 
   if (form && submit) {
     let resetTimer = null;
+
+    function setStatus(text, isError) {
+      if (!status) return;
+      status.textContent = text || '';
+      status.classList.toggle('is-error', !!isError);
+      status.classList.toggle('is-visible', !!text);
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       if (!form.reportValidity()) return;
 
-      const name    = form.elements['name'].value.trim();
-      const email   = form.elements['email'].value.trim();
-      const message = form.elements['message'].value.trim();
-
-      const subject = encodeURIComponent(`Portfolio contact — ${name}`);
-      const body    = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-      const mailto  = `mailto:contact@nadirdesign.com?subject=${subject}&body=${body}`;
-
-      submit.classList.add('is-sent');
-      if (label) label.textContent = t('footer.form_sent', 'Email app opened!');
-
-      window.location.href = mailto;
-
       clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => {
-        submit.classList.remove('is-sent');
-        if (label) label.textContent = t('footer.form_send', 'Send Message');
-      }, 3200);
+      submit.disabled = true;
+      submit.classList.remove('is-sent');
+      if (label) label.textContent = t('footer.form_sending', 'Sending…');
+      setStatus('', false);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then((response) => {
+          if (!response.ok) throw new Error('Formspree request failed');
+
+          submit.classList.add('is-sent');
+          if (label) label.textContent = t('footer.form_sent', 'Message sent!');
+          form.reset();
+
+          resetTimer = setTimeout(() => {
+            submit.disabled = false;
+            submit.classList.remove('is-sent');
+            if (label) label.textContent = t('footer.form_send', 'Send Message');
+          }, 3200);
+        })
+        .catch(() => {
+          submit.disabled = false;
+          if (label) label.textContent = t('footer.form_send', 'Send Message');
+          setStatus(
+            t('footer.form_error', 'Something went wrong — please try again, or email me directly.'),
+            true
+          );
+        });
     });
   }
 

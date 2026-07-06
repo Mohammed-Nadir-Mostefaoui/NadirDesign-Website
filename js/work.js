@@ -158,4 +158,21 @@
 
   /* ── Init ────────────────────────────────────────────────── */
   activate(0);
+
+  /* Re-measure once webfonts finish loading. The activate(0) call above
+     can run before IBM Plex Sans has swapped in — font-display: swap
+     (see index.html's font <link>) renders a fallback font immediately,
+     so the indicator's initial width/position gets measured against
+     fallback-font tab sizes. On mobile the indicator's width tracks the
+     tab's own content width (translateX + width), so once the real font
+     swaps in and the label reflows, the bar is left the wrong size/place
+     until the user interacts with a tab. document.fonts.ready resolves
+     once every font used on the page has actually loaded, so this
+     corrects it reliably regardless of connection speed. */
+  if (window.document && document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      var activeIndex = tabs.findIndex(function (t) { return t.getAttribute('aria-selected') === 'true'; });
+      positionIndicator(tabs[activeIndex === -1 ? 0 : activeIndex]);
+    });
+  }
 })();
