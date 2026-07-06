@@ -11,24 +11,40 @@
 
   <title>Nadir Mostefaoui — Product Designer</title>
 
-  <!-- Always land on the Hero section on load/refresh — stop the browser
-       from restoring a mid-page scroll position, which would otherwise
-       leave the page scrolled down once the intro overlay (which covers
-       the whole viewport) finishes and reveals the content underneath.
+  <!-- Always land on the Hero section on load/refresh, from anywhere on
+       the site — three separate browser behaviors can each pull the page
+       away from the top, so all three are neutralized here:
 
-       The scrollRestoration flag + immediate scrollTo below aren't always
-       enough on their own — on mobile Safari in particular, if the page's
-       total height changed before the reload (e.g. an Experience accordion
-       item was left open, making the page taller than it was when the
-       scroll position was first recorded), the browser can still nudge the
-       scroll position back on load, seemingly ignoring 'manual'. The
-       pageshow listener is a second, later-firing enforcement pass: it
-       runs after layout/paint (and also on bfcache back/forward restores,
-       which 'load' doesn't cover), so it catches and corrects any restore
-       that happened after this early inline script ran. -->
+       1. History scroll restoration — the browser remembers the old
+          scroll offset for this page and re-applies it on reload.
+          Neutralized by scrollRestoration = 'manual' + an immediate
+          scrollTo(0, 0).
+
+       2. URL fragment scrolling — every nav link is a plain <a href="#…">
+          (e.g. #work, #experience), so clicking one leaves that hash in
+          the URL. On a refresh, the browser natively scrolls to whatever
+          element matches the hash — completely independent of
+          scrollRestoration, which only governs *history* position, not
+          fragment navigation. Neutralized by stripping the hash from the
+          URL immediately (history.replaceState) before the browser gets
+          a chance to act on it, so there's nothing left to scroll to.
+
+       3. Late/delayed restoration — on mobile Safari in particular, if
+          the page's total height changed before the reload (e.g. an
+          Experience accordion item was left open, making the page taller
+          than when the scroll position was first recorded), the browser
+          can still nudge the scroll position back on load, seemingly
+          ignoring 'manual'. The pageshow listener is a second,
+          later-firing enforcement pass: it runs after layout/paint (and
+          also on bfcache back/forward restores, which 'load' doesn't
+          cover), so it catches and corrects anything that slipped past
+          the first two fixes above. -->
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
+    }
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
     }
     window.scrollTo(0, 0);
     window.addEventListener('pageshow', function () {
