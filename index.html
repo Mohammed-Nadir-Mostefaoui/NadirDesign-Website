@@ -14,12 +14,26 @@
   <!-- Always land on the Hero section on load/refresh — stop the browser
        from restoring a mid-page scroll position, which would otherwise
        leave the page scrolled down once the intro overlay (which covers
-       the whole viewport) finishes and reveals the content underneath. -->
+       the whole viewport) finishes and reveals the content underneath.
+
+       The scrollRestoration flag + immediate scrollTo below aren't always
+       enough on their own — on mobile Safari in particular, if the page's
+       total height changed before the reload (e.g. an Experience accordion
+       item was left open, making the page taller than it was when the
+       scroll position was first recorded), the browser can still nudge the
+       scroll position back on load, seemingly ignoring 'manual'. The
+       pageshow listener is a second, later-firing enforcement pass: it
+       runs after layout/paint (and also on bfcache back/forward restores,
+       which 'load' doesn't cover), so it catches and corrects any restore
+       that happened after this early inline script ran. -->
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    window.addEventListener('pageshow', function () {
+      window.scrollTo(0, 0);
+    });
   </script>
 
   <!-- Favicon — swapped per language by the pre-paint script below and
@@ -409,10 +423,10 @@ experience</span>
                 <span class="exp-tag" data-i18n="work.cs1.tag3">Dev Handoff</span>
               </div>
 
-              <button type="button" class="btn btn-dark work-panel-cta">
+              <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/DataMaster-Design-System-2a19267c734580b39952eededa75130f?source=copy_link" target="_blank" rel="noopener noreferrer">
                 <span data-i18n="work.cta">View Case Study</span>
                 <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </button>
+              </a>
             </article>
 
             <!-- ── CS2: Task Management App ── -->
@@ -462,10 +476,10 @@ experience</span>
                 <span class="exp-tag" data-i18n="work.cs2.tag3">Usability Testing</span>
               </div>
 
-              <button type="button" class="btn btn-dark work-panel-cta">
+              <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/Task-Management-App-2789267c734580c4b5eec05140c5d586?source=copy_link" target="_blank" rel="noopener noreferrer">
                 <span data-i18n="work.cta">View Case Study</span>
                 <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </button>
+              </a>
             </article>
 
             <!-- ── CS3: B2B Sales ERP Module ── -->
@@ -519,10 +533,10 @@ experience</span>
                 <span class="exp-tag" data-i18n="work.cs3.tag3">Prototyping</span>
               </div>
 
-              <button type="button" class="btn btn-dark work-panel-cta">
+              <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/B2B-Sales-ERP-Module-27a9267c7345809da887cdcc974ca15d?source=copy_link" target="_blank" rel="noopener noreferrer">
                 <span data-i18n="work.cta">View Case Study</span>
                 <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </button>
+              </a>
             </article>
 
             <!-- ── CS4: eLearning Platform ── -->
@@ -572,10 +586,10 @@ experience</span>
                 <span class="exp-tag" data-i18n="work.cs4.tag3">Arabic UX</span>
               </div>
 
-              <button type="button" class="btn btn-dark work-panel-cta">
+              <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/eLearning-Platform-Teacher-Side-2789267c734580818447e1667e1b8630?source=copy_link" target="_blank" rel="noopener noreferrer">
                 <span data-i18n="work.cta">View Case Study</span>
                 <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </button>
+              </a>
             </article>
 
           </div>
@@ -1074,7 +1088,7 @@ experience</span>
                 </span>
                 <span class="fc-text">
                   <span class="fc-label" data-i18n="footer.contact_whatsapp">WhatsApp</span>
-                  <span class="fc-value">+213 562 296 233</span>
+                  <span class="fc-value" dir="ltr">+213 562 296 233</span>
                 </span>
                 <svg class="fc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>

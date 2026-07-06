@@ -2847,6 +2847,17 @@ html {
 [dir="rtl"] .footer-submit       { font-size: 16px; }
 [dir="rtl"] .fc-label            { font-size: 12.5px; }
 [dir="rtl"] .fc-value            { font-size: 16px; }
+
+/* The WhatsApp number carries its own dir="ltr" (in index.html) so the
+   digit groups always read in the correct order instead of getting
+   bidi-reordered inside Arabic text. That isolates its direction from
+   the page, which also changes what its default text-align resolves to
+   — it was rendering centered instead of flush right like its label and
+   every other contact value in the RTL layout. Force it back to right
+   explicitly so only the digit order is special-cased, not the alignment. */
+[dir="rtl"] .footer-contact--whatsapp .fc-value {
+  text-align: right;
+}
 [dir="rtl"] .footer-copyright    { font-size: 14px; }
 
 /* ── Responsive ── */
