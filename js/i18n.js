@@ -147,7 +147,7 @@
           desc_0a:   'Worked with a ',
           desc_0b:   'Dubai-based agency',
           desc_0c:   ' on a range of client projects across multiple industries.',
-          desc_1:    '- Designed the teacher-facing interface of an e-learning platform — course management, content creation flows, and student progress tracking.',
+          desc_1:    '- Designed the Super Admin, Admin, and Teacher dashboards for a multi-role e-learning platform — course management, content creation flows, and student progress tracking.',
           desc_2:    '- Redesigned a real estate platform — property listings, search and filter systems, and agent dashboard.',
           desc_3:    '- Designed a case management system for a charity organization supporting divorced women — sensitive user context requiring clear, accessible flows.',
           desc_4:    '- Delivered multiple landing page designs for various clients.'
@@ -387,7 +387,7 @@
           desc_0a:   'Travail avec une ',
           desc_0b:   'agence basée à Dubaï',
           desc_0c:   ' sur des projets clients dans plusieurs secteurs.',
-          desc_1:    '- Conception de l\'interface enseignant d\'une plateforme e-learning — gestion des cours, flux de création de contenu et suivi de la progression des élèves.',
+          desc_1:    '- Conception des tableaux de bord Super Admin, Admin et Enseignant d\'une plateforme e-learning multi-rôles — gestion des cours, flux de création de contenu et suivi de la progression des élèves.',
           desc_2:    '- Refonte d\'une plateforme immobilière — annonces de biens, systèmes de recherche et de filtres, et tableau de bord agent.',
           desc_3:    '- Conception d\'un système de gestion de dossiers pour une organisation caritative soutenant les femmes divorcées — contexte utilisateur sensible nécessitant des parcours clairs et accessibles.',
           desc_4:    '- Livraison de plusieurs designs de pages d\'atterrissage pour divers clients.'
@@ -627,7 +627,7 @@
           desc_0a:   'عمل مع ',
           desc_0b:   'وكالة مقرّها دبي',
           desc_0c:   ' على مشاريع عملاء في قطاعات متعددة.',
-          desc_1:    '- تصميم واجهة المعلم لمنصة تعليم إلكتروني — إدارة الدورات وتدفقات إنشاء المحتوى وتتبع تقدم الطلاب.',
+          desc_1:    '- تصميم لوحات تحكم المسؤول العام والمسؤول والمعلم لمنصة تعليم إلكتروني متعددة الأدوار — إدارة الدورات وتدفقات إنشاء المحتوى وتتبع تقدم الطلاب.',
           desc_2:    '- إعادة تصميم منصة عقارية — قوائم العقارات وأنظمة البحث والتصفية ولوحة تحكم الوكيل.',
           desc_3:    '- تصميم نظام إدارة قضايا لمنظمة خيرية تدعم المطلقات — سياق مستخدم حساس يتطلب تدفقات واضحة وسهلة الوصول.',
           desc_4:    '- تسليم تصاميم متعددة لصفحات الهبوط لعملاء متنوعين.'
