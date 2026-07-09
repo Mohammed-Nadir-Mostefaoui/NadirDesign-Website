@@ -1,2 +1,24 @@
 .DS_Store
 Thumbs.db
+
+# Local tooling leftovers (safe to delete from Finder)
+node_modules/
+package.json
+package-lock.json
+
+# Visual-pass leftovers — originals/temps (safe to delete from Finder).
+# The curated iksir-*.png files ARE committed; these raw ones are not.
+/_tmp_*.png
+assets/images/iksir/Screenshot*.png
+assets/images/iksir/Button.png
+assets/images/iksir/Input.png
+assets/images/iksir/Card.png
+assets/images/iksir/Modal.png
+assets/images/iksir/Colors.png
+assets/images/iksir/Thumbnail.png
+assets/images/iksir/Task Card.png
+assets/images/iksir/Bottom Sheet.png
+assets/images/iksir/Bottom Tab Navigation.png
+assets/images/iksir/✏️ Iksir — Typography.png
+assets/images/iksir/iksir-charts-2.png
+assets/images/iksir/iksir-intro.png
