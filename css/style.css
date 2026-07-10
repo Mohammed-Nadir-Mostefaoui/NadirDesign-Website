@@ -475,6 +475,7 @@ html {
 .hero > * { position: relative; z-index: 1; }
 
 .hero {
+  position: relative;
   display: flex;
   align-items: center;
   min-height: 100svh;
@@ -2958,3 +2959,227 @@ html {
   }
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   CV: hero button, footer item, and preview modal
+   ═══════════════════════════════════════════════════════════ */
+
+/* Hero secondary CTA — solid, with an accent-blue document glyph */
+.btn-cv {
+  background-color: #F5F5F5;
+  color: var(--text-primary);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+.btn-cv .btn-cv-icon { flex-shrink: 0; color: var(--accent-blue); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+.btn-cv:hover {
+  background-color: #FFFFFF;
+  color: var(--text-primary);
+  border-color: var(--accent-blue);
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.16);
+}
+.btn-cv:hover .btn-cv-icon { transform: translateY(-1px); }
+[data-theme="dark"] .btn-cv {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+[data-theme="dark"] .btn-cv:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--accent-blue);
+  box-shadow: 0 8px 22px rgba(29, 78, 216, 0.30);
+}
+
+/* Footer CV item — a <button> that visually matches the .fc-link anchors.
+   Keep the card styling from .fc-link; only normalise button quirks. */
+.footer-contact--cv { --fc-brand: var(--accent-blue); }
+.fc-link--btn {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+/* ── Modal ── */
+.cv-modal[hidden] { display: none; }
+.cv-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.cv-modal.is-open { opacity: 1; }
+
+.cv-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.cv-modal__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(880px, 100%);
+  height: min(88vh, 1040px);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  transform: translateY(14px) scale(0.98);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cv-modal.is-open .cv-modal__dialog { transform: none; }
+
+.cv-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-default);
+}
+.cv-modal__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+.cv-modal__sub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 3px 0 0;
+}
+.cv-modal__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-default);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.cv-modal__close:hover { background: var(--bg-tertiary); transform: rotate(90deg); }
+
+.cv-modal__body {
+  flex: 1;
+  min-height: 0;
+  background: var(--bg-secondary);
+}
+.cv-modal__frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.cv-modal__foot {
+  display: flex;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-default);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+  .cv-modal__dialog { height: 92vh; }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .cv-modal, .cv-modal__dialog { transition: none; }
+  .cv-modal__close:hover { transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Hero scroll cue — mouse-style track with a dropping dot
+   ═══════════════════════════════════════════════════════════ */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(16px, 3vh, 32px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: var(--text-tertiary);
+  opacity: 1;
+  transition: opacity 0.45s ease, color 0.25s ease, transform 0.35s ease;
+  z-index: 3;
+}
+.scroll-cue:hover { color: var(--text-primary); }
+
+.scroll-cue__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.scroll-cue__track {
+  position: relative;
+  width: 22px;
+  height: 34px;
+  border: 1.5px solid currentColor;
+  border-radius: 12px;
+  opacity: 0.65;
+}
+.scroll-cue__dot {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: scrollCueDot 1.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes scrollCueDot {
+  0%   { transform: translateY(0);    opacity: 0; }
+  22%  { opacity: 1; }
+  68%  { transform: translateY(13px); opacity: 0; }
+  100% { transform: translateY(13px); opacity: 0; }
+}
+
+/* Fades out (and drifts down) once the visitor scrolls */
+.scroll-cue.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(10px);
+}
+
+/* On phones the hero is usually taller than the screen, so pin the cue to
+   the viewport bottom (not the hero's) and slim it to just the animated
+   track. It still fades out on scroll via JS. */
+@media (max-width: 768px) {
+  .scroll-cue {
+    position: fixed;
+    bottom: calc(env(safe-area-inset-bottom) + 12px);
+    gap: 0;
+  }
+  .scroll-cue__label { display: none; }
+  .scroll-cue__track { width: 20px; height: 31px; opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue__dot { animation: none; top: 50%; margin-top: -2px; }
+  .scroll-cue { transition: opacity 0.3s ease; }
+}

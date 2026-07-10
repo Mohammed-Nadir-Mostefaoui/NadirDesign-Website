@@ -22,3 +22,13 @@ assets/images/iksir/Bottom Tab Navigation.png
 assets/images/iksir/✏️ Iksir — Typography.png
 assets/images/iksir/iksir-charts-2.png
 assets/images/iksir/iksir-intro.png
+assets/images/iksir/iksir-hero-art.backup.png
+assets/images/iksir/IksirDesignSystemThumbnail.png
+
+# Internal working files — keep local, do NOT publish on the public site
+positioning-copy.md
+*.docx
+
+# Stray sandbox test files
+_wtest
+assets/_wtest

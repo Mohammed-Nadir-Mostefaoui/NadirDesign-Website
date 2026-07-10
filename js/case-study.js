@@ -93,11 +93,12 @@
     var timer;
     sw.setAttribute('role', 'button');
     sw.setAttribute('tabindex', '0');
-    sw.setAttribute('aria-label', 'Copy ' + sw.getAttribute('data-hex'));
+    /* aria-label comes from data-i18n-aria-label in the markup so it
+       translates and live-updates on language switch. */
 
     function done() {
       sw.classList.add('is-copied');
-      if (hexEl) hexEl.textContent = 'Copied!';
+      if (hexEl) hexEl.textContent = (window.i18n ? window.i18n.t('cs.ui.copied') : 'Copied!');
       clearTimeout(timer);
       timer = setTimeout(function () {
         sw.classList.remove('is-copied');
@@ -124,7 +125,8 @@
       if (box) return;
       box = document.createElement('div');
       box.className = 'cs-lightbox';
-      box.innerHTML = '<button class="cs-lightbox-close" type="button" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><img alt="">';
+      var closeLabel = (window.i18n ? window.i18n.t('cs.ui.close') : 'Close');
+      box.innerHTML = '<button class="cs-lightbox-close" type="button" aria-label="' + closeLabel + '"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><img alt="">';
       boxImg = box.querySelector('img');
       document.body.appendChild(box);
       box.addEventListener('click', function (e) {

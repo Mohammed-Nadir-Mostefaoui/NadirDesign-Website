@@ -273,7 +273,7 @@
         <div class="hero-bottom-group">
 
           <h1 class="hero-title" id="hero-title" data-i18n="hero.title" data-i18n-html>
-            Digital Products<br>Designer
+            Product<br>Designer
           </h1>
 
           <div class="hero-divider" aria-hidden="true"></div>
@@ -287,10 +287,10 @@
               <span data-i18n="hero.cta_primary">Let's Talk</span>
               <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a href="#work" class="btn btn-ghost-fill">
-              <span data-i18n="hero.cta_secondary">View My Work</span>
-              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
+            <button type="button" class="btn btn-cv" data-cv-open>
+              <svg class="btn-cv-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+              <span data-i18n="hero.cta_cv">View CV</span>
+            </button>
           </div>
 
           <!-- Stats -->
@@ -333,6 +333,12 @@ experience</span>
         </div>
       </div>
 
+      <!-- Scroll cue: fades out once the visitor scrolls -->
+      <a class="scroll-cue" href="#work" aria-label="Scroll to explore" data-i18n-aria-label="hero.scroll_aria">
+        <span class="scroll-cue__label" data-i18n="hero.scroll">Scroll</span>
+        <span class="scroll-cue__track" aria-hidden="true"><span class="scroll-cue__dot"></span></span>
+      </a>
+
     </section>
 
     <!-- ══════════════════════════════════════════════
@@ -363,28 +369,28 @@ experience</span>
                 <span class="work-tab-hook" data-i18n="work.cs5.hook">Design System</span>
               </span>
             </button>
-            <button class="work-tab" role="tab" id="work-tab-1" aria-selected="false" aria-controls="work-panel-1" tabindex="-1" data-index="1">
+            <button class="work-tab" role="tab" id="work-tab-2" aria-selected="false" aria-controls="work-panel-2" tabindex="-1" data-index="1">
               <span class="work-tab-num" aria-hidden="true">02</span>
-              <span class="work-tab-info">
-                <span class="work-tab-company" data-i18n="work.cs1.title">DataMaster Design System</span>
-                <span class="work-tab-short" data-i18n="work.cs1.short">Design System</span>
-                <span class="work-tab-hook" data-i18n="work.cs1.hook">Design System</span>
-              </span>
-            </button>
-            <button class="work-tab" role="tab" id="work-tab-2" aria-selected="false" aria-controls="work-panel-2" tabindex="-1" data-index="2">
-              <span class="work-tab-num" aria-hidden="true">03</span>
               <span class="work-tab-info">
                 <span class="work-tab-company" data-i18n="work.cs2.title">Task Management App</span>
                 <span class="work-tab-short" data-i18n="work.cs2.short">Task App</span>
                 <span class="work-tab-hook" data-i18n="work.cs2.hook">Task Management App</span>
               </span>
             </button>
-            <button class="work-tab" role="tab" id="work-tab-3" aria-selected="false" aria-controls="work-panel-3" tabindex="-1" data-index="3">
-              <span class="work-tab-num" aria-hidden="true">04</span>
+            <button class="work-tab" role="tab" id="work-tab-3" aria-selected="false" aria-controls="work-panel-3" tabindex="-1" data-index="2">
+              <span class="work-tab-num" aria-hidden="true">03</span>
               <span class="work-tab-info">
                 <span class="work-tab-company" data-i18n="work.cs3.title">B2B Sales ERP Module</span>
                 <span class="work-tab-short" data-i18n="work.cs3.short">Sales ERP</span>
                 <span class="work-tab-hook" data-i18n="work.cs3.hook">B2B Sales ERP Module</span>
+              </span>
+            </button>
+            <button class="work-tab" role="tab" id="work-tab-1" aria-selected="false" aria-controls="work-panel-1" tabindex="-1" data-index="3">
+              <span class="work-tab-num" aria-hidden="true">04</span>
+              <span class="work-tab-info">
+                <span class="work-tab-company" data-i18n="work.cs1.title">Datamaster Design System</span>
+                <span class="work-tab-short" data-i18n="work.cs1.short">Design System</span>
+                <span class="work-tab-hook" data-i18n="work.cs1.hook">Design System</span>
               </span>
             </button>
             <button class="work-tab" role="tab" id="work-tab-4" aria-selected="false" aria-controls="work-panel-4" tabindex="-1" data-index="4">
@@ -453,62 +459,9 @@ experience</span>
               </a>
             </article>
 
-            <!-- ── CS1: DataMaster Design System ── -->
-            <article class="work-panel" role="tabpanel" id="work-panel-1" aria-labelledby="work-tab-1" tabindex="0" hidden>
-              <span class="work-panel-ghost-num" aria-hidden="true">02</span>
-              <div class="work-panel-top">
-                <span class="work-panel-tag" data-i18n="work.cs1.tag">ERP · Design System</span>
-                <span class="work-panel-nda">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-                  <span data-i18n="work.nda">NDA — specifics generalized, no confidential data shown</span>
-                </span>
-              </div>
-              <h3 class="work-panel-title" data-i18n="work.cs1.title">DataMaster Design System</h3>
-              <p class="work-panel-meta" data-i18n="work.cs1.role">Product Designer (UI/UX) — sole designer</p>
-
-              <div class="work-panel-flow">
-                <div class="work-flow-step">
-                  <span class="work-flow-label" data-i18n="work.flow_problem">Problem</span>
-                  <p data-i18n="work.cs1.problem">No consistency across products, outdated visuals, and poor responsiveness across a growing ERP suite.</p>
-                </div>
-                <svg class="work-flow-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="work-flow-step">
-                  <span class="work-flow-label" data-i18n="work.flow_approach">Approach</span>
-                  <p data-i18n="work.cs1.approach">Built a full design system from scratch — palette, typography, an 8px spacing grid, a custom icon set, and a growing component library — documented for dev handoff.</p>
-                </div>
-                <svg class="work-flow-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="work-flow-step work-flow-step--outcome">
-                  <span class="work-flow-label" data-i18n="work.flow_outcome">Outcome</span>
-                  <p data-i18n="work.cs1.outcome">First rollout, in the Task Management App, cut task execution time by 50% in usability testing.</p>
-                </div>
-              </div>
-
-              <div class="work-panel-stats">
-                <div class="work-stat">
-                  <span class="work-stat-value"><span class="work-stat-num" data-count="50">0</span><span class="work-stat-suffix">%</span></span>
-                  <span class="work-stat-label" data-i18n="work.cs1.stat1_label">faster in first rollout</span>
-                </div>
-                <div class="work-stat">
-                  <span class="work-stat-value"><span class="work-stat-num" data-count="8">0</span><span class="work-stat-suffix">px</span></span>
-                  <span class="work-stat-label" data-i18n="work.cs1.stat2_label">spacing grid system</span>
-                </div>
-              </div>
-
-              <div class="work-panel-tags">
-                <span class="exp-tag" data-i18n="work.cs1.tag1">Design Systems</span>
-                <span class="exp-tag" data-i18n="work.cs1.tag2">Component Library</span>
-                <span class="exp-tag" data-i18n="work.cs1.tag3">Dev Handoff</span>
-              </div>
-
-              <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/DataMaster-Design-System-2a19267c734580b39952eededa75130f?source=copy_link" target="_blank" rel="noopener noreferrer">
-                <span data-i18n="work.cta">View Case Study</span>
-                <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-            </article>
-
             <!-- ── CS2: Task Management App ── -->
             <article class="work-panel" role="tabpanel" id="work-panel-2" aria-labelledby="work-tab-2" tabindex="0" hidden>
-              <span class="work-panel-ghost-num" aria-hidden="true">03</span>
+              <span class="work-panel-ghost-num" aria-hidden="true">02</span>
               <div class="work-panel-top">
                 <span class="work-panel-tag" data-i18n="work.cs2.tag">Mobile · B2B SaaS</span>
                 <span class="work-panel-nda">
@@ -561,7 +514,7 @@ experience</span>
 
             <!-- ── CS3: B2B Sales ERP Module ── -->
             <article class="work-panel" role="tabpanel" id="work-panel-3" aria-labelledby="work-tab-3" tabindex="0" hidden>
-              <span class="work-panel-ghost-num" aria-hidden="true">04</span>
+              <span class="work-panel-ghost-num" aria-hidden="true">03</span>
               <div class="work-panel-top">
                 <span class="work-panel-tag" data-i18n="work.cs3.tag">ERP · Sales Operations</span>
                 <span class="work-panel-nda">
@@ -611,6 +564,59 @@ experience</span>
               </div>
 
               <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/B2B-Sales-ERP-Module-27a9267c7345809da887cdcc974ca15d?source=copy_link" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="work.cta">View Case Study</span>
+                <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </article>
+
+            <!-- ── CS1: Datamaster Design System ── -->
+            <article class="work-panel" role="tabpanel" id="work-panel-1" aria-labelledby="work-tab-1" tabindex="0" hidden>
+              <span class="work-panel-ghost-num" aria-hidden="true">04</span>
+              <div class="work-panel-top">
+                <span class="work-panel-tag" data-i18n="work.cs1.tag">ERP · Design System</span>
+                <span class="work-panel-nda">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                  <span data-i18n="work.nda">NDA — specifics generalized, no confidential data shown</span>
+                </span>
+              </div>
+              <h3 class="work-panel-title" data-i18n="work.cs1.title">Datamaster Design System</h3>
+              <p class="work-panel-meta" data-i18n="work.cs1.role">Product Designer (UI/UX) — sole designer</p>
+
+              <div class="work-panel-flow">
+                <div class="work-flow-step">
+                  <span class="work-flow-label" data-i18n="work.flow_problem">Problem</span>
+                  <p data-i18n="work.cs1.problem">No consistency across products, outdated visuals, and poor responsiveness across a growing ERP suite.</p>
+                </div>
+                <svg class="work-flow-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                <div class="work-flow-step">
+                  <span class="work-flow-label" data-i18n="work.flow_approach">Approach</span>
+                  <p data-i18n="work.cs1.approach">Built a full design system from scratch — palette, typography, an 8px spacing grid, a custom icon set, and a growing component library — documented for dev handoff.</p>
+                </div>
+                <svg class="work-flow-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                <div class="work-flow-step work-flow-step--outcome">
+                  <span class="work-flow-label" data-i18n="work.flow_outcome">Outcome</span>
+                  <p data-i18n="work.cs1.outcome">First rollout, in the Task Management App, cut task execution time by 50% in usability testing.</p>
+                </div>
+              </div>
+
+              <div class="work-panel-stats">
+                <div class="work-stat">
+                  <span class="work-stat-value"><span class="work-stat-num" data-count="50">0</span><span class="work-stat-suffix">%</span></span>
+                  <span class="work-stat-label" data-i18n="work.cs1.stat1_label">faster in first rollout</span>
+                </div>
+                <div class="work-stat">
+                  <span class="work-stat-value"><span class="work-stat-num" data-count="8">0</span><span class="work-stat-suffix">px</span></span>
+                  <span class="work-stat-label" data-i18n="work.cs1.stat2_label">spacing grid system</span>
+                </div>
+              </div>
+
+              <div class="work-panel-tags">
+                <span class="exp-tag" data-i18n="work.cs1.tag1">Design Systems</span>
+                <span class="exp-tag" data-i18n="work.cs1.tag2">Component Library</span>
+                <span class="exp-tag" data-i18n="work.cs1.tag3">Dev Handoff</span>
+              </div>
+
+              <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/Datamaster-Design-System-2a19267c734580b39952eededa75130f?source=copy_link" target="_blank" rel="noopener noreferrer">
                 <span data-i18n="work.cta">View Case Study</span>
                 <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
@@ -700,7 +706,7 @@ experience</span>
               <span class="expa-meta">
                 <span class="expa-company" data-i18n="experience.nawat.company">Nawat Studio</span>
                 <span class="expa-sublabel">
-                  <span class="expa-role-inline" data-i18n="experience.nawat.role">Product Design Lead</span>
+                  <span class="expa-role-inline" data-i18n="experience.nawat.role">Product Designer</span>
                   <span class="expa-loc-sep" aria-hidden="true">·</span>
                   <span class="expa-loc-inline"><span data-i18n="experience.nawat.city">Tlemcen</span>, <span class="exp-country" data-i18n="experience.nawat.country">Algeria</span> · <span data-i18n="experience.nawat.work_type">Remote</span></span>
                 </span>
@@ -722,7 +728,7 @@ experience</span>
               <div class="expa-body-inner">
                 <div class="expa-body-content">
                   <div class="exp-desc">
-                    <p><strong data-i18n="experience.nawat.desc_0">- Nawat Studio manage Data Master Analytics Product design.</strong></p>
+                    <p><strong data-i18n="experience.nawat.desc_0">- Datamaster Analytics is the anchor client of Nawat Studio — so my concurrent Datamaster role (below) is that same work, delivered through the studio.</strong></p>
                     <p data-i18n="experience.nawat.desc_1">- Leading product design for B2B SaaS and enterprise software clients</p>
                     <p data-i18n="experience.nawat.desc_2">- Managing and mentoring a product designer, reviewing deliverables, and ensuring design quality.</p>
                     <p data-i18n="experience.nawat.desc_3">- Delivering ERP interfaces, design systems, and IA restructuring across client engagements.</p>
@@ -738,12 +744,12 @@ experience</span>
             </div>
           </div>
 
-          <!-- ── A2: Data Master Analytics ── -->
+          <!-- ── A2: Datamaster Analytics ── -->
           <div class="expa-item" id="expa-dma" role="listitem">
             <button class="expa-trigger" aria-expanded="false" aria-controls="expa-dma-body">
               <span class="expa-num" aria-hidden="true">02</span>
               <span class="expa-meta">
-                <span class="expa-company" data-i18n="experience.dma.company">Data Master Analytics</span>
+                <span class="expa-company" data-i18n="experience.dma.company">Datamaster Analytics</span>
                 <span class="expa-sublabel">
                   <span class="expa-role-inline"><span data-i18n="experience.dma.role_a">Product Designer</span> <span class="expa-role-sep" aria-hidden="true">/</span> <span data-i18n="experience.dma.role_b">UI/UX Designer</span></span>
                   <span class="expa-loc-sep" aria-hidden="true">·</span>
@@ -808,12 +814,12 @@ experience</span>
             </div>
           </div>
 
-          <!-- ── A3: Five Angels ── -->
+          <!-- ── A3: Five Angles ── -->
           <div class="expa-item" id="expa-five" role="listitem">
             <button class="expa-trigger" aria-expanded="false" aria-controls="expa-five-body">
               <span class="expa-num" aria-hidden="true">03</span>
               <span class="expa-meta">
-                <span class="expa-company" data-i18n="experience.five.company">Five Angels</span>
+                <span class="expa-company" data-i18n="experience.five.company">Five Angles</span>
                 <span class="expa-sublabel">
                   <span class="expa-role-inline" data-i18n="experience.five.role">UI/UX Designer</span>
                   <span class="expa-loc-sep" aria-hidden="true">·</span>
@@ -1140,6 +1146,19 @@ experience</span>
           <h3 class="footer-panel-title" data-i18n="footer.contacts_title">Direct Contacts</h3>
 
           <ul class="footer-contacts" role="list">
+            <li class="footer-contact footer-contact--cv">
+              <button type="button" class="fc-link fc-link--btn" data-cv-open>
+                <span class="fc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+                </span>
+                <span class="fc-text">
+                  <span class="fc-label" data-i18n="footer.cv_label">R&#233;sum&#233; / CV</span>
+                  <span class="fc-value" data-i18n="footer.cv_value">Preview &amp; download (PDF)</span>
+                </span>
+                <svg class="fc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+            </li>
+
             <li class="footer-contact footer-contact--email">
               <a class="fc-link" href="mailto:contact@nadirdesign.com">
                 <span class="fc-icon" aria-hidden="true">
@@ -1196,6 +1215,7 @@ experience</span>
                 <svg class="fc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
             </li>
+
           </ul>
         </div>
       </div>
@@ -1228,12 +1248,54 @@ experience</span>
   </button>
 
   <!-- Scripts -->
+  <!-- CV preview modal -->
+  <div class="cv-modal" id="cvModal" data-cv-pdf="assets/cv-nadir-mostefaoui.pdf" hidden>
+    <div class="cv-modal__backdrop" data-cv-close></div>
+    <div class="cv-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+      <div class="cv-modal__head">
+        <div class="cv-modal__titles">
+          <h2 class="cv-modal__title" id="cvModalTitle" data-i18n="footer.cv_title">Curriculum Vitae</h2>
+          <p class="cv-modal__sub" data-i18n="footer.cv_sub">Nadir Mostefaoui &#8212; Product Designer</p>
+        </div>
+        <button type="button" class="cv-modal__close" data-cv-close data-i18n-aria-label="footer.cv_close" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="cv-modal__body">
+        <iframe class="cv-modal__frame" title="CV preview" src="about:blank" data-cv-src="assets/cv-nadir-mostefaoui.pdf#view=FitH"></iframe>
+      </div>
+      <div class="cv-modal__foot">
+        <a class="btn btn-dark" href="assets/cv-nadir-mostefaoui.pdf" download="Nadir Mostefaoui - Product Designer - CV.pdf">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          <span data-i18n="footer.cv_download">Download PDF</span>
+        </a>
+        <a class="btn btn-ghost-fill" href="assets/cv-nadir-mostefaoui.pdf" target="_blank" rel="noopener noreferrer">
+          <span data-i18n="footer.cv_open">Open in new tab</span>
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script src="js/theme.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/experience.js"></script>
   <script src="js/work.js"></script>
   <script src="js/skills.js"></script>
   <script src="js/footer.js"></script>
+  <script src="js/cv.js"></script>
+  <script>
+    /* Hero scroll cue — fade out once the visitor starts scrolling */
+    (function () {
+      var cue = document.querySelector('.scroll-cue');
+      if (!cue) return;
+      var onScroll = function () {
+        cue.classList.toggle('is-hidden', window.scrollY > 60);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 
   <script>
     /* ── Intro overlay ──────────────────────────────────────── */

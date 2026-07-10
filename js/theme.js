@@ -20,11 +20,20 @@
     root.setAttribute('data-theme', theme);
     localStorage.setItem(STORAGE_KEY, theme);
     // Update all toggle buttons
+    const t = (window.i18n && window.i18n.t) ? window.i18n.t : null;
+    const label = theme === 'dark'
+      ? (t ? t('nav.theme_to_light') : 'Switch to light mode')
+      : (t ? t('nav.theme_to_dark')  : 'Switch to dark mode');
     document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
-      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.setAttribute('aria-label', label);
       btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     });
   }
+
+  /* Refresh the toggle label when the language changes */
+  document.addEventListener('langchange', function () {
+    setTheme(root.getAttribute('data-theme') || 'light');
+  });
 
   function toggle() {
     const current = root.getAttribute('data-theme') || 'light';

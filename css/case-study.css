@@ -130,7 +130,7 @@
 .cs-phase-body h3 { margin-block-end: 10px; }
 .cs-phase-body p { font-size: .98rem; line-height: 1.65; color: var(--text-secondary); max-width: 64ch; }
 .cs-phase-mine { margin-block-start: 12px; font-size: .88rem; color: var(--text-primary); display: flex; gap: 8px; align-items: flex-start; }
-.cs-phase-mine b { color: var(--accent-blue); }
+.cs-phase-mine b { color: var(--accent-blue); white-space: nowrap; }
 
 /* ============================================================
    ARCHITECTURE — 3 layers
@@ -142,7 +142,7 @@
 .cs-layer h3 { margin-block: 4px 6px; }
 .cs-layer p { font-size: .94rem; color: var(--text-secondary); line-height: 1.55; max-width: 70ch; }
 .cs-layer-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 14px; }
-.cs-code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .8rem; padding: 5px 10px; border-radius: 8px; background: var(--iksir-surface); color: var(--iksir-purple); border: 1px solid color-mix(in srgb, var(--iksir-purple) 18%, transparent); }
+.cs-code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .8rem; padding: 5px 10px; border-radius: 8px; background: var(--iksir-surface); color: var(--iksir-purple); border: 1px solid color-mix(in srgb, var(--iksir-purple) 18%, transparent); direction: ltr; unicode-bidi: isolate; }
 [data-theme="dark"] .cs-code { color: var(--iksir-purple-lite); }
 .cs-arch-flow { text-align: center; color: var(--text-tertiary); font-size: 1.2rem; line-height: 0; }
 .cs-layer--3 { }
@@ -153,7 +153,8 @@
 .cs-swatch-color { height: 56px; }
 .cs-swatch-meta { padding: 8px 10px; background: var(--bg-primary); }
 .cs-swatch-name { font-size: .72rem; font-weight: 600; color: var(--text-primary); }
-.cs-swatch-hex { font-size: .68rem; color: var(--text-tertiary); font-family: ui-monospace, monospace; }
+.cs-swatch-hex { font-size: .68rem; color: var(--text-tertiary); font-family: ui-monospace, monospace; direction: ltr; unicode-bidi: isolate; }
+.cs-swatch-name { unicode-bidi: isolate; }
 
 .cs-specimen { margin-block-start: 24px; border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; }
 .cs-specimen-row { display: flex; align-items: baseline; gap: 18px; padding: 18px 24px; border-block-end: 1px solid var(--border-default); flex-wrap: wrap; }
@@ -175,7 +176,7 @@
 
 /* ---- Rules / governance ---- */
 .cs-rules { counter-reset: rule; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-block-start: 40px; }
-.cs-rule { position: relative; padding: 24px 24px 24px 66px; border-radius: var(--radius-lg); background: var(--bg-primary); border: 1px solid var(--border-default); }
+.cs-rule { position: relative; padding-block: 24px; padding-inline: 66px 24px; border-radius: var(--radius-lg); background: var(--bg-primary); border: 1px solid var(--border-default); }
 .cs-rule::before { counter-increment: rule; content: counter(rule, decimal-leading-zero); position: absolute; inset-inline-start: 24px; inset-block-start: 24px; font-size: .9rem; font-weight: 700; color: var(--accent-blue); }
 .cs-rule h3 { font-size: 1rem; margin-block-end: 6px; }
 .cs-rule p { font-size: .92rem; line-height: 1.55; color: var(--text-secondary); }
