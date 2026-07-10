@@ -11,6 +11,7 @@
   if (!modal) return;
 
   const pdf   = modal.getAttribute('data-cv-pdf');
+  const drive = modal.getAttribute('data-cv-drive') || null;
   const frame = modal.querySelector('.cv-modal__frame');
   const frameSrc = frame ? frame.getAttribute('data-cv-src') : pdf;
   const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
@@ -62,7 +63,7 @@
   document.querySelectorAll('[data-cv-open]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      if (isMobile()) { window.open(pdf, '_blank', 'noopener'); return; }
+      if (isMobile()) { window.open(drive || pdf, '_blank', 'noopener'); return; }
       openModal();
     });
   });
