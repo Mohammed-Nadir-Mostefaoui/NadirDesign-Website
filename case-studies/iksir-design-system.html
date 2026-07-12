@@ -501,12 +501,40 @@
       </div>
     </section>
 
-    <!-- Pager -->
-    <section class="cs-section" style="padding-block:44px; text-align:center;">
+    <!-- More case studies -->
+    <section class="cs-section cs-more">
       <div class="cs-wrap">
-        <a href="../index.html#work" class="cs-back">
+        <span class="cs-eyebrow" data-i18n="cs.more.eyebrow">Keep exploring</span>
+        <h2 class="cs-h2" data-i18n="cs.more.title">More case studies</h2>
+        <div class="cs-more-grid">
+          <a class="cs-more-card" href="task-master.html">
+            <span class="cs-more-num" aria-hidden="true">02</span>
+            <span class="cs-more-body">
+              <span class="cs-more-tag" data-i18n="work.cs2.tag">Retail Operations · Mobile-First</span>
+              <span class="cs-more-title" data-i18n="work.cs2.title">Task Master — Retail Ops App</span>
+            </span>
+            <span class="cs-more-go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+          </a>
+          <a class="cs-more-card" href="https://nadirdesign.notion.site/B2B-Sales-ERP-Module-27a9267c7345809da887cdcc974ca15d?source=copy_link" target="_blank" rel="noopener noreferrer">
+            <span class="cs-more-num" aria-hidden="true">03</span>
+            <span class="cs-more-body">
+              <span class="cs-more-tag" data-i18n="work.cs3.tag">ERP · Sales Operations</span>
+              <span class="cs-more-title" data-i18n="work.cs3.title">B2B Sales ERP Module</span>
+            </span>
+            <span class="cs-more-go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+          </a>
+          <a class="cs-more-card" href="https://nadirdesign.notion.site/eLearning-Platform-Teacher-Side-2789267c734580818447e1667e1b8630?source=copy_link" target="_blank" rel="noopener noreferrer">
+            <span class="cs-more-num" aria-hidden="true">04</span>
+            <span class="cs-more-body">
+              <span class="cs-more-tag" data-i18n="work.cs4.tag">eLearning · Multi-Role Platform</span>
+              <span class="cs-more-title" data-i18n="work.cs4.title">eLearning Platform</span>
+            </span>
+            <span class="cs-more-go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+          </a>
+        </div>
+        <a href="../index.html" class="cs-back cs-more-back">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-          <span data-i18n="cs.pager.all">Back to all case studies</span>
+          <span data-i18n="cs.pager.all">Back to homepage</span>
         </a>
       </div>
     </section>
@@ -568,6 +596,19 @@
         <div class="footer-panel footer-contacts-panel footer-reveal">
           <h3 class="footer-panel-title" data-i18n="footer.contacts_title">Direct Contacts</h3>
           <ul class="footer-contacts" role="list">
+            <li class="footer-contact footer-contact--cv">
+              <button type="button" class="fc-link fc-link--btn" data-cv-open>
+                <span class="fc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+                </span>
+                <span class="fc-text">
+                  <span class="fc-label" data-i18n="footer.cv_label">R&#233;sum&#233; / CV</span>
+                  <span class="fc-value" data-i18n="footer.cv_value">Preview &amp; download (PDF)</span>
+                </span>
+                <svg class="fc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+            </li>
+
             <li class="footer-contact footer-contact--email">
               <a class="fc-link" href="mailto:contact@nadirdesign.com">
                 <span class="fc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg></span>
@@ -617,10 +658,40 @@
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
   </button>
 
+  <!-- CV preview modal -->
+  <div class="cv-modal" id="cvModal" data-cv-pdf="../assets/cv-nadir-mostefaoui.pdf" data-cv-drive="https://drive.google.com/file/d/1tTqUJNfxCIVXKBmF-IFYvqegAlIk8ENe/view?usp=sharing" hidden>
+    <div class="cv-modal__backdrop" data-cv-close></div>
+    <div class="cv-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+      <div class="cv-modal__head">
+        <div class="cv-modal__titles">
+          <h2 class="cv-modal__title" id="cvModalTitle" data-i18n="footer.cv_title">Curriculum Vitae</h2>
+          <p class="cv-modal__sub" data-i18n="footer.cv_sub">Nadir Mostefaoui &#8212; Product Designer</p>
+        </div>
+        <button type="button" class="cv-modal__close" data-cv-close data-i18n-aria-label="footer.cv_close" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="cv-modal__body">
+        <iframe class="cv-modal__frame" title="CV preview" src="about:blank" data-cv-src="../assets/cv-nadir-mostefaoui.pdf#view=FitH"></iframe>
+      </div>
+      <div class="cv-modal__foot">
+        <a class="btn btn-dark" href="../assets/cv-nadir-mostefaoui.pdf" download="Nadir Mostefaoui - Product Designer - CV.pdf">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          <span data-i18n="footer.cv_download">Download PDF</span>
+        </a>
+        <a class="btn btn-ghost-fill" href="https://drive.google.com/file/d/1tTqUJNfxCIVXKBmF-IFYvqegAlIk8ENe/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <span data-i18n="footer.cv_open">Open in new tab</span>
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- Shared behaviour: theme, i18n (nav/footer + lang switcher), footer form -->
   <script src="../js/theme.js"></script>
   <script src="../js/i18n.js"></script>
   <script src="../js/footer.js"></script>
+  <script src="../js/cv.js"></script>
   <script src="../js/case-study.js"></script>
 
   <!-- Subpage chrome: cursor, navbar, back-to-top -->

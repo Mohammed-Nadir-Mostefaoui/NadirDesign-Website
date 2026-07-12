@@ -477,3 +477,21 @@
 .cs-back:hover svg { transform: translateX(-4px); }
 [dir="rtl"] .cs-back svg { transform: scaleX(-1); }
 [dir="rtl"] .cs-back:hover svg { transform: scaleX(-1) translateX(-4px); }
+
+/* More case studies — end-of-page explorer */
+.cs-more { border-block-start: 1px solid var(--border-default); }
+.cs-more-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-block-start: 32px; }
+.cs-more-card { position: relative; overflow: hidden; display: flex; align-items: center; gap: 18px; padding: 22px 24px; border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-primary); text-decoration: none; color: inherit; transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color .25s ease, box-shadow .25s ease; }
+.cs-more-num { font-size: 2rem; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--text-primary); opacity: .12; flex: none; transition: opacity .25s ease, color .25s ease; }
+.cs-more-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cs-more-tag { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); }
+.cs-more-title { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); }
+.cs-more-go { margin-inline-start: auto; flex: none; color: var(--text-tertiary); transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1), color .25s ease; }
+.cs-more-card:hover { transform: translateY(-3px); border-color: var(--accent-blue-light); box-shadow: 0 14px 30px rgba(0, 0, 0, .08); }
+[data-theme="dark"] .cs-more-card:hover { box-shadow: 0 16px 36px rgba(0, 0, 0, .4); }
+.cs-more-card:hover .cs-more-num { opacity: .9; color: var(--accent-blue); }
+.cs-more-card:hover .cs-more-go { color: var(--accent-blue); transform: translate(3px, -3px); }
+[dir="rtl"] .cs-more-card:hover .cs-more-go { transform: translate(-3px, -3px); }
+.cs-more-back { margin-block-start: 30px; }
+@media (max-width: 620px) { .cs-more-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .cs-more-card:hover { transform: none; } .cs-more-card:hover .cs-more-go { transform: none; } }
