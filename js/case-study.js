@@ -145,25 +145,4 @@
     });
   }
 
-  /* ── Project-type selector + CTA prefill ─────────────────── */
-  var ptypeChips = Array.prototype.slice.call(document.querySelectorAll('.cs-ptype-chip'));
-  if (ptypeChips.length) {
-    var ptypeHidden = document.getElementById('ff-project-type');
-    var selectType = function (val) {
-      ptypeChips.forEach(function (c) {
-        var on = c.getAttribute('data-value') === val;
-        c.classList.toggle('is-active', on);
-        c.setAttribute('aria-checked', on ? 'true' : 'false');
-      });
-      if (ptypeHidden) ptypeHidden.value = val || '';
-    };
-    ptypeChips.forEach(function (c) {
-      c.setAttribute('role', 'radio');
-      c.setAttribute('aria-checked', 'false');
-      c.addEventListener('click', function () { selectType(c.getAttribute('data-value')); });
-    });
-    document.querySelectorAll('[data-project-type]').forEach(function (a) {
-      a.addEventListener('click', function () { selectType(a.getAttribute('data-project-type')); });
-    });
-  }
 })();

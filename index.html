@@ -165,7 +165,6 @@
           </li>
           <li><a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a></li>
           <li><a href="#skills"     class="nav-link" data-i18n="nav.skills">Skills</a></li>
-          <li><a href="#insights"   class="nav-link" data-i18n="nav.insights">Insights</a></li>
 
           <!-- Mobile-only extras -->
           <li class="nav-mobile-cta">
@@ -559,7 +558,7 @@ experience</span>
                 <span class="exp-tag" data-i18n="work.cs3.tag3">Prototyping</span>
               </div>
 
-              <a class="btn btn-dark work-panel-cta" href="https://nadirdesign.notion.site/B2B-Sales-ERP-Module-27a9267c7345809da887cdcc974ca15d?source=copy_link" target="_blank" rel="noopener noreferrer">
+              <a class="btn btn-dark work-panel-cta" href="case-studies/b2b-sales-erp.html">
                 <span data-i18n="work.cta">View Case Study</span>
                 <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
@@ -1025,9 +1024,6 @@ experience</span>
       </div>
     </section>
 
-    <section id="insights" style="min-height:100px;"></section>
-
-
   </main>
 
   <!-- ══════════════════════════════════════════════
@@ -1054,6 +1050,17 @@ experience</span>
           <h3 class="footer-panel-title" data-i18n="footer.form_title">Send a Message</h3>
 
           <form class="footer-form" id="footer-form" novalidate action="https://formspree.io/f/mkolebgp" method="POST">
+            <div class="ff-ptype-field">
+              <span class="ff-ptype-label" data-i18n="cs.form.ptype_label">What can I help with?</span>
+              <div class="cs-ptype" role="radiogroup" aria-label="Project type">
+                <button type="button" class="cs-ptype-chip" data-value="Design system" data-i18n="cs.form.pt_ds">Design system</button>
+                <button type="button" class="cs-ptype-chip" data-value="Web app / SaaS" data-i18n="cs.form.pt_web">Web app / SaaS</button>
+                <button type="button" class="cs-ptype-chip" data-value="Mobile app" data-i18n="cs.form.pt_mobile">Mobile app</button>
+                <button type="button" class="cs-ptype-chip" data-value="ERP / internal tool" data-i18n="cs.form.pt_erp">ERP / internal tool</button>
+                <button type="button" class="cs-ptype-chip" data-value="Something else" data-i18n="cs.form.pt_other">Something else</button>
+              </div>
+              <input type="hidden" name="project_type" id="ff-project-type" value="">
+            </div>
             <div class="ff-field">
               <input class="ff-input" type="text" id="ff-name" name="name" required autocomplete="name" placeholder=" ">
               <label class="ff-label" for="ff-name" data-i18n="footer.form_name">Name</label>

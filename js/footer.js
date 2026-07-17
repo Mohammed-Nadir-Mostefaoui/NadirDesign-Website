@@ -147,4 +147,30 @@
       });
     });
   }
+
+  /* ── Project-type selector + CTA prefill ──
+     Shared across every footer (homepage + all case-study pages) so the
+     "What can I help with?" chips behave identically everywhere, and any
+     button carrying data-project-type (e.g. a case-study closing CTA)
+     pre-selects the matching chip when clicked. */
+  const ptypeChips = Array.prototype.slice.call(document.querySelectorAll('.cs-ptype-chip'));
+  if (ptypeChips.length) {
+    const ptypeHidden = document.getElementById('ff-project-type');
+    const selectType = function (val) {
+      ptypeChips.forEach((c) => {
+        const on = c.getAttribute('data-value') === val;
+        c.classList.toggle('is-active', on);
+        c.setAttribute('aria-checked', on ? 'true' : 'false');
+      });
+      if (ptypeHidden) ptypeHidden.value = val || '';
+    };
+    ptypeChips.forEach((c) => {
+      c.setAttribute('role', 'radio');
+      c.setAttribute('aria-checked', 'false');
+      c.addEventListener('click', () => selectType(c.getAttribute('data-value')));
+    });
+    document.querySelectorAll('[data-project-type]').forEach((a) => {
+      a.addEventListener('click', () => selectType(a.getAttribute('data-project-type')));
+    });
+  }
 })();
