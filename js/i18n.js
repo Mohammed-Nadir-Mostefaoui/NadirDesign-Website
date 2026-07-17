@@ -22,7 +22,8 @@
         contact:    'Contact Me',
         back_to_top: 'Back to top',
         theme_to_dark: 'Switch to dark mode',
-        theme_to_light: 'Switch to light mode'
+        theme_to_light: 'Switch to light mode',
+        dropdown_aria: 'Show projects menu'
       },
       hero: {
         greeting:      "Hi, I'm Nadir Mostefaoui",
@@ -116,6 +117,12 @@
         }
       },
       experience: {
+        /* NOTE on nawat/dma/atqin `duration` below: these three roles are
+           still ongoing ("Present"), so js/experience.js recomputes and
+           overwrites this text live from each role's start date on every
+           load and language switch. The strings here only matter as the
+           first-paint/no-JS fallback — keep them roughly accurate when
+           editing nearby content, but don't worry about them drifting. */
         label:    'PROFESSIONAL JOURNEY',
         title:    'My Experience',
         subtitle: 'Over the years, I\'ve had the privilege to work with amazing teams and clients.',
@@ -293,7 +300,7 @@
         reflect: { eyebrow: "Reflection", quote: "Leading a system means designing the <span>decisions</span>, not just the screens.", p1: "The hardest — and most rewarding — part wasn't drawing components. It was making choices that had to hold up across two engineering stacks, three languages, two colour modes, and a second designer's hands. Getting the architecture and the accessibility right early is what let the library scale without collapsing into exceptions.", p2: "It also reshaped how I work: treating documentation as a product, writing rules that other people can follow without me in the room, and staying accountable for a system long after its first release." },
         closing: { eyebrow: "Let's talk", title: "Have a system like this in mind?", lead: "I design systems, products, and the foundations under them. Tell me what you're building — and let's make it consistent, accessible, and fast to ship." },
         pager: { all: "Back to homepage", contact: "Get in touch" }, more: { eyebrow: "Keep exploring", title: "More case studies" },
-        form: { ptype_label: "What can I help with?", pt_ds: "Design system", pt_web: "Web app / SaaS", pt_mobile: "Mobile app", pt_erp: "ERP / internal tool", pt_other: "Something else" }
+        form: { ptype_label: "What can I help with?", pt_ds: "Design system", pt_web: "Web app / SaaS", pt_mobile: "Mobile app", pt_erp: "ERP / internal tool", pt_job: "Job opportunity", pt_other: "Something else" }
       },
       cs2: {
         hero: { eyebrow: "Case Study 02 · Retail Operations App", title: "Task Master", sub: "A task-management app for retail store teams — purchasing, inventory, stock corrections, and shelf operations turned into one clear, scannable workflow across mobile, tablet, and desktop.", role_k: "Role", role_v: "Product Designer — sole designer", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Team", team_v: "BA · tech lead · 3 dev teams", platforms_k: "Platforms", platforms_v: "Mobile · Tablet · Desktop", cta: "Let's build something like this", status: "In use by retail teams · new modules in design" },
@@ -332,7 +339,8 @@
         contact:    'Me Contacter',
         back_to_top: 'Retour en haut',
         theme_to_dark: 'Passer en mode sombre',
-        theme_to_light: 'Passer en mode clair'
+        theme_to_light: 'Passer en mode clair',
+        dropdown_aria: 'Afficher le menu des projets'
       },
       hero: {
         greeting:      'Bonjour, je suis Nadir Mostefaoui',
@@ -603,7 +611,7 @@
         reflect: { eyebrow: "Réflexion", quote: "Piloter un système, c'est concevoir les <span>décisions</span>, pas seulement les écrans.", p1: "Le plus difficile — et le plus gratifiant — n'était pas de dessiner des composants. C'était de faire des choix qui devaient tenir sur deux stacks techniques, trois langues, deux modes de couleur et entre les mains d'un second designer. Avoir posé tôt l'architecture et l'accessibilité, c'est ce qui a permis à la bibliothèque de grandir sans s'effondrer en exceptions.", p2: "Cela a aussi transformé ma façon de travailler : traiter la documentation comme un produit, écrire des règles que d'autres peuvent suivre sans moi dans la pièce, et rester responsable d'un système bien après sa première version." },
         closing: { eyebrow: "Discutons", title: "Un système comme celui-ci en tête ?", lead: "Je conçois des systèmes, des produits et les fondations en dessous. Dites-moi ce que vous construisez — et rendons-le cohérent, accessible et rapide à livrer." },
         pager: { all: "Retour à l'accueil", contact: "Me contacter" }, more: { eyebrow: "À explorer", title: "Plus d'études de cas" },
-        form: { ptype_label: "Comment puis-je aider ?", pt_ds: "Design system", pt_web: "App web / SaaS", pt_mobile: "App mobile", pt_erp: "ERP / outil interne", pt_other: "Autre chose" }
+        form: { ptype_label: "Comment puis-je aider ?", pt_ds: "Design system", pt_web: "App web / SaaS", pt_mobile: "App mobile", pt_erp: "ERP / outil interne", pt_job: "Opportunité d'emploi", pt_other: "Autre chose" }
       },
       cs2: {
         hero: { eyebrow: "Étude de cas 02 · Application d'opérations retail", title: "Task Master", sub: "Une application de gestion des tâches pour les équipes de magasin — achats, inventaire, corrections de stock et opérations en rayon réunis en un flux clair, lisible d'un coup d'œil, sur mobile, tablette et desktop.", role_k: "Rôle", role_v: "Designer Produit — designer unique", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Équipe", team_v: "BA · lead technique · 3 équipes dev", platforms_k: "Plateformes", platforms_v: "Mobile · Tablette · Desktop", cta: "Lançons un projet comme celui-ci", status: "Utilisée par les équipes retail · nouveaux modules en conception" },
@@ -642,7 +650,8 @@
         contact:    'تواصل معي',
         back_to_top: 'العودة إلى الأعلى',
         theme_to_dark: 'التبديل إلى الوضع الداكن',
-        theme_to_light: 'التبديل إلى الوضع الفاتح'
+        theme_to_light: 'التبديل إلى الوضع الفاتح',
+        dropdown_aria: 'إظهار قائمة المشاريع'
       },
       hero: {
         greeting:      'مرحباً، أنا نَذِير مصطفاوي',
@@ -660,7 +669,7 @@
       },
       work: {
         label:         'أعمال مختارة',
-        title:         'دراسات حالة',
+        title:         'دراسات',
         subtitle:      'نظرة أقرب على كيفية تحويلي لسير عمل معقد وكثيف البيانات إلى منتجات سهلة الاستخدام.',
         nda:           'اتفاقية سرية — التفاصيل مُعمَّمة، دون أي بيانات سرّية',
         cta:           'عرض دراسة الحالة',
@@ -728,7 +737,7 @@
           title:        'نظام تصميم Iksir',
           role:         'مصمم منتجات — قاد المشروع (فريق من شخصين)',
           problem:      'مجموعة ERP وتطبيقات جوال متنامية دون لغة واجهة موحّدة — مكوّنات غير متسقة، وبناء بطيء، ودون أساس لإمكانية الوصول أو تعدّد اللغات.',
-          approach:     'قيادة نظام تصميم قائم على الـtokens — بنية tokens من ثلاث طبقات، ووصولية مدمجة، وأساس ثلاثي اللغة (LTR/RTL)، وكامل طبقة الجوال — موثّق لتسليمه للمطورين.',
+          approach:     'قيادة نظام تصميم قائم على الـtokens — بنية tokens من ثلاث طبقات، وaccessibility مدمجة، وأساس ثلاثي اللغة (LTR/RTL)، وكامل طبقة الجوال — موثّق لتسليمه للمطورين.',
           outcome:      'إطلاق النسخة الأولى — وصار الفريق يصمّم ويبني استنادًا إليها: مصدر حقيقة واحد عبر الويب والجوال، مع معالجة الوضعين الفاتح/الداكن واتجاه RTL تلقائيًا.',
           stat1_num: '1033', stat1_suffix: '', stat1_label: 'متغيّر تصميم',
           stat2_num: '24', stat2_suffix: '', stat2_label: 'مكوّنًا مُطلقًا',
@@ -913,7 +922,7 @@
         reflect: { eyebrow: "خلاصة", quote: "قيادة نظام تعني تصميم <span>القرارات</span>، لا الشاشات فحسب.", p1: "الجزء الأصعب — والأكثر إرضاءً — لم يكن رسم المكوّنات. بل اتخاذ خيارات تصمد عبر منصّتين تقنيتين، وثلاث لغات، ووضعين للألوان، وبين يدَي مصمّم ثانٍ. إرساء البنية وإمكانية الوصول مبكرًا هو ما سمح للمكتبة بالنمو دون أن تنهار إلى استثناءات.", p2: "كما أعاد ذلك تشكيل طريقة عملي: التعامل مع التوثيق كمنتج، وكتابة قواعد يستطيع الآخرون اتّباعها دون وجودي في الغرفة، والبقاء مسؤولًا عن نظام بعد إصداره الأول بوقت طويل." },
         closing: { eyebrow: "لنتحدّث", title: "هل لديك نظام مثل هذا في ذهنك؟", lead: "أصمّم أنظمة ومنتجات والأساسات التي تحتها. أخبرني بما تبنيه — ولنجعله متسقًا وسهل الوصول وسريع الإطلاق." },
         pager: { all: "العودة إلى الصفحة الرئيسية", contact: "تواصل معي" }, more: { eyebrow: "تابِع الاستكشاف", title: "المزيد من دراسات الحالة" },
-        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_ds: "نظام تصميم", pt_web: "تطبيق ويب / SaaS", pt_mobile: "تطبيق جوال", pt_erp: "ERP / أداة داخلية", pt_other: "شيء آخر" }
+        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_ds: "نظام تصميم", pt_web: "تطبيق ويب / SaaS", pt_mobile: "تطبيق جوال", pt_erp: "ERP / أداة داخلية", pt_job: "فرصة عمل", pt_other: "شيء آخر" }
       },
       cs2: {
         hero: { eyebrow: "دراسة حالة 02 · تطبيق عمليات التجزئة", title: "Task Master", sub: "تطبيق لإدارة المهام لفرق متاجر التجزئة — الشراء والجرد وتصحيح المخزون وعمليات الأرفف في مسار عمل واحد واضح يُقرأ بلمحة، على الجوال والجهاز اللوحي وسطح المكتب.", role_k: "الدور", role_v: "مصمم منتجات — المصمم الوحيد", client_k: "العميل", client_v: "Datamaster Analytics · ERP، فرنسا", team_k: "الفريق", team_v: "محلّل أعمال · قائد تقني · 3 فرق تطوير", platforms_k: "المنصات", platforms_v: "جوال · جهاز لوحي · سطح مكتب", cta: "لنبدأ مشروعًا مثل هذا", status: "قيد الاستخدام لدى فرق التجزئة · وحدات جديدة قيد التصميم" },

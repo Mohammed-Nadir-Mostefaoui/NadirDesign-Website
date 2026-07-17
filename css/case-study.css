@@ -29,6 +29,9 @@
   color: var(--text-tertiary);
 }
 .cs-eyebrow::before { content: ""; width: 20px; height: 1.5px; background: currentColor; opacity: .75; }
+/* Wide Latin tracking reads as broken spacing on Arabic script — drop it,
+   and size up slightly the same way the rest of the site does for AR. */
+[dir="rtl"] .cs-eyebrow { font-size: .84rem; letter-spacing: 0; }
 .cs-h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.08; margin-block: 14px 0; color: var(--text-primary); }
 .cs-lead { font-size: 0.98rem; line-height: 1.65; color: var(--text-secondary); max-width: 66ch; margin-block-start: 16px; }
 .cs-p { font-size: 1.02rem; line-height: 1.7; color: var(--text-secondary); max-width: 66ch; }
@@ -55,6 +58,7 @@
 .cs-hero-meta { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-block-start: 26px; }
 .cs-meta-item { display: flex; flex-direction: column; gap: 2px; }
 .cs-meta-k { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); }
+[dir="rtl"] .cs-meta-k { font-size: .78rem; letter-spacing: 0; }
 .cs-meta-v { font-size: .95rem; font-weight: 600; color: var(--text-primary); }
 
 .cs-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 30px; }
@@ -92,6 +96,7 @@
 .cs-stat-num { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; letter-spacing: -.02em; color: var(--text-primary); }
 .cs-stat-num b { color: var(--accent-blue); font-weight: 700; }
 .cs-stat-label { display: block; font-size: .76rem; color: var(--text-tertiary); margin-block-start: 6px; letter-spacing: .02em; }
+[dir="rtl"] .cs-stat-label { font-size: .82rem; letter-spacing: 0; }
 
 /* ============================================================
    GENERIC CARDS / GRIDS
@@ -106,6 +111,7 @@
 .cs-card .cs-h3 { margin-block-end: 8px; }
 .cs-card p { font-size: .96rem; line-height: 1.6; color: var(--text-secondary); }
 .cs-card-num { font-size: .8rem; font-weight: 700; color: var(--accent-blue); letter-spacing: .06em; }
+[dir="rtl"] .cs-card-num { letter-spacing: 0; }
 
 /* Two-column role split */
 .cs-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-block-start: 40px; }
@@ -114,6 +120,7 @@
 .cs-split-col--team { background: var(--bg-secondary); }
 .cs-split-col h3 { display: flex; align-items: center; gap: 8px; margin-block-end: 16px; }
 .cs-tag-lead { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-blue); border: 1px solid var(--accent-blue); border-radius: var(--radius-pill); padding: 2px 8px; }
+[dir="rtl"] .cs-tag-lead { font-size: .74rem; letter-spacing: 0; }
 .cs-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .cs-list li { position: relative; padding-inline-start: 26px; font-size: .96rem; line-height: 1.5; color: var(--text-secondary); }
 .cs-list li::before { content: ""; position: absolute; inset-inline-start: 4px; inset-block-start: 8px; width: 7px; height: 7px; border-radius: 2px; background: var(--accent-blue); }
@@ -126,6 +133,7 @@
 .cs-phase { display: grid; grid-template-columns: 130px 1fr; gap: 28px; padding-block: 30px; border-block-start: 1px solid var(--border-default); }
 .cs-phase:last-child { border-block-end: 1px solid var(--border-default); }
 .cs-phase-idx { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-blue); }
+[dir="rtl"] .cs-phase-idx { font-size: .84rem; letter-spacing: 0; }
 .cs-phase-idx span { display: block; font-size: 2.4rem; font-weight: 700; color: var(--text-primary); letter-spacing: -.03em; opacity: .12; margin-block-start: 4px; }
 .cs-phase-body h3 { margin-block-end: 10px; }
 .cs-phase-body p { font-size: .98rem; line-height: 1.65; color: var(--text-secondary); max-width: 64ch; }
@@ -138,6 +146,7 @@
 .cs-arch { display: flex; flex-direction: column; gap: 14px; margin-block-start: 40px; }
 .cs-layer { position: relative; border-radius: var(--radius-lg); padding: 24px 26px; border: 1px solid var(--border-default); background: var(--bg-primary); overflow: hidden; }
 .cs-layer-tag { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--iksir-purple); }
+[dir="rtl"] .cs-layer-tag { font-size: .78rem; letter-spacing: 0; }
 [data-theme="dark"] .cs-layer-tag { color: var(--iksir-purple-lite); }
 .cs-layer h3 { margin-block: 4px 6px; }
 .cs-layer p { font-size: .94rem; color: var(--text-secondary); line-height: 1.55; max-width: 70ch; }
@@ -160,6 +169,7 @@
 .cs-specimen-row { display: flex; align-items: baseline; gap: 18px; padding: 18px 24px; border-block-end: 1px solid var(--border-default); flex-wrap: wrap; }
 .cs-specimen-row:last-child { border-block-end: 0; }
 .cs-specimen-label { font-size: .74rem; color: var(--text-tertiary); min-width: 130px; letter-spacing: .04em; }
+[dir="rtl"] .cs-specimen-label { font-size: .8rem; letter-spacing: 0; }
 .cs-type-mont { font-family: "Montserrat", sans-serif; font-weight: 700; color: var(--text-primary); }
 .cs-type-inter { font-family: "Inter", sans-serif; color: var(--text-primary); }
 .cs-type-alex { font-family: "Alexandria", sans-serif; color: var(--text-primary); }
@@ -338,6 +348,7 @@
 .cs-task { margin: 12px; padding: 12px 14px; border: 1px solid var(--border-default); border-radius: 12px; background: var(--bg-secondary); border-inline-start: 3px solid var(--iksir-purple); }
 .cs-task-top { display: flex; align-items: center; justify-content: space-between; margin-block-end: 8px; }
 .cs-ptag { font-size: .6rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 3px 8px; border-radius: var(--radius-pill); }
+[dir="rtl"] .cs-ptag { font-size: .68rem; letter-spacing: 0; }
 .cs-ptag--high { background: #FDECEC; color: #D8192C; }
 .cs-ptag--med { background: #FDF6EA; color: #AE7004; }
 .cs-task-status { font-size: .62rem; font-weight: 600; color: #148F47; background: #EAF7EF; padding: 3px 8px; border-radius: var(--radius-pill); }
@@ -423,7 +434,11 @@
 .cs-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .cs-gallery-label { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-tertiary); margin-block: 34px 0; }
-.cs-gallery { display: grid; gap: 16px; margin-block-start: 16px; }
+[dir="rtl"] .cs-gallery-label { font-size: .84rem; letter-spacing: 0; }
+/* align-items: start — rows don't stretch to their tallest card, so a
+   portrait mobile shot next to a landscape desktop shot doesn't leave an
+   awkward gap under the shorter one. Each card just sizes to its image. */
+.cs-gallery { display: grid; gap: 16px; margin-block-start: 16px; align-items: start; }
 .cs-gallery--2 { grid-template-columns: repeat(2, 1fr); }
 .cs-gallery--3 { grid-template-columns: repeat(3, 1fr); }
 .cs-gallery--4 { grid-template-columns: repeat(4, 1fr); }
@@ -434,7 +449,10 @@
   background: var(--bg-primary); cursor: zoom-in; font: inherit; color: inherit;
   transition: border-color .3s ease, box-shadow .3s ease;
 }
-.cs-thumb img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top center; transition: transform .5s cubic-bezier(0.22, 1, 0.36, 1); }
+/* No forced aspect-ratio / object-fit: cover here on purpose — that used
+   to crop portrait mobile shots and tall design-system sheets to a fixed
+   4:3 box. Every screenshot now renders at its full natural size instead. */
+.cs-thumb img { display: block; width: 100%; height: auto; transition: transform .5s cubic-bezier(0.22, 1, 0.36, 1); }
 .cs-thumb:hover { border-color: var(--accent-blue-light); box-shadow: 0 14px 30px rgba(0, 0, 0, .10); }
 [data-theme="dark"] .cs-thumb:hover { box-shadow: 0 14px 30px rgba(0, 0, 0, .4); }
 .cs-thumb:hover img { transform: scale(1.04); }
@@ -480,6 +498,7 @@
 .cs-more-num { font-size: 2rem; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--text-primary); opacity: .12; flex: none; transition: opacity .25s ease, color .25s ease; }
 .cs-more-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .cs-more-tag { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); }
+[dir="rtl"] .cs-more-tag { font-size: .78rem; letter-spacing: 0; }
 .cs-more-title { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); }
 .cs-more-go { margin-inline-start: auto; flex: none; color: var(--text-tertiary); transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1), color .25s ease; }
 .cs-more-card:hover { transform: translateY(-3px); border-color: var(--accent-blue-light); box-shadow: 0 14px 30px rgba(0, 0, 0, .08); }

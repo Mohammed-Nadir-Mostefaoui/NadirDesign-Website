@@ -292,6 +292,105 @@ html {
 }
 .nav-link:hover .chevron { opacity: 0.8; }
 
+/* ── Projects dropdown (desktop: floating panel; mobile: inline accordion,
+   see the max-width:900px block below for the accordion overrides) ── */
+.nav-item.has-dropdown {
+  position: relative;
+  /* Invisible hover bridge: extends the hoverable box down to meet the
+     panel below, so moving the cursor from the trigger to the panel
+     doesn't cross a dead gap and drop the :hover state. The negative
+     margin cancels the extra height so the navbar row is unaffected.
+     The panel's `top: 100%` sits flush against the BOTTOM of this
+     padding — not offset any further — so the bridge is the only gap;
+     stacking a second gap on top of it would recreate the dead zone. */
+  padding-bottom: 16px;
+  margin-bottom: -16px;
+}
+
+.nav-item-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+.nav-dropdown-toggle:hover { color: var(--text-primary); }
+.nav-dropdown-toggle .chevron {
+  opacity: 0.5;
+  transition: transform var(--transition-base), opacity var(--transition-fast);
+}
+.has-dropdown:hover .nav-dropdown-toggle .chevron,
+.has-dropdown:focus-within .nav-dropdown-toggle .chevron,
+.has-dropdown.is-open .nav-dropdown-toggle .chevron {
+  opacity: 0.9;
+  transform: rotate(180deg);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  inset-inline-start: 0;
+  min-width: 240px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 60;
+}
+.has-dropdown:hover .nav-dropdown,
+.has-dropdown:focus-within .nav-dropdown,
+.has-dropdown.is-open .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav-dropdown-inner {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 8px;
+}
+
+.nav-dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nav-dropdown-list a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.nav-dropdown-list a:hover,
+.nav-dropdown-list a:focus-visible {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
 /* ── Nav End ── */
 .nav-end {
   display: flex;
@@ -510,6 +609,7 @@ html {
   color: var(--text-tertiary);
   letter-spacing: 0.01em;
 }
+[dir="rtl"] .hero-greeting { letter-spacing: 0; }
 
 .hero-dot {
   width: 7px;
@@ -617,9 +717,11 @@ html {
   padding-right: 16px;
 }
 
-/* Arabic needs a touch more size than Latin at small sizes to read comfortably */
+/* Arabic needs a touch more size than Latin at small sizes to read comfortably;
+   the wide Latin letter-spacing must not carry over to Arabic script. */
 [dir="rtl"] .stat-label {
   font-size: 13.5px;
+  letter-spacing: 0;
 }
 
 /* Mobile-only grouping wrapper (see HTML). display:contents means it has zero
@@ -1010,6 +1112,103 @@ html {
     width: 19px;
     height: 19px;
   }
+
+  /* Projects dropdown → inline accordion. The hover-bridge hack from the
+     desktop rules is cancelled, and the panel switches from a floating
+     absolute overlay to a normal-flow block that expands/collapses with
+     the same 0fr/1fr grid-rows trick used by the Experience accordion
+     (.expa-body), for a consistent open animation across the site. */
+  /* .nav-links.open uses align-items:center (inherited from the desktop
+     .nav-links rule — column direction turns that into horizontal
+     centering), so every plain link shrink-wraps to its own text and
+     centers itself. This item is different: it has a wide accordion
+     panel nested inside it, so left as a shrink-wrapped item its own
+     width becomes unpredictable and the trigger row can drift off-center
+     from "Experience"/"Skills". align-self: stretch opts it out of that
+     shrink-wrap and makes it full-width and deterministic instead —
+     the trigger row is then centered *within* that full width below. */
+  .nav-links.open .nav-item.has-dropdown {
+    align-self: stretch;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  /* Centered to match the plain "Experience"/"Skills" links, chevron
+     pulled in close to the text (not pushed to the far edge). */
+  .nav-links.open .nav-item-row {
+    justify-content: center;
+    gap: 6px;
+  }
+  .nav-links.open .nav-dropdown-toggle {
+    width: 40px;
+    height: 40px;
+    margin-inline-start: -6px;
+  }
+  .nav-links.open .nav-dropdown-toggle .chevron {
+    width: 16px;
+    height: 16px;
+  }
+  .nav-links.open .nav-dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 380ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .nav-links.open .nav-item.has-dropdown.is-open .nav-dropdown {
+    grid-template-rows: 1fr;
+  }
+  /* The sub-list speaks the menu's own language: the popup is a centered,
+     airy, purely typographic composition — so no box, no borders, no
+     row-chevrons (a boxed settings-list read as a foreign component
+     dropped into the middle of it). Hierarchy is typographic instead:
+     the four links are centered like everything else but a step smaller
+     and quieter than the 20px/600 top-level links, and each carries the
+     site's own numbering motif (the "01" indices used by CASE STUDY 01
+     eyebrows and the Experience list) as a faint prefix — which both
+     groups them as a set and says "case studies" at a glance. */
+  .nav-links.open .nav-dropdown-inner {
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  .nav-links.open .nav-dropdown-list {
+    counter-reset: nav-cs;
+    align-items: center;
+    padding: 12px 0 2px;
+    gap: 2px;
+  }
+  .nav-links.open .nav-dropdown-list a {
+    counter-increment: nav-cs;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 9px;
+    padding: 7px 12px;
+    font-size: 15.5px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+  .nav-links.open .nav-dropdown-list a::before {
+    content: counter(nav-cs, decimal-leading-zero);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-tertiary);
+    transition: color var(--transition-fast);
+  }
+  .nav-links.open .nav-dropdown-list a:active,
+  .nav-links.open .nav-dropdown-list a:hover {
+    color: var(--text-primary);
+  }
+  .nav-links.open .nav-dropdown-list a:active::before,
+  .nav-links.open .nav-dropdown-list a:hover::before {
+    color: var(--accent-blue-light);
+  }
 }
 
 /* ============================================================
@@ -1228,6 +1427,7 @@ html {
 
 [dir="rtl"] .exp-label-text {
   font-size: 14px;
+  letter-spacing: 0;
 }
 
 .exp-title-row {
@@ -1300,6 +1500,7 @@ html {
 
 [dir="rtl"] .exp-tag {
   font-size: 14px;
+  letter-spacing: 0;
 }
 
 /* ── Multi-role (Data Master) ── */
@@ -1484,7 +1685,7 @@ html {
   transition: color var(--transition-base);
 }
 
-[dir="rtl"] .expa-num { font-size: 14px; }
+[dir="rtl"] .expa-num { font-size: 14px; letter-spacing: 0; }
 
 /* accent-blue-light only clears AA contrast on dark backgrounds (5.28:1);
    on white it drops to 3.68:1, below the 4.5:1 needed for text this small.
@@ -1566,7 +1767,7 @@ html {
   text-transform: uppercase;
 }
 
-[dir="rtl"] .expa-volunteer-badge { font-size: 13px; }
+[dir="rtl"] .expa-volunteer-badge { font-size: 13px; letter-spacing: 0; }
 
 /* Right group: hint pill + period + chevron */
 .expa-right {
@@ -2295,6 +2496,8 @@ html {
               transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+[dir="rtl"] .skill-tag { letter-spacing: 0; }
+
 /* Tag hover: filled pill, dark blue (not accent-blue-light) — white text on
    accent-blue-light is only 3.68:1, under AA; on the darker accent-blue
    it's 6.7:1, which is why this uses the darker of the two blues. */
@@ -2846,7 +3049,7 @@ html {
 }
 
 /* ── RTL: Arabic script reads slightly small at these sizes ── */
-[dir="rtl"] .footer-badge        { font-size: 14.5px; }
+[dir="rtl"] .footer-badge        { font-size: 14.5px; letter-spacing: 0; }
 [dir="rtl"] .footer-subtitle     { font-size: 17px; }
 [dir="rtl"] .footer-panel-title  { font-size: 19.5px; }
 [dir="rtl"] .ff-input,
@@ -2854,7 +3057,7 @@ html {
 [dir="rtl"] .ff-input:focus ~ .ff-label,
 [dir="rtl"] .ff-input:not(:placeholder-shown) ~ .ff-label { font-size: 13px; }
 [dir="rtl"] .footer-submit       { font-size: 16px; }
-[dir="rtl"] .fc-label            { font-size: 12.5px; }
+[dir="rtl"] .fc-label            { font-size: 12.5px; letter-spacing: 0; }
 [dir="rtl"] .fc-value            { font-size: 16px; }
 
 /* The WhatsApp number carries its own dir="ltr" (in index.html) so the
@@ -2972,7 +3175,10 @@ html {
    CV: hero button, footer item, and preview modal
    ═══════════════════════════════════════════════════════════ */
 
-/* Hero secondary CTA — solid, with an accent-blue document glyph */
+/* Hero secondary CTA — solid, with an accent-blue document glyph.
+   Same resting look as .btn-ghost-fill, and its hover state now matches
+   that variant's neutral lift + shadow exactly (no border/shadow tint to
+   accent-blue), so every .btn on the site shares one hover language. */
 .btn-cv {
   background-color: #F5F5F5;
   color: var(--text-primary);
@@ -2980,10 +3186,9 @@ html {
 }
 .btn-cv .btn-cv-icon { flex-shrink: 0; color: var(--accent-blue); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
 .btn-cv:hover {
-  background-color: #FFFFFF;
+  background-color: #EBEBEB;
   color: var(--text-primary);
-  border-color: var(--accent-blue);
-  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.16);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
 }
 .btn-cv:hover .btn-cv-icon { transform: translateY(-1px); }
 [data-theme="dark"] .btn-cv {
@@ -2993,8 +3198,7 @@ html {
 }
 [data-theme="dark"] .btn-cv:hover {
   background-color: var(--bg-secondary);
-  border-color: var(--accent-blue);
-  box-shadow: 0 8px 22px rgba(29, 78, 216, 0.30);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 /* Footer CV item — a <button> that visually matches the .fc-link anchors.
@@ -3139,6 +3343,11 @@ html {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+[dir="rtl"] .scroll-cue__label {
+  font-size: 12.5px;
+  letter-spacing: 0;
 }
 
 .scroll-cue__track {

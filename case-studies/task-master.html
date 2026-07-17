@@ -32,8 +32,6 @@
     [data-theme="dark"] .cs--tm { --iksir-surface: #0D2230; }
     .cs--tm .cs-hero-visual { box-shadow: 0 30px 70px -30px rgba(14, 110, 153, .5); }
     .cs--tm .cs-live-hint { box-shadow: 0 10px 24px -8px rgba(14, 110, 153, .6); }
-    /* Portrait app screens keep their aspect instead of the 4:3 crop */
-    .cs--tm .cs-thumb--tall img { aspect-ratio: 3 / 4.6; }
   </style>
 
   <!-- Theme before paint -->
@@ -74,7 +72,28 @@
         </a>
 
         <ul class="nav-links" id="nav-links" role="list">
-          <li><a href="../index.html#work"       class="nav-link" data-i18n="nav.projects">Projects</a></li>
+          <li class="nav-item has-dropdown">
+            <div class="nav-item-row">
+              <a href="../index.html#work" class="nav-link" data-i18n="nav.projects">Projects</a>
+              <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-dropdown-work"
+                      aria-label="Show projects menu" data-i18n-aria-label="nav.dropdown_aria">
+                <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+            </div>
+            <div class="nav-dropdown" id="nav-dropdown-work">
+              <div class="nav-dropdown-inner">
+                <ul class="nav-dropdown-list" role="list">
+                  <li><a href="iksir-design-system.html" data-i18n="work.cs5.title">Iksir Design System</a></li>
+                  <li><a href="task-master.html" data-i18n="work.cs2.title">Task Master — Retail Ops App</a></li>
+                  <li><a href="b2b-sales-erp.html" data-i18n="work.cs3.title">B2B Sales ERP Module</a></li>
+                  <li><a href="https://nadirdesign.notion.site/eLearning-Platform-Teacher-Side-2789267c734580818447e1667e1b8630?source=copy_link" target="_blank" rel="noopener noreferrer" data-i18n="work.cs4.title">eLearning Platform</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
           <li><a href="../index.html#experience" class="nav-link" data-i18n="nav.experience">Experience</a></li>
           <li><a href="../index.html#skills"     class="nav-link" data-i18n="nav.skills">Skills</a></li>
 
@@ -605,6 +624,7 @@
                 <button type="button" class="cs-ptype-chip" data-value="Web app / SaaS" data-i18n="cs.form.pt_web">Web app / SaaS</button>
                 <button type="button" class="cs-ptype-chip" data-value="Mobile app" data-i18n="cs.form.pt_mobile">Mobile app</button>
                 <button type="button" class="cs-ptype-chip" data-value="ERP / internal tool" data-i18n="cs.form.pt_erp">ERP / internal tool</button>
+                <button type="button" class="cs-ptype-chip" data-value="Job opportunity" data-i18n="cs.form.pt_job">Job opportunity</button>
                 <button type="button" class="cs-ptype-chip" data-value="Something else" data-i18n="cs.form.pt_other">Something else</button>
               </div>
               <input type="hidden" name="project_type" id="ff-project-type" value="">
@@ -784,6 +804,37 @@
       const handle = mq => { if (!mq.matches && isOpen()) closeMenu(); };
       if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', () => handle(desktopQuery));
       else if (desktopQuery.addListener) desktopQuery.addListener(() => handle(desktopQuery));
+    })();
+
+    /* Projects dropdown: click-to-toggle (desktop hover already works via
+       CSS; this covers touch/keyboard users and drives the mobile accordion) */
+    (function () {
+      document.querySelectorAll('.nav-item.has-dropdown').forEach(item => {
+        const btn = item.querySelector('.nav-dropdown-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const open = item.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', String(open));
+        });
+      });
+      document.addEventListener('click', e => {
+        document.querySelectorAll('.nav-item.has-dropdown.is-open').forEach(item => {
+          if (!item.contains(e.target)) {
+            item.classList.remove('is-open');
+            const btn = item.querySelector('.nav-dropdown-toggle');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('.nav-item.has-dropdown.is-open').forEach(item => {
+          item.classList.remove('is-open');
+          const btn = item.querySelector('.nav-dropdown-toggle');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      });
     })();
 
     /* Back to top */
