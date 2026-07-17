@@ -1601,54 +1601,52 @@ html {
 .expa-list {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--border-default);
+  gap: 14px;
 }
 
-/* Each accordion item */
+/* Each accordion item — a rounded card, speaking the same visual language
+   as .skill-card and the case-study "more" cards (bg-secondary fill,
+   border-default hairline, 16px radius, accent-blue-light border on
+   hover) instead of the old flat edge-to-edge divided-table look, which
+   was the only sharp-cornered surface left on the site. All the
+   interactions (accent rail, hover tint, peek teaser, hint) carry over
+   unchanged — overflow:hidden keeps them clipped to the rounded shape. */
 .expa-item {
   position: relative;
-  /* Not-selected resting fill — subtle off-white distinct from the
-     section's warm wash. Passes AA with the base --text-tertiary as-is
-     (4.63:1), no local darkening needed here. */
-  background-color: #F9F9F8;
-  border-bottom: 1px solid var(--border-default);
-  transition: background-color 240ms ease;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  transition: background-color 240ms ease,
+              border-color 240ms ease,
+              box-shadow 240ms ease;
 }
-[data-theme="dark"] .expa-item {
-  /* #F9F9F8 is a light-mode-only value; dark mode uses --bg-primary
-     (#0D0D0D), matching the section itself and the rest of the page. */
-  background-color: var(--bg-primary);
-}
-/* The hover/open tint below mixes accent-blue into --bg-secondary, which
-   in light mode is slightly darker than this row's own #F9F9F8 resting
-   fill — that mix drops text-tertiary to 4.48:1 (just under AA 4.5:1) for
-   the small text used throughout each row (num, period, hint, peek,
-   location). Locally darken to #6B6B6B (4.89:1 resting / 4.76:1 on the
-   hover tint) here; dark mode is untouched (already 5.54:1+). */
+/* The base --text-tertiary (#9A9A9A) falls under AA (4.5:1) for the small
+   text used throughout each row (num, period, hint, peek, location) on
+   both the bg-secondary resting fill and the blue hover tint below.
+   Locally darken to #6B6B6B (~4.8:1 on both) in light mode; #8F8F8F in
+   dark mode clears 5.5:1 on the dark card fill. */
 .expa-item { --text-tertiary: #6B6B6B; }
 [data-theme="dark"] .expa-item { --text-tertiary: #8F8F8F; }
 
-/* Left accent rail — scaleY 0→1 on hover / open */
-.expa-item::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--accent-blue-light);
-  transform: scaleY(0);
-  transform-origin: top center;
-  border-radius: 0 2px 2px 0;
-  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.expa-item:hover::before,
-.expa-item--open::before {
-  transform: scaleY(1);
-}
-
-/* Hover / open: subtle blue-tinted lift off the item's own base fill */
+/* Hover / open: same card-hover language as .skill-card — the hairline
+   warms to accent blue and a soft shadow lifts the card — plus the
+   accordion's own subtle blue-tinted fill. No translateY here though:
+   the list reflows as items expand, and a position shimmy on top of
+   that would make the whole stack feel jumpy. (The old left accent rail
+   was dropped with the card redesign — the accent border + tint already
+   mark the active card; the rail read as leftover from the flat list.) */
 .expa-item:hover,
-.expa-item--open   { background-color: color-mix(in srgb, var(--accent-blue) 4%, var(--bg-secondary)); }
+.expa-item--open {
+  background-color: color-mix(in srgb, var(--accent-blue) 4%, var(--bg-secondary));
+  border-color: var(--accent-blue-light);
+}
+.expa-item--open {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .expa-item--open {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
 
 /* Trigger row */
 .expa-trigger {
@@ -1668,6 +1666,14 @@ html {
   text-align: start;
   color: inherit;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Keyboard focus ring, drawn inward so the card's overflow:hidden (needed
+   to clip the rail/tints to the rounded shape) can't swallow it. */
+.expa-trigger:focus-visible {
+  outline: 2px solid var(--accent-blue-light);
+  outline-offset: -2px;
+  border-radius: 16px;
 }
 
 .expa-item--open .expa-company,
@@ -1839,13 +1845,15 @@ html {
 
 .expa-peek p { margin: 0; padding-bottom: 14px; }
 
-/* Gradient fade at bottom of peek window */
+/* Gradient fade at bottom of peek window — fades to the exact hover-tint
+   fill the card has while the peek is visible (peek only shows on hover). */
 .expa-peek::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 28px;
-  background: linear-gradient(to bottom, transparent, var(--bg-secondary));
+  background: linear-gradient(to bottom, transparent,
+              color-mix(in srgb, var(--accent-blue) 4%, var(--bg-secondary)));
   pointer-events: none;
 }
 
@@ -1870,7 +1878,19 @@ html {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 8px 0 28px 58px;
+  padding: 8px 24px 28px 58px;
+}
+
+/* Tags inside the accordion sit on the card's own bg-secondary fill (and
+   its blue hover tint when open), where the default bg-secondary pill
+   fill disappears — give them a primary-surface fill plus a hairline so
+   they still read as chips against the card. */
+.expa-item .exp-tag {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-default);
+}
+[data-theme="dark"] .expa-item .exp-tag {
+  background-color: var(--bg-tertiary);
 }
 
 /* ── RTL accordion overrides ─────────────────────────────────
@@ -1890,9 +1910,6 @@ html {
 /* Period: dates are on the LEFT side in RTL, so left-align text within the box */
 [dir="rtl"] .expa-period    { text-align: left; }
 
-/* Accent rail: move from left edge to right edge */
-[dir="rtl"] .expa-item::before { left: auto; right: 0; border-radius: 2px 0 0 2px; }
-
 /* Peek indent: mirror to right side */
 [dir="rtl"] .expa-peek      { padding-left: 0; padding-right: 58px; }
 
@@ -1902,7 +1919,7 @@ html {
 [dir="rtl"] .expa-item:not(.expa-item--open):hover .expa-hint { transform: translateX(0); }
 
 /* Body content indent: mirror to right */
-[dir="rtl"] .expa-body-content { padding: 8px 58px 28px 0; }
+[dir="rtl"] .expa-body-content { padding: 8px 58px 28px 24px; }
 
 /* Responsive */
 @media (max-width: 640px) {
@@ -1911,13 +1928,13 @@ html {
   .expa-right          { flex: 0 0 100%; padding-left: 34px; flex-direction: row-reverse; justify-content: flex-start; }
   .expa-company        { font-size: 16px; }
   .expa-hint           { display: none; }
-  .expa-body-content   { padding-left: 34px; }
+  .expa-body-content   { padding-left: 34px; padding-right: 16px; }
   .expa-peek           { padding-left: 34px; }
 
   /* RTL responsive: .expa-trigger padding already auto-mirrors (logical
      properties); .expa-right still needs its physical padding/flex swapped. */
   [dir="rtl"] .expa-right          { padding-left: 0; padding-right: 34px; flex-direction: row; justify-content: flex-end; }
-  [dir="rtl"] .expa-body-content   { padding-left: 0; padding-right: 34px; }
+  [dir="rtl"] .expa-body-content   { padding-left: 16px; padding-right: 34px; }
   [dir="rtl"] .expa-peek           { padding-left: 0; padding-right: 34px; }
 }
 
