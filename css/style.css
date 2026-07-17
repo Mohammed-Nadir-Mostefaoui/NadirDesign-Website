@@ -1489,7 +1489,10 @@ html {
   align-items: center;
   height: 26px;
   padding: 0 12px;
-  background-color: var(--bg-secondary);
+  /* White chip + hairline on the gray cards/panels — same pairing as
+     .skill-tag, so every chip on the page reads identically. */
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-pill);
   font-size: 12.5px;
   font-weight: 500;
@@ -1881,17 +1884,8 @@ html {
   padding: 8px 24px 28px 58px;
 }
 
-/* Tags inside the accordion sit on the card's own bg-secondary fill (and
-   its blue hover tint when open), where the default bg-secondary pill
-   fill disappears — give them a primary-surface fill plus a hairline so
-   they still read as chips against the card. */
-.expa-item .exp-tag {
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-default);
-}
-[data-theme="dark"] .expa-item .exp-tag {
-  background-color: var(--bg-tertiary);
-}
+/* Tags need no special-casing here — .exp-tag's base rule (white chip +
+   hairline, dark bg-tertiary) is designed for gray cards like this one. */
 
 /* ── RTL accordion overrides ─────────────────────────────────
    direction:rtl on <html> makes flex rows flow RIGHT→LEFT automatically.
@@ -2085,15 +2079,14 @@ html {
 /* ── Detail panels (right) ── */
 .work-panels {
   position: relative;
-  background-color: var(--surface-light-card);
+  /* Same gray fill as the Experience and Skills cards — one card color
+     across the page, in both modes (bg-secondary auto-resolves in dark). */
+  background-color: var(--bg-secondary);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   padding: 48px;
   overflow: hidden;
   min-height: 520px;
-}
-[data-theme="dark"] .work-panels {
-  background-color: var(--bg-tertiary);
 }
 
 .work-panel {
