@@ -90,6 +90,7 @@
                   <li><a href="task-master.html" data-i18n="work.cs2.title">Task Master · Retail Ops App</a></li>
                   <li><a href="b2b-sales-erp.html" data-i18n="work.cs3.title">B2B Sales ERP Module</a></li>
                   <li><a href="https://nadirdesign.notion.site/eLearning-Platform-Teacher-Side-2789267c734580818447e1667e1b8630?source=copy_link" target="_blank" rel="noopener noreferrer" data-i18n="work.cs4.title">eLearning Platform</a></li>
+                  <li class="nav-dropdown-all"><a href="../index.html#work" data-i18n="nav.all_projects">All projects</a></li>
                 </ul>
               </div>
             </div>
@@ -97,6 +98,10 @@
           <li><a href="../index.html#experience" class="nav-link" data-i18n="nav.experience">Experience</a></li>
           <li><a href="../index.html#skills"     class="nav-link" data-i18n="nav.skills">Skills</a></li>
 
+          <li class="nav-mobile-status">
+            <span class="nav-status-dot" aria-hidden="true"></span>
+            <span data-i18n="footer.badge">Available for new projects</span>
+          </li>
           <li class="nav-mobile-cta">
             <a href="#contact" class="btn btn-dark">
               <span data-i18n="nav.contact">Contact Me</span>
@@ -816,6 +821,22 @@
           e.stopPropagation();
           const open = item.classList.toggle('is-open');
           btn.setAttribute('aria-expanded', String(open));
+        });
+      });
+
+      /* Close the panel when a link inside it is chosen. Matters for
+         same-page anchors ("All projects" -> #work on the homepage),
+         where without this the click-toggled state and :focus-within
+         would keep the panel pinned open over the section it jumped to. */
+      document.querySelectorAll('.nav-item.has-dropdown .nav-dropdown a').forEach(a => {
+        a.addEventListener('click', () => {
+          const item = a.closest('.nav-item.has-dropdown');
+          if (item) {
+            item.classList.remove('is-open');
+            const btn = item.querySelector('.nav-dropdown-toggle');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          }
+          a.blur();
         });
       });
       document.addEventListener('click', e => {

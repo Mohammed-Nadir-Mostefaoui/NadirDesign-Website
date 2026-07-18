@@ -391,6 +391,40 @@ html {
   color: var(--text-primary);
 }
 
+/* "All projects" — the exit row to the Work section. Separated from the
+   four case-study links by a hairline, and given the site's slide-in
+   arrow motif (see .btn-arrow) so it reads as "go somewhere" rather than
+   as a fifth case study. */
+.nav-dropdown-all {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-default);
+}
+.nav-dropdown-all a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 600;
+}
+.nav-dropdown-all a::after {
+  content: '→';
+  flex-shrink: 0;
+  opacity: 0.45;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+[dir="rtl"] .nav-dropdown-all a::after { content: '←'; }
+.nav-dropdown-all a:hover::after,
+.nav-dropdown-all a:focus-visible::after {
+  opacity: 1;
+  transform: translateX(3px);
+  color: var(--accent-blue-light);
+}
+[dir="rtl"] .nav-dropdown-all a:hover::after,
+[dir="rtl"] .nav-dropdown-all a:focus-visible::after {
+  transform: translateX(-3px);
+}
+
 /* ── Nav End ── */
 .nav-end {
   display: flex;
@@ -474,6 +508,7 @@ html {
 
 /* ── Mobile-only nav extras (hidden on desktop) ── */
 .nav-mobile-cta,
+.nav-mobile-status,
 .nav-mobile-controls { display: none; }
 
 /* ── Mobile Hamburger ── */
@@ -1052,6 +1087,11 @@ html {
      margin on every side, rounded corners and a real shadow, sized to
      its content (not stretched edge-to-edge/top-to-bottom) so it reads
      as one substantial, intentional surface instead of a bare list. */
+  /* The menu as a miniature of the site itself: the same dot-grid
+     texture every section sits on, hero-scale display type for the
+     section links, and the site's ghost-index motif (.work-panel-ghost-num,
+     .cs-more-num) at full volume — a big faint 01/02/03 sitting BEHIND
+     each link's type, not beside it. Start-aligned, auto-mirrored in RTL. */
   .nav-links.open {
     display: flex;
     flex-direction: column;
@@ -1060,16 +1100,68 @@ html {
     inset-inline: 12px;
     max-height: calc(100dvh - var(--nav-height) - 24px);
     background-color: var(--bg-primary);
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.10) 1px, transparent 1px);
+    background-size: 26px 26px;
     border-radius: 22px;
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.08);
-    padding: 28px 24px calc(env(safe-area-inset-bottom) + 24px);
-    gap: 22px;
+    padding: 30px 26px calc(env(safe-area-inset-bottom) + 24px);
+    gap: 18px;
     z-index: 99;
     overflow-y: auto;
+    align-items: stretch;
+    counter-reset: nav-sec;
+  }
+  [data-theme="dark"] .nav-links.open {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   }
   .nav-links.open .nav-link {
-    font-size: 20px;
-    font-weight: 600;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding-block: 6px;
+    /* Wide enough that the first digit of the ghost index stays fully
+       visible and only the second digit tucks under the title — before,
+       the title started at 30px and covered almost the whole number. */
+    padding-inline-start: 46px;
+    font-size: clamp(29px, 8.5vw, 37px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    transition: color var(--transition-fast);
+  }
+  [dir="rtl"] .nav-links.open .nav-link { letter-spacing: 0; }
+  /* Ghost section index behind the type. Counted on the li so the
+     mobile-only status/CTA/controls rows are excluded. */
+  .nav-links.open > li:not(.nav-mobile-cta):not(.nav-mobile-status):not(.nav-mobile-controls) {
+    counter-increment: nav-sec;
+  }
+  .nav-links.open .nav-link::before {
+    content: counter(nav-sec, decimal-leading-zero);
+    position: absolute;
+    inset-inline-start: -2px;
+    top: 50%;
+    transform: translateY(-52%);
+    z-index: -1;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--text-primary);
+    opacity: 0.11;
+    font-feature-settings: 'tnum';
+    pointer-events: none;
+    transition: color var(--transition-fast), opacity var(--transition-fast);
+  }
+  /* Tap feedback: the ghost number fills with accent blue */
+  .nav-links.open .nav-link:active::before {
+    color: var(--accent-blue-light);
+    opacity: 0.22;
+  }
+  /* The desktop sliding underline would span the ghost-number indent at
+     this scale — the ghost fill above is the menu's feedback instead. */
+  .nav-links.open .nav-link::after {
+    display: none;
   }
   .nav-links.open .nav-mobile-cta {
     display: block;
@@ -1118,34 +1210,25 @@ html {
      absolute overlay to a normal-flow block that expands/collapses with
      the same 0fr/1fr grid-rows trick used by the Experience accordion
      (.expa-body), for a consistent open animation across the site. */
-  /* .nav-links.open uses align-items:center (inherited from the desktop
-     .nav-links rule — column direction turns that into horizontal
-     centering), so every plain link shrink-wraps to its own text and
-     centers itself. This item is different: it has a wide accordion
-     panel nested inside it, so left as a shrink-wrapped item its own
-     width becomes unpredictable and the trigger row can drift off-center
-     from "Experience"/"Skills". align-self: stretch opts it out of that
-     shrink-wrap and makes it full-width and deterministic instead —
-     the trigger row is then centered *within* that full width below. */
   .nav-links.open .nav-item.has-dropdown {
     align-self: stretch;
     padding-bottom: 0;
     margin-bottom: 0;
   }
-  /* Centered to match the plain "Experience"/"Skills" links, chevron
-     pulled in close to the text (not pushed to the far edge). */
+  /* Start-aligned like every other index row, chevron snug against the
+     "Projects" text (not pushed to the card's far edge). */
   .nav-links.open .nav-item-row {
-    justify-content: center;
+    justify-content: flex-start;
     gap: 6px;
   }
   .nav-links.open .nav-dropdown-toggle {
-    width: 40px;
-    height: 40px;
-    margin-inline-start: -6px;
+    width: 44px;
+    height: 44px;
+    margin-inline-start: -2px;
   }
   .nav-links.open .nav-dropdown-toggle .chevron {
-    width: 16px;
-    height: 16px;
+    width: 19px;
+    height: 19px;
   }
   .nav-links.open .nav-dropdown {
     position: static;
@@ -1160,15 +1243,11 @@ html {
   .nav-links.open .nav-item.has-dropdown.is-open .nav-dropdown {
     grid-template-rows: 1fr;
   }
-  /* The sub-list speaks the menu's own language: the popup is a centered,
-     airy, purely typographic composition — so no box, no borders, no
-     row-chevrons (a boxed settings-list read as a foreign component
-     dropped into the middle of it). Hierarchy is typographic instead:
-     the four links are centered like everything else but a step smaller
-     and quieter than the 20px/600 top-level links, and each carries the
-     site's own numbering motif (the "01" indices used by CASE STUDY 01
-     eyebrows and the Experience list) as a faint prefix — which both
-     groups them as a set and says "case studies" at a glance. */
+  /* Case studies nest under "01 Projects" as an indented group behind a
+     hairline rail — containment shown structurally (a tree branch), not
+     with a second set of numbers competing with the section indices.
+     The rail starts under the section number, and the logical properties
+     mirror the whole tree automatically in RTL. */
   .nav-links.open .nav-dropdown-inner {
     overflow: hidden;
     background: transparent;
@@ -1177,37 +1256,74 @@ html {
     padding: 0;
   }
   .nav-links.open .nav-dropdown-list {
-    counter-reset: nav-cs;
-    align-items: center;
-    padding: 12px 0 2px;
+    align-items: stretch;
+    margin-inline-start: 12px;
+    padding: 8px 0 4px;
+    padding-inline-start: 20px;
+    border-inline-start: 1px solid var(--border-default);
     gap: 2px;
   }
   .nav-links.open .nav-dropdown-list a {
-    counter-increment: nav-cs;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 9px;
-    padding: 7px 12px;
-    font-size: 15.5px;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 16px;
     font-weight: 500;
     color: var(--text-secondary);
-    transition: color var(--transition-fast);
-  }
-  .nav-links.open .nav-dropdown-list a::before {
-    content: counter(nav-cs, decimal-leading-zero);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--text-tertiary);
     transition: color var(--transition-fast);
   }
   .nav-links.open .nav-dropdown-list a:active,
   .nav-links.open .nav-dropdown-list a:hover {
     color: var(--text-primary);
   }
-  .nav-links.open .nav-dropdown-list a:active::before,
-  .nav-links.open .nav-dropdown-list a:hover::before {
-    color: var(--accent-blue-light);
+
+  /* "All projects": the group's exit row — start-aligned with its
+     siblings, separated by a short hairline, arrow trailing right after
+     the text (the desktop ::after carries over). */
+  .nav-links.open .nav-dropdown-all {
+    align-self: stretch;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-default);
+  }
+  .nav-links.open .nav-dropdown-all a {
+    display: inline-flex;
+    gap: 10px;
+    font-weight: 600;
+  }
+
+  /* Availability status: the same live green pulse the footer badge
+     uses, giving the menu's action zone a human "I'm here, hire me"
+     opener above the CTA. */
+  .nav-links.open .nav-mobile-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .nav-status-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-green);
+    flex-shrink: 0;
+  }
+  .nav-status-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: var(--accent-green);
+    animation: footer-pulse 2.2s ease-out infinite;
+  }
+  .nav-links.open .nav-mobile-cta {
+    margin-top: 0;
   }
 }
 

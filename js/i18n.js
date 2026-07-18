@@ -23,7 +23,8 @@
         back_to_top: 'Back to top',
         theme_to_dark: 'Switch to dark mode',
         theme_to_light: 'Switch to light mode',
-        dropdown_aria: 'Show projects menu'
+        dropdown_aria: 'Show projects menu',
+        all_projects: 'All projects'
       },
       hero: {
         greeting:      "Hi, I'm Nadir Mostefaoui",
@@ -340,7 +341,8 @@
         back_to_top: 'Retour en haut',
         theme_to_dark: 'Passer en mode sombre',
         theme_to_light: 'Passer en mode clair',
-        dropdown_aria: 'Afficher le menu des projets'
+        dropdown_aria: 'Afficher le menu des projets',
+        all_projects: 'Tous les projets'
       },
       hero: {
         greeting:      'Bonjour, je suis Nadir Mostefaoui',
@@ -651,7 +653,8 @@
         back_to_top: 'العودة إلى الأعلى',
         theme_to_dark: 'التبديل إلى الوضع الداكن',
         theme_to_light: 'التبديل إلى الوضع الفاتح',
-        dropdown_aria: 'إظهار قائمة المشاريع'
+        dropdown_aria: 'إظهار قائمة المشاريع',
+        all_projects: 'جميع المشاريع'
       },
       hero: {
         greeting:      'مرحباً، أنا نَذِير مصطفاوي',
