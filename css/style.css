@@ -1526,17 +1526,21 @@ html {
 }
 
 .exp-label-line {
+  /* Creative refresh (2026-08-02): a small solid accent-blue token square
+     instead of a flat gray dash, a nod to the design-token language the
+     case studies talk about, echoed identically in .cs-eyebrow::before. */
   display: block;
-  width: 20px;
-  height: 1.5px;
-  background-color: var(--text-tertiary);
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background-color: var(--accent-blue);
   flex-shrink: 0;
 }
 
 .exp-label-text {
   font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
   color: var(--text-tertiary);
   text-transform: uppercase;
 }
@@ -2644,6 +2648,195 @@ html {
 [data-theme="dark"] .skill-tag:hover {
   background-color: var(--accent-blue);
   border-color: var(--accent-blue);
+}
+
+/* ============================================================
+   STUDIO BRIDGE SECTION
+   Sits between Experience and Skills. Reuses .exp-header for the
+   label/title/subtitle, but the panel itself is deliberately a DARK
+   card in both themes (same local-variable-override technique as
+   .site-footer below) — the studio is a different entity from the
+   personal brand, and the tonal flip also breaks the run of identical
+   light cards down the page.
+   ============================================================ */
+.studio-section {
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: clamp(80px, 12vw, 160px) var(--container-pad);
+}
+.studio-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] .studio-section::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+}
+
+.studio-container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.studio-card {
+  /* Locally redefined so the whole subtree renders dark in BOTH themes,
+     exactly how .site-footer does it. --text-inverse is flipped too, so
+     .btn-dark inside resolves to a light button with dark label. */
+  --text-primary:   #F5F5F5;
+  --text-secondary: #A3A3A3;
+  --text-tertiary:  #8F8F8F;
+  --text-inverse:   #0D0D0D;
+  --border-default: rgba(255, 255, 255, 0.10);
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--surface-dark-card);
+  border: 1px solid var(--border-default);
+  border-radius: 24px;
+  padding: clamp(32px, 5vw, 64px);
+  color: var(--text-primary);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(32px, 5vw, 64px);
+  /* Center, not start: the spectrum list (5 rows) runs taller than the
+     narrative + CTA column, so top-aligning left it stranded near the
+     top edge — centering pulls it down to sit level with the list. */
+  align-items: center;
+}
+
+/* Same dot-grid texture as the sections, dark variant, held inside the
+   card's rounded corners. */
+.studio-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Giant faint wordmark, the same motif the hero and footer already use,
+   here naming the studio instead of the person. */
+.studio-watermark {
+  position: absolute;
+  inset-inline-end: -0.05em;
+  inset-block-end: -0.28em;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  font-size: clamp(130px, 19vw, 290px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.75;
+  color: #FFFFFF;
+  opacity: 0.045;
+  white-space: nowrap;
+}
+[dir="rtl"] .studio-watermark {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+}
+
+.studio-col {
+  /* Left-aligned (reverted 2026-08-02) — vertical balance against the
+     taller spectrum list is handled by .studio-card's align-items:center
+     instead, so this column keeps its original left-aligned text. */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.studio-lead {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 52ch;
+}
+
+.studio-cta {
+  margin-block-start: 8px;
+}
+
+/* ── The spectrum: the studio's scope as a numbered progression rather
+   than a flat row of chips, so it reads as a process with direction. ── */
+.studio-spectrum {
+  position: relative;
+  z-index: 1;
+}
+
+.studio-spectrum-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-block-end: 18px;
+}
+[dir="rtl"] .studio-spectrum-label {
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.studio-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 14px;
+  border-block-start: 1px solid var(--border-default);
+}
+.studio-step:first-of-type { border-block-start: 0; padding-block-start: 0; }
+
+.studio-step-num {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent-blue-light);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir="rtl"] .studio-step-num { letter-spacing: 0; }
+
+.studio-step-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.25s ease;
+}
+
+.studio-step:hover .studio-step-name { color: var(--accent-blue-light); }
+.studio-step:hover .studio-step-num  { transform: translateX(2px); }
+[dir="rtl"] .studio-step:hover .studio-step-num { transform: translateX(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-step-num { transition: none; }
+  .studio-step:hover .studio-step-num { transform: none; }
+}
+
+@media (max-width: 900px) {
+  .studio-section { padding-block: 64px; }
+  .studio-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 28px;
+    border-radius: 20px;
+  }
+  .studio-watermark { font-size: clamp(110px, 34vw, 190px); }
 }
 
 /* ── Responsive ── */

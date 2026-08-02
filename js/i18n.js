@@ -8,7 +8,7 @@
 
 (function () {
   const STORAGE_KEY = 'nadir-lang';
-  const DEFAULT_LANG = 'en';
+  const DEFAULT_LANG = 'ar';
   const RTL_LANGS = ['ar'];
 
   /* ── Inline translations ─────────────────────────────────── */
@@ -17,6 +17,7 @@
       nav: {
         projects:   'Projects',
         experience: 'Experience',
+        studio:     'Studio',
         skills:     'Skills',
         insights:   'Insights',
         contact:    'Contact Me',
@@ -29,7 +30,7 @@
       hero: {
         greeting:      "Hi, I'm Nadir Mostefaoui",
         title:         'Product\nDesigner',
-        bio:           'I design product interfaces for B2B SaaS, ERP modules, sales dashboards, mobile-first apps, and multi-role enterprise platforms.',
+        bio:           'I design product interfaces for B2B SaaS, ERP modules, sales dashboards, mobile-first apps, and multi-role enterprise platforms. I lead this work today as the founder of Nawat Studio.',
         cta_primary:   "Let's Talk",
         cta_secondary: 'View My Work',
         cta_cv:        'View CV',
@@ -133,13 +134,13 @@
         tag_ux:   'UX Research',
         nawat: {
           company:   'Nawat Studio',
-          role:      'Product Designer',
+          role:      'Product Designer · Founder',
           city:      'Tlemcen',
           country:   'Algeria',
           work_type: 'Remote',
           dates:     'Jan 2026 - Present',
           duration:  '7 mos',
-          desc_0:    '- Datamaster Analytics is the anchor client of Nawat Studio, so my concurrent Datamaster role (below) is that same work, delivered through the studio.',
+          desc_0:    '- Datamaster Analytics was my employer through Dec 2025 (below). Since Jan 2026, they\'ve been Nawat Studio\'s anchor client, so it\'s the same relationship, now delivered through the studio.',
           desc_1:    '- Leading product design for B2B SaaS and enterprise software clients',
           desc_2:    '- Managing and mentoring a product designer, reviewing deliverables, and ensuring design quality.',
           desc_3:    '- Delivering ERP interfaces, design systems, and IA restructuring across client engagements.'
@@ -149,10 +150,10 @@
           city:      'Bezons, Île-de-France',
           country:   'France',
           work_type: 'Remote',
-          dates:     'Sep 2024 - Present',
-          duration:  '1 yr 11 mos',
+          dates:     'Sep 2024 - Dec 2025',
+          duration:  '1 yr 4 mos',
           role_a:    'Product Designer',
-          dates_a:   'Dec 2024 - Present',
+          dates_a:   'Dec 2024 - Dec 2025',
           desc_a0:   'Sole product designer for a growing ERP platform, responsible for the full design scope across multiple business modules and a complete post-rebranding design system.',
           desc_a1:   '- Designed five core ERP modules end-to-end: B2B Sales, Purchase, POS, Finance, and Accounting, each handling high data density across complex multi-role workflows',
           desc_a2:   '- Building a comprehensive design library post-rebranding, Figma component system plus a dedicated website that makes the design system accessible to non-designers',
@@ -202,6 +203,20 @@
           desc_0:    '- Co-founded a volunteer community of tech professionals, designed a system for a nonprofit Quran clubs management platform and a website for a historic cultural establishment.',
           desc_1:    '- Coordinating team projects and managing community growth.'
         }
+      },
+      studio: {
+        eyebrow:        'The Studio',
+        title:          'I Lead Nawat Studio',
+        subtitle:       'Where this work continues, at studio scale.',
+        watermark:      'NAWAT',
+        lead:           'Nawat Studio is where I take this work further. Brand and product design for founders and decision-makers, delivered as structured, dev-ready outcomes. We design natively in Arabic and English, with the same rigor behind the case studies above.',
+        spectrum_label: 'From identity to testing',
+        tag1:           'Visual Identity',
+        tag2:           'Design Systems',
+        tag3:           'UX Design',
+        tag4:           'Prototyping',
+        tag5:           'User Testing',
+        cta:            'Visit Nawat Studio'
       },
       skills: {
         label:    'CAPABILITIES',
@@ -287,7 +302,7 @@
         copyright:        'Nadir Mostefaoui. All rights reserved.'
       },
       cs: {
-        ui: { enlarge: "Enlarge", enlarge_aria: "Enlarge image", copy: "Copy hex", copied: "Copied!", close: "Close" }, hero: { eyebrow: "Case Study 01 · Design System", title: "Iksir Design System", sub: "A token-first design foundation (consistent, accessible, and trilingual), that Datamaster's web and mobile products build on.", badge: "Client work, specifics generalized, no confidential data shown", role_k: "Role", role_v: "Product Designer, led the project", team_k: "Team", team_v: "2 designers", timeline_k: "Timeline", timeline_v: "Feb – Jun 2026 · V1", platforms_k: "Platforms", platforms_v: "Web · iOS · Android", cta: "Let's build something like this", status: "V1 shipped · web + mobile · in active development" },
+        ui: { enlarge: "Enlarge", enlarge_aria: "Enlarge image", copy: "Copy hex", copied: "Copied!", close: "Close" }, hero: { eyebrow: "Case Study 01 · Design System", title: "Iksir Design System", sub: "A token-first design foundation (consistent, accessible, and trilingual), that Datamaster's web and mobile products build on.", badge: "Client work, specifics generalized, no confidential data shown", role_k: "Role", role_v: "Product Designer, led the project", client_k: "Client", client_v: "Datamaster Analytics · via Nawat Studio", team_k: "Team", team_v: "2 designers", timeline_k: "Timeline", timeline_v: "Feb – Jun 2026 · V1", platforms_k: "Platforms", platforms_v: "Web · iOS · Android", cta: "Let's build something like this", status: "V1 shipped · web + mobile · in active development" },
         stats: { variables: "design variables", components: "components", patterns: "UX patterns", colours: "colour tokens", languages: "languages (LTR + RTL)", modes: "modes (light + dark)" },
         problem: { eyebrow: "The problem", title: "A growing product suite with no shared language", lead: "Datamaster builds a modular ERP and a family of mobile apps under its Iksir product brand. As the suite grew, every screen was solving the same UI problems from scratch.", c1t: "Inconsistency slowed everything", c1p: "Colours, spacing, buttons, and form validation were rebuilt per screen and behaved differently across the products, costing development time and creating avoidable UI bugs.", c2t: "Two stacks, no lock-in", c2p: "The web is moving from Ant Design to Shadcn, with Flutter on mobile. The system had to feed them all the same decisions through tokens, while staying library-agnostic, so the team keeps the freedom to build beyond any single framework.", c3t: "Built for three languages", c3p: "The products are expanding to French, English, and Arabic (the task app first), so true right-to-left support and dual-script typography had to live in the foundation from the start, not be bolted on later." },
         role: { eyebrow: "My role", title: "A two-person team: I set the direction", lead: "We were two product designers. I led the project end to end: the strategy, the client relationship, and every foundational decision the system is built on. This case study is my side of that work.", mine_tag: "Led by me", mine1: "Strategy, discovery, and the stakeholder relationship with the client", mine2: "The full design-token strategy and three-layer architecture", mine3: "The trilingual & right-to-left (LTR/RTL) foundation", mine4: "The accessibility framework, baked into the tokens", mine5: "The entire mobile layer, platform rules and mobile components", mine6: "All documentation, guides, and the governance model", mine7: "Structuring the project and shipping V1, and the rollout strategy now", partner_h: "My design partner", partner1: "Audit of the existing web product", partner2: "Figma production of the web/desktop components", partner3: "Building the documentation website", partner4: "The later polished visual pass on the public library", partner_note: "The full team story lives in a separate studio case study, this page focuses on the decisions and craft I owned." },
@@ -335,6 +350,7 @@
       nav: {
         projects:   'Projets',
         experience: 'Expérience',
+        studio:     'Studio',
         skills:     'Compétences',
         insights:   'Articles',
         contact:    'Me Contacter',
@@ -347,7 +363,7 @@
       hero: {
         greeting:      'Bonjour, je suis Nadir Mostefaoui',
         title:         'Designer\nProduit',
-        bio:           'Je conçois des interfaces pour des solutions B2B SaaS, des modules ERP, des tableaux de bord de ventes, des applications mobiles et des plateformes d\'entreprise multi-rôles.',
+        bio:           'Je conçois des interfaces pour des solutions B2B SaaS, des modules ERP, des tableaux de bord de ventes, des applications mobiles et des plateformes d\'entreprise multi-rôles. Je dirige aujourd\'hui ce travail en tant que fondateur de Nawat Studio.',
         cta_primary:   'Discutons',
         cta_secondary: 'Voir mon travail',
         cta_cv:        'Voir le CV',
@@ -445,13 +461,13 @@
         tag_ux:   'Recherche UX',
         nawat: {
           company:   'Nawat Studio',
-          role:      'Designer Produit',
+          role:      'Designer Produit · Fondateur',
           city:      'Tlemcen',
           country:   'Algérie',
           work_type: 'À distance',
           dates:     'Janv. 2026 - Présent',
           duration:  '7 mois',
-          desc_0:    '- Datamaster Analytics est le client principal de Nawat Studio, mon rôle simultané chez Datamaster (ci-dessous) correspond donc au même travail, réalisé via le studio.',
+          desc_0:    '- Datamaster Analytics était mon employeur jusqu\'à déc. 2025 (ci-dessous). Depuis janv. 2026, ils sont le client principal de Nawat Studio, c\'est donc la même relation, désormais réalisée via le studio.',
           desc_1:    '- Direction du design produit pour des clients B2B SaaS et logiciels d\'entreprise',
           desc_2:    '- Encadrement d\'un designer produit, révision des livrables et garantie de la qualité du design.',
           desc_3:    '- Livraison d\'interfaces ERP, de systèmes de design et de restructuration de l\'architecture de l\'information.'
@@ -461,10 +477,10 @@
           city:      'Bezons, Île-de-France',
           country:   'France',
           work_type: 'À distance',
-          dates:     'Sept. 2024 - Présent',
-          duration:  '1 an 11 mois',
+          dates:     'Sept. 2024 - Déc. 2025',
+          duration:  '1 an 4 mois',
           role_a:    'Designer Produit',
-          dates_a:   'Déc. 2024 - Présent',
+          dates_a:   'Déc. 2024 - Déc. 2025',
           desc_a0:   'Seul designer produit pour une plateforme ERP en pleine croissance, responsable de l\'ensemble du périmètre design sur plusieurs modules métiers et d\'un système de design complet post-rebranding.',
           desc_a1:   '- Conception de cinq modules ERP de bout en bout : Ventes B2B, Achats, PDV, Finance et Comptabilité, chacun gérant des données denses sur des workflows multi-rôles complexes',
           desc_a2:   '- Construction d\'une bibliothèque de design complète post-rebranding, système de composants Figma et un site dédié rendant le système de design accessible aux non-designers',
@@ -514,6 +530,20 @@
           desc_0:    '- Co-fondation d\'une communauté bénévole de professionnels tech, conception d\'un système pour une plateforme de gestion de clubs Coran à but non lucratif et d\'un site pour un établissement culturel historique.',
           desc_1:    '- Coordination des projets d\'équipe et gestion de la croissance de la communauté.'
         }
+      },
+      studio: {
+        eyebrow:        'Le Studio',
+        title:          'Je dirige Nawat Studio',
+        subtitle:       'Là où ce travail continue, à l\'échelle d\'un studio.',
+        watermark:      'NAWAT',
+        lead:           'Nawat Studio est l\'endroit où je pousse ce travail plus loin. Identité de marque et design produit pour des fondateurs et décideurs, livrés sous forme de résultats structurés et prêts au développement. Nous concevons nativement en arabe et en anglais, avec la même rigueur que les études de cas ci-dessus.',
+        spectrum_label: 'De l\'identité aux tests',
+        tag1:           'Identité Visuelle',
+        tag2:           'Systèmes de Design',
+        tag3:           'Design UX',
+        tag4:           'Prototypage',
+        tag5:           'Tests Utilisateurs',
+        cta:            'Visiter Nawat Studio'
       },
       skills: {
         label:    'COMPÉTENCES',
@@ -599,7 +629,7 @@
         copyright:        'Nadir Mostefaoui. Tous droits réservés.'
       },
       cs: {
-        ui: { enlarge: "Agrandir", enlarge_aria: "Agrandir l'image", copy: "Copier le code", copied: "Copié !", close: "Fermer" }, hero: { eyebrow: "Étude de cas 01 · Design System", title: "Iksir Design System", sub: "Une base de design orientée tokens (cohérente, accessible et trilingue), sur laquelle reposent les produits web et mobiles de Datamaster.", badge: "Travail client, informations généralisées, aucune donnée confidentielle affichée", role_k: "Rôle", role_v: "Designer Produit, pilote du projet", team_k: "Équipe", team_v: "2 designers", timeline_k: "Période", timeline_v: "Fév. – Juin 2026 · V1", platforms_k: "Plateformes", platforms_v: "Web · iOS · Android", cta: "Lançons un projet comme celui-ci", status: "V1 livrée · web + mobile · en développement actif" },
+        ui: { enlarge: "Agrandir", enlarge_aria: "Agrandir l'image", copy: "Copier le code", copied: "Copié !", close: "Fermer" }, hero: { eyebrow: "Étude de cas 01 · Design System", title: "Iksir Design System", sub: "Une base de design orientée tokens (cohérente, accessible et trilingue), sur laquelle reposent les produits web et mobiles de Datamaster.", badge: "Travail client, informations généralisées, aucune donnée confidentielle affichée", role_k: "Rôle", role_v: "Designer Produit, pilote du projet", client_k: "Client", client_v: "Datamaster Analytics · via Nawat Studio", team_k: "Équipe", team_v: "2 designers", timeline_k: "Période", timeline_v: "Fév. – Juin 2026 · V1", platforms_k: "Plateformes", platforms_v: "Web · iOS · Android", cta: "Lançons un projet comme celui-ci", status: "V1 livrée · web + mobile · en développement actif" },
         stats: { variables: "variables de design", components: "composants", patterns: "patterns UX", colours: "tokens de couleur", languages: "langues (LTR + RTL)", modes: "modes (clair + sombre)" },
         problem: { eyebrow: "Le problème", title: "Une suite de produits en croissance sans langage commun", lead: "Datamaster développe un ERP modulaire et une famille d'applications mobiles sous sa marque produit Iksir. À mesure que la suite grandissait, chaque écran résolvait les mêmes problèmes d'interface depuis zéro.", c1t: "L'incohérence ralentissait tout", c1p: "Couleurs, espacements, boutons et validation de formulaires étaient reconstruits écran par écran et se comportaient différemment d'un produit à l'autre, coûtant du temps de développement et générant des bugs d'interface évitables.", c2t: "Deux stacks, aucun verrouillage", c2p: "Le web migre d'Ant Design vers Shadcn, avec Flutter sur mobile. Le système devait leur transmettre à tous les mêmes décisions via les tokens, tout en restant indépendant des bibliothèques, pour que l'équipe garde la liberté de construire au-delà de n'importe quel framework.", c3t: "Conçu pour trois langues", c3p: "Les produits s'étendent au français, à l'anglais et à l'arabe (l'application de tâches en premier), donc un vrai support de droite à gauche et une typographie bi-script devaient vivre dans la base dès le départ, pas être ajoutés après coup." },
         role: { eyebrow: "Mon rôle", title: "Une équipe de deux: j'ai donné la direction", lead: "Nous étions deux designers produit. J'ai piloté le projet de bout en bout : la stratégie, la relation client et chaque décision fondatrice sur laquelle le système repose. Cette étude de cas présente ma part de ce travail.", mine_tag: "Piloté par moi", mine1: "Stratégie, découverte et relation avec les parties prenantes", mine2: "Toute la stratégie de design tokens et l'architecture à trois couches", mine3: "La base trilingue et de droite à gauche (LTR/RTL)", mine4: "Le cadre d'accessibilité, intégré aux tokens", mine5: "Toute la couche mobile, règles de plateforme et composants mobiles", mine6: "Toute la documentation, les guides et le modèle de gouvernance", mine7: "La structuration du projet et la livraison de la V1, et la stratégie de déploiement en cours", partner_h: "Mon binôme designer", partner1: "Audit du produit web existant", partner2: "Production Figma des composants web/desktop", partner3: "Construction du site de documentation", partner4: "La passe visuelle soignée ultérieure sur la bibliothèque publique", partner_note: "L'histoire complète de l'équipe vit dans une étude de cas séparée, au nom du studio, cette page se concentre sur les décisions et le travail que j'ai menés." },
@@ -647,6 +677,7 @@
       nav: {
         projects:   'المشاريع',
         experience: 'الخبرة',
+        studio:     'الاستوديو',
         skills:     'المهارات',
         insights:   'المقالات',
         contact:    'تواصل معي',
@@ -659,7 +690,7 @@
       hero: {
         greeting:      'مرحباً، أنا نَذِير مصطفاوي',
         title:         'مُصَمِّم\nمُنتَجَات',
-        bio:           'أصمم واجهات المنتجات لحلول B2B SaaS ووحدات ERP ولوحات تحكم المبيعات والتطبيقات ذات الأولوية للجوال ومنصات المؤسسات متعددة الأدوار.',
+        bio:           'أصمم واجهات المنتجات لحلول B2B SaaS ووحدات ERP ولوحات تحكم المبيعات والتطبيقات ذات الأولوية للجوال ومنصات المؤسسات متعددة الأدوار. أقود هذا العمل اليوم بصفتي مؤسس استوديو نواة.',
         cta_primary:   'لنتحدث',
         cta_secondary: 'شاهد أعمالي',
         cta_cv:        'عرض السيرة الذاتية',
@@ -757,13 +788,13 @@
         tag_ux:   'أبحاث تجربة المستخدم',
         nawat: {
           company:   'استوديو نواة',
-          role:      'مصمم منتجات',
+          role:      'مصمم منتجات · مؤسس',
           city:      'تلمسان',
           country:   'الجزائر',
           work_type: 'عن بُعد',
           dates:     'يناير 2026 - حتى الآن',
           duration:  '7 أشهر',
-          desc_0:    '- شركة Datamaster Analytics هي العميل الرئيسي لاستوديو نواة، لذا فإن دوري المتزامن في Datamaster (أدناه) هو نفس العمل، مُنجَز عبر الاستوديو.',
+          desc_0:    '- كانت شركة Datamaster Analytics صاحبة العمل حتى ديسمبر 2025 (أدناه). ومنذ يناير 2026، هي العميل الرئيسي لاستوديو نواة، فهي نفس العلاقة، تُنجَز الآن عبر الاستوديو.',
           desc_1:    '- قيادة تصميم المنتج لعملاء B2B SaaS وبرامج المؤسسات',
           desc_2:    '- الإشراف على مصمم منتجات وتوجيهه، ومراجعة التسليمات وضمان جودة التصميم.',
           desc_3:    '- تسليم واجهات ERP وأنظمة التصميم وإعادة هيكلة معمارية المعلومات عبر مشاريع العملاء.'
@@ -773,10 +804,10 @@
           city:      'بيزون، إيل-دو-فرانس',
           country:   'فرنسا',
           work_type: 'عن بُعد',
-          dates:     'سبتمبر 2024 - حتى الآن',
-          duration:  'سنة و11 شهرًا',
+          dates:     'سبتمبر 2024 - ديسمبر 2025',
+          duration:  'سنة و4 أشهر',
           role_a:    'مصمم منتجات',
-          dates_a:   'ديسمبر 2024 - حتى الآن',
+          dates_a:   'ديسمبر 2024 - ديسمبر 2025',
           desc_a0:   'المصمم الوحيد لمنصة ERP في مرحلة نمو متسارعة، المسؤول عن النطاق الكامل للتصميم عبر وحدات أعمال متعددة ونظام تصميم متكامل عقب إعادة تحديد هوية العلامة التجارية.',
           desc_a1:   '- تصميم خمس وحدات ERP أساسية من الألف إلى الياء: المبيعات B2B، والمشتريات، ونقاط البيع، والمالية، والمحاسبة، كل منها يتعامل مع كثافة بيانات عالية عبر مسارات عمل معقدة متعددة الأدوار',
           desc_a2:   '- بناء مكتبة تصميم شاملة عقب إعادة تحديد الهوية، نظام مكونات Figma وموقع مخصص يجعل نظام التصميم في متناول غير المصممين',
@@ -826,6 +857,20 @@
           desc_0:    '- المشاركة في تأسيس مجتمع تطوعي من المتخصصين في التقنية، وتصميم نظام لمنصة إدارة حلقات القرآن غير الربحية وموقع لمؤسسة ثقافية تاريخية.',
           desc_1:    '- تنسيق مشاريع الفريق وإدارة نمو المجتمع.'
         }
+      },
+      studio: {
+        eyebrow:        'الاستوديو',
+        title:          'أقود استوديو نواة',
+        subtitle:       'حيث يستمر هذا العمل، بحجم استوديو متكامل.',
+        watermark:      'نواة',
+        lead:           'استوديو نواة هو المكان الذي أطوّر فيه هذا العمل أكثر. هوية بصرية وتصميم منتجات للمؤسّسين وصناع القرار، بمخرجات منظمة وجاهزة للتطوير. نصمم أصلاً بالعربية والإنجليزية، بنفس الدقة الموجودة في دراسات الحالة أعلاه.',
+        spectrum_label: 'من الهوية إلى الاختبار',
+        tag1:           'الهوية البصرية',
+        tag2:           'أنظمة التصميم',
+        tag3:           'تصميم تجربة المستخدم',
+        tag4:           'النمذجة التفاعلية',
+        tag5:           'اختبار المستخدم',
+        cta:            'زيارة استوديو نواة'
       },
       skills: {
         label:    'المهارات',
@@ -911,7 +956,7 @@
         copyright:        'نذير مصطفاوي. جميع الحقوق محفوظة.'
       },
       cs: {
-        ui: { enlarge: "تكبير", enlarge_aria: "تكبير الصورة", copy: "نسخ الكود", copied: "تم النسخ!", close: "إغلاق" }, hero: { eyebrow: "دراسة حالة 01 · Design System", title: "نظام تصميم Iksir", sub: "أساس تصميم قائم على الـtokens (متسق وسهل الوصول وثلاثي اللغة)، تعتمد عليه منتجات Datamaster على الويب والجوال.", badge: "عمل لعميل: التفاصيل معمّمة، ولا تظهر أي بيانات سرية", role_k: "الدور", role_v: "مصمم منتجات، قاد المشروع", team_k: "الفريق", team_v: "مصمّمان", timeline_k: "المدة", timeline_v: "فبراير – يونيو 2026 · V1", platforms_k: "المنصات", platforms_v: "الويب · iOS · Android", cta: "لنبدأ مشروعًا مثل هذا", status: "النسخة V1 مُطلَقة · ويب + جوال · قيد التطوير النشط" },
+        ui: { enlarge: "تكبير", enlarge_aria: "تكبير الصورة", copy: "نسخ الكود", copied: "تم النسخ!", close: "إغلاق" }, hero: { eyebrow: "دراسة حالة 01 · Design System", title: "نظام تصميم Iksir", sub: "أساس تصميم قائم على الـtokens (متسق وسهل الوصول وثلاثي اللغة)، تعتمد عليه منتجات Datamaster على الويب والجوال.", badge: "عمل لعميل: التفاصيل معمّمة، ولا تظهر أي بيانات سرية", role_k: "الدور", role_v: "مصمم منتجات، قاد المشروع", client_k: "العميل", client_v: "Datamaster Analytics · عبر استوديو نواة", team_k: "الفريق", team_v: "مصمّمان", timeline_k: "المدة", timeline_v: "فبراير – يونيو 2026 · V1", platforms_k: "المنصات", platforms_v: "الويب · iOS · Android", cta: "لنبدأ مشروعًا مثل هذا", status: "النسخة V1 مُطلَقة · ويب + جوال · قيد التطوير النشط" },
         stats: { variables: "متغيّر تصميم", components: "مكوّنًا", patterns: "أنماط UX", colours: "token لوني", languages: "لغات (LTR + RTL)", modes: "وضعان (فاتح + داكن)" },
         problem: { eyebrow: "المشكلة", title: "مجموعة منتجات متنامية دون لغة مشتركة", lead: "تبني Datamaster نظام ERP معياريًا وعائلة من تطبيقات الجوال تحت علامتها Iksir. ومع نمو المجموعة، كانت كل شاشة تحلّ نفس مشاكل الواجهة من الصفر.", c1t: "عدم الاتساق كان يبطّئ كل شيء", c1p: "الألوان والتباعدات والأزرار والتحقّق من النماذج كانت تُعاد بناؤها في كل شاشة وتتصرّف بشكل مختلف بين المنتجات، ممّا يكلّف وقت تطوير ويُنتج أخطاء واجهة يمكن تجنّبها.", c2t: "منصّتان، دون تقييد", c2p: "الويب ينتقل من Ant Design إلى Shadcn، مع Flutter على الجوال. كان على النظام أن يمدّها جميعًا بالقرارات نفسها عبر الـtokens، مع بقائه مستقلًّا عن أي مكتبة، لكي يحتفظ الفريق بحرية البناء خارج أي إطار عمل واحد.", c3t: "مبني لثلاث لغات", c3p: "المنتجات تتوسّع إلى الفرنسية والإنجليزية والعربية (تطبيق المهام أولًا)، لذا كان لا بد أن يعيش دعم الكتابة من اليمين إلى اليسار والتايبوغرافيا ثنائية النص داخل الأساس منذ البداية، لا أن يُضاف لاحقًا." },
         role: { eyebrow: "دوري", title: "فريق من شخصين: أنا من رسم الاتجاه", lead: "كنّا مصمّمَي منتج. قدتُ المشروع من البداية إلى النهاية: الاستراتيجية، والعلاقة مع العميل، وكل قرار تأسيسي يقوم عليه النظام. تعرض هذه الدراسة الجزء الخاص بي من هذا العمل.", mine_tag: "بقيادتي", mine1: "الاستراتيجية والاستكشاف والعلاقة مع الأطراف المعنية لدى العميل", mine2: "كامل استراتيجية الـdesign tokens والبنية ذات الطبقات الثلاث", mine3: "الأساس ثلاثي اللغة ومن اليمين إلى اليسار (LTR/RTL)", mine4: "إطار إمكانية الوصول، مدمَجًا داخل الـtokens", mine5: "كامل طبقة الجوال: قواعد المنصّة والمكوّنات المخصّصة للجوال", mine6: "كل التوثيق والأدلة ونموذج الحَوكمة", mine7: "هيكلة المشروع وإطلاق V1: واستراتيجية التبنّي الجارية الآن", partner_h: "شريكي في التصميم", partner1: "تدقيق المنتج الويب الحالي", partner2: "إنتاج مكوّنات الويب/سطح المكتب في Figma", partner3: "بناء موقع التوثيق", partner4: "التحسين البصري اللاحق للمكتبة العامة", partner_note: "قصة الفريق الكاملة موجودة في دراسة حالة منفصلة باسم الاستوديو، هذه الصفحة تركّز على القرارات والعمل الذي أنجزته بنفسي." },

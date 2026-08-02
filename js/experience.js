@@ -45,11 +45,13 @@
   'use strict';
 
   /* start month is 1-indexed (1 = January). Verified against the
-     currently-authored duration strings (EN/FR/AR) at time of writing,
-     e.g. Datamaster: Sep 2024 start → "1 yr 11 mos" as of mid-2026. */
+     currently-authored duration strings (EN/FR/AR) at time of writing.
+     Datamaster ('dma') is intentionally NOT in this list as of 2026-08-02:
+     the role closed Dec 2025 (employee/freelancer period) when the
+     relationship became a Nawat Studio client engagement instead — its
+     duration is now fixed authored text, not live-computed. See 'nawat'. */
   var ONGOING_ROLES = [
     { id: 'nawat', startYear: 2026, startMonth: 1 },
-    { id: 'dma',   startYear: 2024, startMonth: 9 },
     { id: 'atqin', startYear: 2023, startMonth: 6 }
   ];
 
