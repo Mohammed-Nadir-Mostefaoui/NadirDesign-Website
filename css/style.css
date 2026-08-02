@@ -2715,6 +2715,16 @@ html {
   align-items: center;
 }
 
+/* In dark mode the near-black panel (#080808) sat DARKER than the page
+   background (#0D0D0D), so the card visually disappeared. Match the other
+   cards on the page instead (--bg-secondary = #171717 in dark), which sits
+   lighter than the page and reads as a card again. The light-mode
+   near-black treatment is what gives the section its contrast, so that
+   one stays. */
+[data-theme="dark"] .studio-card {
+  background-color: var(--bg-secondary);
+}
+
 /* Same dot-grid texture as the sections, dark variant, held inside the
    card's rounded corners. */
 .studio-card::before {
@@ -2732,7 +2742,10 @@ html {
 .studio-watermark {
   position: absolute;
   inset-inline-end: -0.05em;
-  inset-block-end: -0.28em;
+  /* Sits just below the card edge so it reads as a bleed, not a full word.
+     Paired with the mask below so the cut is a soft fade rather than a
+     hard slice (the footer wordmark uses the same technique). */
+  inset-block-end: -0.18em;
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -2743,10 +2756,19 @@ html {
   color: #FFFFFF;
   opacity: 0.045;
   white-space: nowrap;
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 92%);
+          mask-image: linear-gradient(to bottom, #000 45%, transparent 92%);
 }
+/* Arabic script has descenders and rounded bowls that a hard bottom crop
+   mangles (Latin caps have flat baselines and tolerate it). Lift the
+   wordmark fully inside the card and size it down so نواة reads as a
+   deliberate mark rather than a clipped glyph. */
 [dir="rtl"] .studio-watermark {
   font-family: var(--font-arabic);
   letter-spacing: 0;
+  inset-block-end: 0.02em;
+  font-size: clamp(110px, 15vw, 230px);
+  line-height: 1;
 }
 
 .studio-col {

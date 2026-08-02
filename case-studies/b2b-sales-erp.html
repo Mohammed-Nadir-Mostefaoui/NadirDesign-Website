@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="i18n-page" content="cs3">
   <meta name="description" content="B2B Sales ERP Module, a data-dense sales workspace for Datamaster's ERP. Quotes, orders, preparation, delivery, and returns structured into one readable pipeline. Case study by Nadir Mostefaoui, Product Designer.">
   <meta name="author" content="Nadir Mostefaoui">
   <meta property="og:title" content="B2B Sales ERP Module (Case Study) Nadir Mostefaoui">
@@ -572,7 +573,7 @@
                 <button type="button" class="cs-ptype-chip" data-value="Web app / SaaS" data-i18n="cs.form.pt_web">Web app / SaaS</button>
                 <button type="button" class="cs-ptype-chip" data-value="Mobile app" data-i18n="cs.form.pt_mobile">Mobile app</button>
                 <button type="button" class="cs-ptype-chip" data-value="ERP / internal tool" data-i18n="cs.form.pt_erp">ERP / internal tool</button>
-                <button type="button" class="cs-ptype-chip" data-value="Job opportunity" data-i18n="cs.form.pt_job">Job opportunity</button>
+                <button type="button" class="cs-ptype-chip" data-value="Partnership" data-i18n="cs.form.pt_partner">Partnership</button>
                 <button type="button" class="cs-ptype-chip" data-value="Something else" data-i18n="cs.form.pt_other">Something else</button>
               </div>
               <input type="hidden" name="project_type" id="ff-project-type" value="">
@@ -746,7 +747,25 @@
       window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
       toggle.addEventListener('click', () => isOpen() ? closeMenu() : openMenu());
       if (backdrop) backdrop.addEventListener('click', () => { if (isOpen()) closeMenu(); });
-      navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { if (isOpen()) closeMenu(); }));
+      /* Same-page anchors (e.g. the "Contact Me" CTA) must not use the
+         native jump while the open menu holds body{overflow:hidden} — it
+         lands at the wrong offset. Unlock first, then scroll ourselves.
+         Cross-page links (../index.html#experience) fall through. */
+      navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', e => {
+        if (!isOpen()) return;
+        const href = link.getAttribute('href') || '';
+        const target = href.startsWith('#') && href.length > 1 ? document.getElementById(href.slice(1)) : null;
+        if (target) {
+          e.preventDefault();
+          closeMenu();
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', location.pathname + location.search);
+          }));
+          return;
+        }
+        closeMenu();
+      }));
       document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) { closeMenu(); toggle.focus(); } });
       const desktopQuery = window.matchMedia(MOBILE_QUERY);
       const handle = mq => { if (!mq.matches && isOpen()) closeMenu(); };

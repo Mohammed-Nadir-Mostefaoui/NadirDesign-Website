@@ -14,6 +14,32 @@
   /* ── Inline translations ─────────────────────────────────── */
   const LOCALES = {
     en: {
+      /* Page <title>, meta description and og:* tags, keyed by the
+         <meta name="i18n-page"> value in each page's head. Applied by
+         applyMeta() on every language switch so Arabic search results and
+         shared links stop showing English copy. */
+      meta: {
+        home: {
+          title: 'Nadir Mostefaoui · Product Designer and Founder of Nawat Studio',
+          desc:  'Product designer specialising in enterprise UX and data-heavy interfaces (ERP, SaaS, internal tools). Founder of Nawat Studio, designing natively in Arabic and English.',
+          og:    'I turn complex workflows into clear, usable, consistent interfaces. Founder of Nawat Studio.'
+        },
+        cs1: {
+          title: 'Iksir Design System (Case Study) · Nadir Mostefaoui',
+          desc:  'A token-first design foundation (consistent, accessible, trilingual) for Datamaster\'s web and mobile products, delivered via Nawat Studio.',
+          og:    'How I led the strategy, foundations, accessibility, and mobile layer of a token-first, trilingual design system.'
+        },
+        cs2: {
+          title: 'Task Master, Retail Operations App (Case Study) · Nadir Mostefaoui',
+          desc:  'A task management app for retail store teams, six operational workflows unified into one clear model across mobile, tablet, and desktop.',
+          og:    'How I turned spreadsheet-driven store operations into one scannable task model. 50% faster task execution in usability tests.'
+        },
+        cs3: {
+          title: 'B2B Sales ERP Module (Case Study) · Nadir Mostefaoui',
+          desc:  'The sales heart of an ERP suite: quotes, orders, preparation, delivery, and returns structured into one readable, data-dense workspace.',
+          og:    'How I structured fragmented professional-sales data into one readable ERP module, 4 end-to-end flows validated across 9 versions.'
+        }
+      },
       nav: {
         projects:   'Projects',
         experience: 'Experience',
@@ -222,6 +248,14 @@
         label:    'CAPABILITIES',
         title:    'My Skills',
         subtitle: 'A comprehensive skill set developed through years of hands-on experience.',
+        studio: {
+          title: 'Studio & Leadership',
+          t1:    'Design Direction',
+          t2:    'Client Relationships',
+          t3:    'Mentoring Designers',
+          t4:    'Project Scoping',
+          t5:    'Design Quality Review'
+        },
         product: {
           title: 'Product Skills',
           t1: 'Product Thinking',
@@ -316,7 +350,7 @@
         reflect: { eyebrow: "Reflection", quote: "Leading a system means designing the <span>decisions</span>, not just the screens.", p1: "The hardest (and most rewarding), part wasn't drawing components. It was making choices that had to hold up across two engineering stacks, three languages, two colour modes, and a second designer's hands. Getting the architecture and the accessibility right early is what let the library scale without collapsing into exceptions.", p2: "It also reshaped how I work: treating documentation as a product, writing rules that other people can follow without me in the room, and staying accountable for a system long after its first release." },
         closing: { eyebrow: "Let's talk", title: "Have a system like this in mind?", lead: "I design systems, products, and the foundations under them. Tell me what you're building, and let's make it consistent, accessible, and fast to ship." },
         pager: { all: "Back to homepage", contact: "Get in touch" }, more: { eyebrow: "Keep exploring", title: "More case studies" },
-        form: { ptype_label: "What can I help with?", pt_ds: "Design system", pt_web: "Web app / SaaS", pt_mobile: "Mobile app", pt_erp: "ERP / internal tool", pt_job: "Job opportunity", pt_other: "Something else" }
+        form: { ptype_label: "What can I help with?", pt_ds: "Design system", pt_web: "Web app / SaaS", pt_mobile: "Mobile app", pt_erp: "ERP / internal tool", pt_partner: "Partnership", pt_other: "Something else" }
       },
       cs2: {
         hero: { eyebrow: "Case Study 02 · Retail Operations App", title: "Task Master", sub: "A task-management app for retail store teams, purchasing, inventory, stock corrections, and shelf operations turned into one clear, scannable workflow across mobile, tablet, and desktop.", role_k: "Role", role_v: "Product Designer, sole designer", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Team", team_v: "BA · tech lead · 3 dev teams", platforms_k: "Platforms", platforms_v: "Mobile · Tablet · Desktop", cta: "Let's build something like this", status: "In use by retail teams · new modules in design" },
@@ -347,6 +381,28 @@
       }
     },
     fr: {
+      meta: {
+        home: {
+          title: 'Nadir Mostefaoui · Designer Produit et Fondateur de Nawat Studio',
+          desc:  'Designer produit spécialisé en UX d\'entreprise et interfaces à forte densité de données (ERP, SaaS, outils internes). Fondateur de Nawat Studio, conception native en arabe et en anglais.',
+          og:    'Je transforme des workflows complexes en interfaces claires, utilisables et cohérentes. Fondateur de Nawat Studio.'
+        },
+        cs1: {
+          title: 'Iksir Design System (Étude de cas) · Nadir Mostefaoui',
+          desc:  'Une base de design orientée tokens (cohérente, accessible, trilingue) pour les produits web et mobiles de Datamaster, réalisée via Nawat Studio.',
+          og:    'Comment j\'ai piloté la stratégie, les fondations, l\'accessibilité et la couche mobile d\'une design system trilingue orientée tokens.'
+        },
+        cs2: {
+          title: 'Task Master, application d\'opérations retail (Étude de cas) · Nadir Mostefaoui',
+          desc:  'Une application de gestion des tâches pour les équipes de magasin, six flux opérationnels réunis en un modèle clair sur mobile, tablette et desktop.',
+          og:    'Comment j\'ai transformé des opérations pilotées par tableurs en un modèle de tâches lisible. 50% d\'exécution plus rapide en tests d\'utilisabilité.'
+        },
+        cs3: {
+          title: 'Module ERP Ventes B2B (Étude de cas) · Nadir Mostefaoui',
+          desc:  'Le cœur commercial d\'une suite ERP : devis, commandes, préparation, livraison et retours structurés en un espace de travail lisible et dense en données.',
+          og:    'Comment j\'ai structuré des données de vente fragmentées en un module ERP lisible, 4 flux de bout en bout validés sur 9 versions.'
+        }
+      },
       nav: {
         projects:   'Projets',
         experience: 'Expérience',
@@ -549,6 +605,14 @@
         label:    'COMPÉTENCES',
         title:    'Mes Compétences',
         subtitle: 'Un ensemble de compétences complet, développé au fil d\'années d\'expérience pratique.',
+        studio: {
+          title: 'Studio & Direction',
+          t1:    'Direction de Design',
+          t2:    'Relation Client',
+          t3:    'Encadrement de Designers',
+          t4:    'Cadrage de Projet',
+          t5:    'Revue de Qualité Design'
+        },
         product: {
           title: 'Compétences Produit',
           t1: 'Product Thinking',
@@ -643,7 +707,7 @@
         reflect: { eyebrow: "Réflexion", quote: "Piloter un système, c'est concevoir les <span>décisions</span>, pas seulement les écrans.", p1: "Le plus difficile (et le plus gratifiant), n'était pas de dessiner des composants. C'était de faire des choix qui devaient tenir sur deux stacks techniques, trois langues, deux modes de couleur et entre les mains d'un second designer. Avoir posé tôt l'architecture et l'accessibilité, c'est ce qui a permis à la bibliothèque de grandir sans s'effondrer en exceptions.", p2: "Cela a aussi transformé ma façon de travailler : traiter la documentation comme un produit, écrire des règles que d'autres peuvent suivre sans moi dans la pièce, et rester responsable d'un système bien après sa première version." },
         closing: { eyebrow: "Discutons", title: "Un système comme celui-ci en tête ?", lead: "Je conçois des systèmes, des produits et les fondations en dessous. Dites-moi ce que vous construisez, et rendons-le cohérent, accessible et rapide à livrer." },
         pager: { all: "Retour à l'accueil", contact: "Me contacter" }, more: { eyebrow: "À explorer", title: "Plus d'études de cas" },
-        form: { ptype_label: "Comment puis-je aider ?", pt_ds: "Design system", pt_web: "App web / SaaS", pt_mobile: "App mobile", pt_erp: "ERP / outil interne", pt_job: "Opportunité d'emploi", pt_other: "Autre chose" }
+        form: { ptype_label: "Comment puis-je aider ?", pt_ds: "Design system", pt_web: "App web / SaaS", pt_mobile: "App mobile", pt_erp: "ERP / outil interne", pt_partner: "Partenariat", pt_other: "Autre chose" }
       },
       cs2: {
         hero: { eyebrow: "Étude de cas 02 · Application d'opérations retail", title: "Task Master", sub: "Une application de gestion des tâches pour les équipes de magasin, achats, inventaire, corrections de stock et opérations en rayon réunis en un flux clair, lisible d'un coup d'œil, sur mobile, tablette et desktop.", role_k: "Rôle", role_v: "Designer Produit, designer unique", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Équipe", team_v: "BA · lead technique · 3 équipes dev", platforms_k: "Plateformes", platforms_v: "Mobile · Tablette · Desktop", cta: "Lançons un projet comme celui-ci", status: "Utilisée par les équipes retail · nouveaux modules en conception" },
@@ -674,6 +738,28 @@
       }
     },
     ar: {
+      meta: {
+        home: {
+          title: 'نذير مصطفاوي · مصمم منتجات ومؤسس استوديو نواة',
+          desc:  'مصمم منتجات متخصص في تجربة مستخدم المؤسسات والواجهات كثيفة البيانات (ERP وSaaS والأدوات الداخلية). مؤسس استوديو نواة، نصمم أصلاً بالعربية والإنجليزية.',
+          og:    'أحوّل مسارات العمل المعقدة إلى واجهات واضحة وسهلة الاستخدام ومتسقة. مؤسس استوديو نواة.'
+        },
+        cs1: {
+          title: 'نظام تصميم Iksir (دراسة حالة) · نذير مصطفاوي',
+          desc:  'أساس تصميم قائم على الـtokens (متسق وسهل الوصول وثلاثي اللغة) لمنتجات Datamaster على الويب والجوال، مُنجَز عبر استوديو نواة.',
+          og:    'كيف قدتُ الاستراتيجية والأسس وإمكانية الوصول وطبقة الجوال في نظام تصميم ثلاثي اللغة قائم على الـtokens.'
+        },
+        cs2: {
+          title: 'Task Master، تطبيق عمليات التجزئة (دراسة حالة) · نذير مصطفاوي',
+          desc:  'تطبيق لإدارة المهام لفرق متاجر التجزئة، ستة مسارات عمل تشغيلية في نموذج واحد واضح على الجوال والجهاز اللوحي وسطح المكتب.',
+          og:    'كيف حوّلتُ عمليات المتاجر المُدارة بجداول البيانات إلى نموذج مهام واضح. تنفيذ أسرع بنسبة 50% في اختبارات قابلية الاستخدام.'
+        },
+        cs3: {
+          title: 'وحدة ERP لمبيعات B2B (دراسة حالة) · نذير مصطفاوي',
+          desc:  'قلب المبيعات في منظومة ERP: عروض الأسعار والطلبات والتجهيز والتسليم والإرجاع في مساحة عمل واحدة واضحة وكثيفة البيانات.',
+          og:    'كيف نظّمتُ بيانات المبيعات المتفرقة في وحدة ERP واضحة، 4 مسارات متكاملة جرى التحقق منها عبر 9 إصدارات.'
+        }
+      },
       nav: {
         projects:   'المشاريع',
         experience: 'الخبرة',
@@ -703,7 +789,7 @@
       },
       work: {
         label:         'أعمال مختارة',
-        title:         'دراسات',
+        title:         'الدراسات',
         subtitle:      'نظرة أقرب على كيفية تحويلي لسير عمل معقد وكثيف البيانات إلى منتجات سهلة الاستخدام.',
         nda:           'اتفاقية سرية: التفاصيل مُعمَّمة، دون أي بيانات سرّية',
         cta:           'عرض دراسة الحالة',
@@ -876,6 +962,14 @@
         label:    'المهارات',
         title:    'مهاراتي',
         subtitle: 'مجموعة مهارات شاملة اكتسبتها عبر سنوات من الخبرة العملية.',
+        studio: {
+          title: 'الاستوديو والقيادة',
+          t1:    'التوجيه التصميمي',
+          t2:    'العلاقة مع العملاء',
+          t3:    'الإشراف على المصممين',
+          t4:    'تحديد نطاق المشروع',
+          t5:    'مراجعة جودة التصميم'
+        },
         product: {
           title: 'مهارات المنتج',
           t1: 'التفكير المنتجي',
@@ -970,7 +1064,7 @@
         reflect: { eyebrow: "خلاصة", quote: "قيادة نظام تعني تصميم <span>القرارات</span>، لا الشاشات فحسب.", p1: "الجزء الأصعب (والأكثر إرضاءً)، لم يكن رسم المكوّنات. بل اتخاذ خيارات تصمد عبر منصّتين تقنيتين، وثلاث لغات، ووضعين للألوان، وبين يدَي مصمّم ثانٍ. إرساء البنية وإمكانية الوصول مبكرًا هو ما سمح للمكتبة بالنمو دون أن تنهار إلى استثناءات.", p2: "كما أعاد ذلك تشكيل طريقة عملي: التعامل مع التوثيق كمنتج، وكتابة قواعد يستطيع الآخرون اتّباعها دون وجودي في الغرفة، والبقاء مسؤولًا عن نظام بعد إصداره الأول بوقت طويل." },
         closing: { eyebrow: "لنتحدّث", title: "هل لديك نظام مثل هذا في ذهنك؟", lead: "أصمّم أنظمة ومنتجات والأساسات التي تحتها. أخبرني بما تبنيه، ولنجعله متسقًا وسهل الوصول وسريع الإطلاق." },
         pager: { all: "العودة إلى الصفحة الرئيسية", contact: "تواصل معي" }, more: { eyebrow: "تابِع الاستكشاف", title: "المزيد من دراسات الحالة" },
-        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_ds: "نظام تصميم", pt_web: "تطبيق ويب / SaaS", pt_mobile: "تطبيق جوال", pt_erp: "ERP / أداة داخلية", pt_job: "فرصة عمل", pt_other: "شيء آخر" }
+        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_ds: "نظام تصميم", pt_web: "تطبيق ويب / SaaS", pt_mobile: "تطبيق جوال", pt_erp: "ERP / أداة داخلية", pt_partner: "شراكة", pt_other: "شيء آخر" }
       },
       cs2: {
         hero: { eyebrow: "دراسة حالة 02 · تطبيق عمليات التجزئة", title: "Task Master", sub: "تطبيق لإدارة المهام لفرق متاجر التجزئة، الشراء والجرد وتصحيح المخزون وعمليات الأرفف في مسار عمل واحد واضح يُقرأ بلمحة، على الجوال والجهاز اللوحي وسطح المكتب.", role_k: "الدور", role_v: "مصمم منتجات، المصمم الوحيد", client_k: "العميل", client_v: "Datamaster Analytics · ERP، فرنسا", team_k: "الفريق", team_v: "محلّل أعمال · قائد تقني · 3 فرق تطوير", platforms_k: "المنصات", platforms_v: "جوال · جهاز لوحي · سطح مكتب", cta: "لنبدأ مشروعًا مثل هذا", status: "قيد الاستخدام لدى فرق التجزئة · وحدات جديدة قيد التصميم" },
@@ -1038,6 +1132,30 @@
     });
   }
 
+  /* Swap <title>, meta description and the og:* tags to the active
+     language. The page identifies itself via <meta name="i18n-page">
+     (home / cs1 / cs2 / cs3); if that tag or the matching locale block is
+     missing we leave the hand-authored head markup untouched. */
+  function applyMeta(t, lang) {
+    const pageTag = document.querySelector('meta[name="i18n-page"]');
+    if (!pageTag) return;
+
+    const m = t.meta && t.meta[pageTag.getAttribute('content')];
+    if (!m) return;
+
+    const setMeta = (selector, value) => {
+      if (!value) return;
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute('content', value);
+    };
+
+    if (m.title) document.title = m.title;
+    setMeta('meta[name="description"]', m.desc);
+    setMeta('meta[property="og:title"]', m.title);
+    setMeta('meta[property="og:description"]', m.og || m.desc);
+    setMeta('meta[property="og:locale"]', lang);
+  }
+
   function applyDirection(lang) {
     const isRTL = RTL_LANGS.includes(lang);
     document.documentElement.setAttribute('dir',  isRTL ? 'rtl' : 'ltr');
@@ -1067,6 +1185,7 @@
     applyDirection(lang);
     applyFavicon(lang);
     applyTranslations(locale);
+    applyMeta(locale, lang);
     updateLangButtons(lang);
     document.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
   }

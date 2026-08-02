@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nadir Mostefaoui · Product Designer focused on Enterprise UX and Heavy-Data Design. ERP, SaaS &amp; Internal tools.">
+  <!-- i18n-page tells js/i18n.js which meta block to apply, so the title,
+       description and social-share tags follow the selected language
+       instead of staying English. -->
+  <meta name="i18n-page" content="home">
+  <meta name="description" content="Product designer specialising in enterprise UX and data-heavy interfaces (ERP, SaaS, internal tools). Founder of Nawat Studio, designing natively in Arabic and English.">
   <meta name="author" content="Nadir Mostefaoui">
-  <meta property="og:title" content="Nadir Mostefaoui · Product Designer">
-  <meta property="og:description" content="I turn complex workflows into clear, usable, and consistent interfaces.">
+  <meta property="og:title" content="Nadir Mostefaoui · Product Designer and Founder of Nawat Studio">
+  <meta property="og:description" content="I turn complex workflows into clear, usable, consistent interfaces. Founder of Nawat Studio.">
+  <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
 
-  <title>Nadir Mostefaoui · Product Designer</title>
+  <title>Nadir Mostefaoui · Product Designer and Founder of Nawat Studio</title>
 
   <!-- Scroll position on load — three scenarios:
 
@@ -995,6 +1000,21 @@ experience</span>
 
         <div class="skills-grid" role="list">
 
+          <!-- Studio & Leadership -->
+          <div class="skill-card" role="listitem">
+            <div class="skill-card-header">
+              <span class="skill-card-line" aria-hidden="true"></span>
+              <h3 class="skill-card-title" data-i18n="skills.studio.title">Studio &amp; Leadership</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag" data-i18n="skills.studio.t1">Design Direction</span>
+              <span class="skill-tag" data-i18n="skills.studio.t2">Client Relationships</span>
+              <span class="skill-tag" data-i18n="skills.studio.t3">Mentoring Designers</span>
+              <span class="skill-tag" data-i18n="skills.studio.t4">Project Scoping</span>
+              <span class="skill-tag" data-i18n="skills.studio.t5">Design Quality Review</span>
+            </div>
+          </div>
+
           <!-- Product Skills -->
           <div class="skill-card" role="listitem">
             <div class="skill-card-header">
@@ -1150,7 +1170,7 @@ experience</span>
                 <button type="button" class="cs-ptype-chip" data-value="Web app / SaaS" data-i18n="cs.form.pt_web">Web app / SaaS</button>
                 <button type="button" class="cs-ptype-chip" data-value="Mobile app" data-i18n="cs.form.pt_mobile">Mobile app</button>
                 <button type="button" class="cs-ptype-chip" data-value="ERP / internal tool" data-i18n="cs.form.pt_erp">ERP / internal tool</button>
-                <button type="button" class="cs-ptype-chip" data-value="Job opportunity" data-i18n="cs.form.pt_job">Job opportunity</button>
+                <button type="button" class="cs-ptype-chip" data-value="Partnership" data-i18n="cs.form.pt_partner">Partnership</button>
                 <button type="button" class="cs-ptype-chip" data-value="Something else" data-i18n="cs.form.pt_other">Something else</button>
               </div>
               <input type="hidden" name="project_type" id="ff-project-type" value="">
@@ -1510,8 +1530,35 @@ experience</span>
          language or theme isn't navigation, so the menu should stay open
          for the user to then pick a section. */
       navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (isOpen()) closeMenu();
+        link.addEventListener('click', e => {
+          if (!isOpen()) return;
+
+          const href   = link.getAttribute('href') || '';
+          const target = href.startsWith('#') && href.length > 1
+            ? document.getElementById(href.slice(1))
+            : null;
+
+          /* Same-page section links need special handling on mobile: the
+             open menu locks scrolling with body{overflow:hidden}, and the
+             browser's native anchor jump runs against that locked (and
+             therefore wrong) layout. The observed symptom was every menu
+             link landing at roughly the same offset, e.g. tapping
+             "Experience" scrolled past it and stopped inside "Studio".
+             So cancel the native jump, unlock the body, and scroll
+             ourselves once layout has settled (two frames is enough for
+             the overflow change to take effect). Cross-page links, like
+             the case-study entries, fall through untouched. */
+          if (target) {
+            e.preventDefault();
+            closeMenu();
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.replaceState(null, '', location.pathname + location.search);
+            }));
+            return;
+          }
+
+          closeMenu();
         });
       });
 
