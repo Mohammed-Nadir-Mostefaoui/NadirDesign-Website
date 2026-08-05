@@ -24,15 +24,60 @@
 .cs-section--tint { background: var(--bg-secondary); }
 
 .cs-eyebrow {
-  /* Creative refresh (2026-08-02), matches the homepage's .exp-label-text:
-     bolder weight, a touch more tracking, and a solid accent-blue token
-     square (below) instead of a flat gray dash — one unified kicker style
-     across the homepage and every case study. */
-  display: inline-flex; align-items: center; gap: 8px;
+  /* Numbered index (2026-08-05), matching the homepage's .exp-label-row.
+     Replaced a solid accent-blue square, which read as decoration rather
+     than signal. Each section now announces its position in the page. */
+  display: inline-flex; align-items: center; gap: 10px;
   font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
   color: var(--text-tertiary);
+  counter-increment: sec;
 }
-.cs-eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--accent-blue); opacity: 1; flex-shrink: 0; }
+
+/* The index and the dotted leader are two separate boxes, exactly as on the
+   homepage (.exp-label-row::before + .exp-label-line).
+
+   Getting them BOTH in front of the label needs a trick: an element has only
+   ::before and ::after, and ::after normally lands after the text. Because
+   .cs-eyebrow is a flex container its pseudo-elements are flex items, so
+   `order` can pull ::after back in front of the label — giving
+   [::before = index] [::after = leader] [label].
+
+   The earlier attempt painted the leader into the ::before's own padding as
+   a repeating background. That fails: `repeat-x` tiles across the element's
+   whole background area, so the dots also ran behind the digits. Two boxes
+   means the leader can't overlap the number by construction. */
+.cs-eyebrow::before {
+  content: counter(sec, decimal-leading-zero);
+  order: -2;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1;
+  /* Tabular figures so every index is the same width and all labels start on
+     the same optical axis. */
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* Leader geometry is kept identical to .exp-label-line so the homepage and
+   the case studies read as one style despite the different construction. */
+.cs-eyebrow::after {
+  content: "";
+  order: -1;
+  width: 30px;
+  height: 5px;
+  flex: 0 0 30px;
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 5px 5px;
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+/* The hero eyebrow already reads "Case Study 01 · …", so numbering it would
+   produce "01 ···· CASE STUDY 01". It keeps the leader and drops the index. */
+.cs-eyebrow[data-i18n$=".hero.eyebrow"] { counter-increment: none; }
+.cs-eyebrow[data-i18n$=".hero.eyebrow"]::before { display: none; }
 /* Wide Latin tracking reads as broken spacing on Arabic script — drop it,
    and size up slightly the same way the rest of the site does for AR. */
 [dir="rtl"] .cs-eyebrow { font-size: .84rem; letter-spacing: 0; }

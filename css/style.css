@@ -3,84 +3,6 @@
    Sections: Fonts · Base · Buttons · Navbar · Hero · Responsive
    ============================================================ */
 
-/* ============================================================
-   INTRO OVERLAY
-   ============================================================ */
-
-/* Lock scroll while intro plays */
-.intro-active {
-  overflow: hidden;
-}
-
-/* Full-screen overlay — bg matches current theme (set before paint) */
-#intro-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background-color: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Exit transition */
-  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.65s;
-}
-
-#intro-overlay.intro-done {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* Wrapper: positions sig + underline together */
-.intro-sig-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-/* The signature SVG — scaled up for stage presence */
-.intro-sig {
-  width: clamp(200px, 28vw, 340px);
-  height: auto;
-  color: var(--text-primary);
-  display: block;
-  /* Reveal: clip sweeps left → right, like a pen writing */
-  clip-path: inset(0 100% 0 0);
-  animation: sig-write 1.3s cubic-bezier(0.76, 0, 0.24, 1) 0.25s forwards;
-}
-
-@keyframes sig-write {
-  from { clip-path: inset(0 100% 0 0); }
-  to   { clip-path: inset(0 0%   0 0); }
-}
-
-/* Language variant: only one signature shows at a time, picked by [dir]
-   (which is set synchronously before paint — see the pre-paint script in
-   <head> — so there's no flash of the wrong one). */
-.intro-sig--ar { display: none; }
-[dir="rtl"] .intro-sig--en { display: none; }
-[dir="rtl"] .intro-sig--ar { display: block; }
-
-/* Arabic reveal: mirror the wipe so it draws right → left, matching the
-   script's actual writing direction, instead of reusing the LTR sweep. */
-[dir="rtl"] .intro-sig {
-  clip-path: inset(0 0 0 100%);
-  animation-name: sig-write-rtl;
-}
-@keyframes sig-write-rtl {
-  from { clip-path: inset(0 0 0 100%); }
-  to   { clip-path: inset(0 0 0 0%); }
-}
-
-/* Overlay exit: logo fades + lifts slightly */
-#intro-overlay.intro-done .intro-sig-wrap {
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
 /* ── Google Fonts ──────────────────────────────────────────── */
 /* Moved to a <link rel="stylesheet"> in index.html's <head> — @import
    here was only discovered after this whole file was fetched and parsed,
@@ -238,30 +160,57 @@ html {
 }
 
 /* ── Logo ── */
-.nav-logo {
-  display: flex;
+/* ── Nav identity ──────────────────────────────────────────
+   Replaces the signature logo image (removed 2026-08-05). Just the name, set
+   in the site's own typeface — no mark, no icon, no image. That means no
+   light/dark asset swap and no per-language file; `nav.name` carries the
+   script. The accent-square marker that briefly lived here was dropped on
+   request along with the section-kicker squares. */
+.nav-identity {
+  display: inline-flex;
   align-items: center;
   flex-shrink: 0;
+  text-decoration: none;
   color: var(--text-primary);
+}
+
+.nav-identity-name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
   transition: opacity var(--transition-fast);
 }
-.nav-logo:hover { opacity: 0.65; }
-
-.nav-logo img {
-  height: 30px;
-  width: auto;
-  filter: none;
-  transition: filter var(--transition-slow);
-}
-[data-theme="dark"] .nav-logo img {
-  filter: invert(1);
+/* Arabic must never carry Latin-style negative tracking. */
+[dir="rtl"] .nav-identity-name {
+  letter-spacing: 0;
 }
 
-/* Language-specific mark: swap via [dir], same sizing/dark-mode invert
-   applies to both since both match the plain ".nav-logo img" rule above. */
-.nav-logo-img--ar { display: none; }
-[dir="rtl"] .nav-logo-img--en { display: none; }
-[dir="rtl"] .nav-logo-img--ar { display: block; }
+/* Below the 900px nav breakpoint — where the links collapse into the
+   hamburger and the bar gets crowded by the language switcher and the menu
+   button — the identity drops to the first name only. Same breakpoint as the
+   rest of the nav so there is a single place where "the nav is compact" is
+   decided. Both spans exist in the DOM because js/i18n.js writes each
+   [data-i18n] node independently and one node can only hold one key. */
+.nav-identity-name--short { display: none; }
+
+@media (max-width: 900px) {
+  .nav-identity-name--full  { display: none; }
+  /* Sized up from the desktop 16px: one short word carries far less visual
+     weight than the full name did, and it now sits next to a hamburger and a
+     language switcher that would otherwise out-shout it. */
+  .nav-identity-name--short {
+    display: inline;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  [dir="rtl"] .nav-identity-name--short { letter-spacing: 0; }
+}
+
+.nav-identity:hover .nav-identity-name {
+  opacity: 0.62;
+}
 
 /* ── Links ── */
 .nav-links {
@@ -581,8 +530,8 @@ html {
   #cursor-dot.cur-hover  { width: 20px; height: 20px; }
   #cursor-ring.cur-hover { width: 56px; height: 56px; }
 
-  .intro-active #cursor-dot,
-  .intro-active #cursor-ring { opacity: 0 !important; }
+  .hero-pending #cursor-dot,
+  .hero-pending #cursor-ring { opacity: 0 !important; }
 }
 
 /* ============================================================
@@ -634,43 +583,232 @@ html {
   min-width: 0;
 }
 
-/* Availability badge */
-.hero-greeting {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text-tertiary);
-  letter-spacing: 0.01em;
-}
-[dir="rtl"] .hero-greeting { letter-spacing: 0; }
+/* ── H1: "bilingual duet" display title ──────────────────────
+   Two layers inside the h1 (the markup lives in each locale's hero.title
+   in js/i18n.js — see the comment on the h1 in index.html):
+     .ht-main  — the live title, two lines
+     .ht-ghost — the OTHER script on ONE line, faint, running horizontally
+                 behind it and bleeding out of the text column
+   The point is to make the Arabic/English fluency visible in the first
+   thing a visitor sees. The ghost deliberately slides *under* the portrait
+   card (it is painted earlier in the DOM than .hero-portrait-wrap, which
+   is opaque), so it reads as continuing behind the photo rather than
+   stopping at the column edge.
 
-.hero-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: #22C55E;
-  flex-shrink: 0;
-  animation: pulse-dot 2.5s ease-in-out infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.55; transform: scale(0.82); }
-}
-
-/* H1 */
+   Sizes are in `em` off .hero-title so the pair scales as one unit and
+   only the root font-size ever needs tuning.                          */
 .hero-title {
-  font-size: clamp(36px, 5vw, 64px);
+  position: relative;
+  /* Creates a stacking context so the ghost's negative z-index stays behind
+     the title but still in front of the hero's dot-grid ::before, instead
+     of falling through to the section background. */
+  isolation: isolate;
+  font-size: clamp(40px, 6.2vw, 84px);
   font-weight: 700;
-  line-height: 1.06;
-  letter-spacing: -0.04em;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
   color: var(--text-primary);
 }
 [dir="rtl"] .hero-title {
   letter-spacing: 0;
-  line-height: 1.45;
+  line-height: 1.25;
 }
+
+.hero-title .ht-main {
+  position: relative;
+  display: block;
+}
+
+/* Out of flow, so the h1's height is defined entirely by .ht-main and the
+   ghost can never push the hero around. Centred with top:50% + translateY
+   rather than a hand-tuned em offset, so it stays optically centred by
+   itself when either script's size changes. */
+.hero-title .ht-ghost {
+  position: absolute;
+  z-index: -1;
+  /* inset-inline (both edges) rather than inset-inline-start: the ghost then
+     spans the h1's width and simply inherits its text-align, so one rule
+     covers the left-aligned desktop column and any centred layout, with no
+     per-breakpoint repositioning. */
+  inset-inline: 0;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--text-primary);
+  /* Held in a custom property so the entrance keyframe and the hover state
+     both resolve the *current theme's* value instead of hardcoding one and
+     silently breaking the other mode. */
+  --ht-ghost-o: 0.07;
+  opacity: var(--ht-ghost-o);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: opacity var(--transition-slow);
+}
+
+/* LTR: Latin title, Arabic ghost. Scaled UP to 1.45em because Arabic sits
+   optically smaller than Latin at the same px and would otherwise vanish
+   entirely behind the heavy Latin bold. */
+.hero-title .ht-ghost {
+  font-family: var(--font-arabic);
+  font-size: 1.45em;
+  letter-spacing: 0;
+}
+
+/* RTL: Arabic title, Latin ghost. Less scaling needed in this direction. */
+[dir="rtl"] .hero-title .ht-ghost {
+  font-family: var(--font-latin);
+  font-size: 1.15em;
+  letter-spacing: -0.045em;
+}
+
+/* Dark mode: white ink at a given alpha reads heavier than black ink does
+   on white, so the ghost is pulled back to hold the same optical weight.
+   Must stay after the base rule above to win the cascade. */
+[data-theme="dark"] .hero-title .ht-ghost {
+  --ht-ghost-o: 0.06;
+}
+
+/* Hovering the headline brings the second script forward — a small reward
+   that reads the layer as a deliberate choice rather than a texture. */
+.hero-title:hover .ht-ghost {
+  opacity: calc(var(--ht-ghost-o) * 2.1);
+}
+
+/* ── HERO ENTRANCE ────────────────────────────────────────────
+   One choreographed sequence, played on load.
+
+   The signature intro overlay this used to be sequenced against was removed
+   on 2026-08-05, so the hero is now the first thing that happens rather than
+   the second. `body.hero-pending` (in the markup, so it applies at parse
+   time) holds everything hidden; the trigger script at the end of index.html
+   swaps it for `body.hero-in` after first paint. The two classes MUST swap
+   together — see the note there.
+
+   Stagger is authored as per-element animation-delay against that single
+   trigger, rather than chained JS timeouts, so the whole sequence stays
+   declarative and cannot drift out of sync.
+
+   animation-fill-mode is `backwards`, NOT `both`, on purpose: `both` holds
+   the end keyframe forever, and an animation's computed value outranks
+   normal declarations — which would permanently pin .scroll-cue to
+   opacity:1 and silently break its existing `.is-hidden` fade-on-scroll.
+   `backwards` applies the from-state during the delay and then hands the
+   element back to the normal cascade. */
+
+.hero-portrait-wrap,
+.hero-title .ht-l,
+.hero-divider,
+.hero-bio,
+.hero-actions,
+.hero-stats,
+.scroll-cue {
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: backwards;
+}
+
+/* Everything below is gated on `prefers-reduced-motion: no-preference`
+   rather than being written unconditionally and then undone in a
+   `reduce` block. That earlier shape was subtly broken: the hide rule
+   `body.hero-pending .hero-bio` is specificity (0,2,1), so a
+   `reduce` override written as `body .hero-bio` (0,1,1) LOST the
+   cascade and the hero stayed invisible for the whole 2.6s intro before
+   popping in. Scoping the hide and the animations to no-preference means
+   there is nothing to override — for reduced-motion users these rules
+   simply never exist. */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Hidden until the sequence starts. Keyed on .hero-pending, which is in
+     the markup at parse time, so nothing can flash before JS runs. */
+  body.hero-pending .hero-portrait-wrap,
+  body.hero-pending .hero-title .ht-l,
+  body.hero-pending .hero-divider,
+  body.hero-pending .hero-bio,
+  body.hero-pending .hero-actions,
+  body.hero-pending .hero-stats,
+  body.hero-pending .scroll-cue {
+    opacity: 0;
+  }
+
+  body.hero-in .hero-portrait-wrap { animation-name: hero-portrait-in; animation-duration: 0.9s; }
+  body.hero-in .hero-divider       { animation-name: hero-rule-in; animation-delay: 0.38s; }
+  body.hero-in .hero-bio           { animation-name: hero-rise; animation-delay: 0.45s; }
+  body.hero-in .hero-actions       { animation-name: hero-rise; animation-delay: 0.54s; }
+  body.hero-in .hero-stats         { animation-name: hero-rise; animation-delay: 0.63s; }
+  body.hero-in .scroll-cue         { animation-name: hero-fade; animation-delay: 0.78s; }
+
+  body.hero-in .hero-title .ht-l {
+    animation-name: ht-line-in;
+    animation-duration: 1s;
+  }
+  body.hero-in .hero-title .ht-l:nth-child(1) { animation-delay: 0.15s; }
+  body.hero-in .hero-title .ht-l:nth-child(2) { animation-delay: 0.25s; }
+
+  /* Ghost is display:none sitewide right now, but keep its fade wired so
+     re-enabling it stays a one-line change. */
+  body.hero-in .hero-title .ht-ghost {
+    animation: ht-ghost-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s backwards;
+  }
+}
+
+/* ── The display title ──
+   Each line animates independently. This is WORD-level, which is the finest
+   split Arabic tolerates: every line here is a single whole word, so the
+   cursive shaping inside it is never broken. Splitting further, into
+   characters, would collapse the Arabic into disconnected letterforms.
+
+   The settle is opacity + translateY + a small scale and blur, anchored to
+   the text's own leading edge. Deliberately no clip-path, mask or
+   letter-spacing animation: tashkeel sit well above the cap line and the
+   medial ج drops far below the baseline, so any hard-edged reveal shaves one
+   or the other, and animated tracking would pull apart the connected script.
+   Transforms and filters can do neither. */
+.hero-title .ht-l {
+  display: block;
+  transform-origin: left center;
+}
+[dir="rtl"] .hero-title .ht-l {
+  transform-origin: right center;
+}
+@keyframes ht-line-in {
+  from { opacity: 0; transform: translateY(0.24em) scale(1.05); filter: blur(10px); }
+  to   { opacity: 1; transform: translateY(0)     scale(1);    filter: blur(0); }
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* The accent rule draws itself out from the text's leading edge. scaleX
+   rather than width so it stays off the layout path. */
+@keyframes hero-rule-in {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+@keyframes hero-portrait-in {
+  from { opacity: 0; transform: scale(1.04); }
+  to   { opacity: 1; transform: scale(1); }
+}
+/* Opacity only — the ghost's transform carries its vertical centring, not
+   motion, so animating transform here would knock it out of alignment. */
+@keyframes ht-ghost-in {
+  from { opacity: 0; }
+  to   { opacity: var(--ht-ghost-o); }
+}
+
+.hero-divider {
+  transform-origin: left center;
+}
+[dir="rtl"] .hero-divider {
+  transform-origin: right center;
+}
+
 /* Desktop-only: the tuned-down display size below is specifically for the
    wide two-column layout. Scoped to ≥901px so it doesn't outrank (via
    selector specificity) the mobile .hero-title font-size set inside the
@@ -680,9 +818,17 @@ html {
   [dir="rtl"] .hero-title {
     /* Arabic glyphs with harakat need more vertical room; also scale down slightly
        so the large display size doesn't overwhelm the column in RTL layout */
-    font-size: clamp(30px, 4vw, 52px);
+    font-size: clamp(34px, 5vw, 68px);
   }
 }
+
+/* Ghost translation disabled sitewide (2026-08-05, on request — was already
+   hidden below 900px because a nowrap ghost bleeds off both screen edges on
+   the narrow mobile layout; now also off on desktop). The markup, sizing and
+   entrance-animation rules above are left in place rather than deleted, so
+   this is a one-line revert (delete this rule) if the effect is wanted back
+   on desktop later. */
+.hero-title .ht-ghost { display: none; }
 
 /* Blue accent rule */
 .hero-divider {
@@ -906,7 +1052,6 @@ html {
      dotted-grid ::before background — display: contents changes what
      renders as a flex item, not the actual DOM parentage, so these
      grandchildren need their own stacking to not get painted under it. */
-  .hero-greeting,
   .hero-portrait-wrap,
   .hero-title,
   .hero-divider,
@@ -917,13 +1062,13 @@ html {
     z-index: 1;
   }
 
-  .hero-greeting       { order: 1; }
-  .hero-portrait-wrap  { order: 2; }
-  .hero-title          { order: 3; }
-  .hero-divider        { order: 4; margin-inline: auto; }
-  .hero-bio            { order: 5; margin-inline: auto; }
-  .hero-actions        { order: 6; justify-content: center; }
-  .hero-stats          { order: 7; justify-content: center; }
+  /* Renumbered from 2-7 after the greeting (order: 1) was removed. */
+  .hero-portrait-wrap  { order: 1; }
+  .hero-title          { order: 2; }
+  .hero-divider        { order: 3; margin-inline: auto; }
+  .hero-bio            { order: 4; margin-inline: auto; }
+  .hero-actions        { order: 5; justify-content: center; }
+  .hero-stats          { order: 6; justify-content: center; }
 
   .hero-title {
     font-size: clamp(32px, 8.5vw, 48px);
@@ -1343,15 +1488,8 @@ html {
   box-shadow: 0 1px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* ── Logo: springy scale instead of bare opacity fade ── */
-.nav-logo {
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-              opacity var(--transition-fast);
-}
-.nav-logo:hover {
-  opacity: 1;
-  transform: scale(1.08);
-}
+/* Nav identity hover lives with the rest of the identity rules further up
+   the file (the mark rotates, the name dims) — nothing extra needed here. */
 
 /* ── Nav links: sliding blue underline ── */
 .nav-link {
@@ -1519,22 +1657,64 @@ html {
   gap: 16px;
 }
 
+/* ── Section kickers: numbered index ─────────────────────────
+   Replaces the solid accent-blue square (2026-08-05, on request — it read
+   as decoration rather than signal, and blue still does real work elsewhere
+   on the page: the hero rule, stat numbers, links, active states).
+
+   Each section now announces its position: 01 —— SELECTED WORK. Ties the
+   kickers to the numbering the site already uses in the work cards, the
+   studio spectrum and the mobile nav's ghost indices.
+
+   The number is a CSS counter, not typed into the markup, so sections can
+   be added, reordered or removed and the sequence renumbers itself. */
 .exp-label-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  counter-increment: sec;
 }
 
-.exp-label-line {
-  /* Creative refresh (2026-08-02): a small solid accent-blue token square
-     instead of a flat gray dash, a nod to the design-token language the
-     case studies talk about, echoed identically in .cs-eyebrow::before. */
-  display: block;
-  width: 7px;
-  height: 7px;
-  border-radius: 2px;
-  background-color: var(--accent-blue);
+.exp-label-row::before {
+  content: counter(sec, decimal-leading-zero);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-tertiary);
+  /* Tabular figures keep every index the same width so the labels all start
+     on the same optical axis. Using IBM Plex Sans rather than pulling in a
+     whole mono family for four digits — Plex's tabular numerals already
+     read as monospaced at this size. */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
   flex-shrink: 0;
+}
+
+/* Was the accent square, then a solid dash; now a dotted leader — the device
+   a table of contents uses to run an entry across to its page number. It says
+   the numbers are an index of the page rather than ornament.
+
+   Drawn as a repeating radial-gradient rather than `border-bottom: dotted`,
+   because dotted borders render as tiny squares with browser-controlled
+   spacing that can't be tuned. This gives real round dots on a 5px pitch. */
+.exp-label-line {
+  display: block;
+  width: 30px;
+  height: 5px;
+  border-radius: 0;
+  background-color: transparent;
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 5px 5px;
+  background-position: center;
+  background-repeat: repeat-x;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* The counter has to be reset somewhere both page types share. <main> wraps
+   the numbered sections on the homepage and every case study alike. */
+main {
+  counter-reset: sec;
 }
 
 .exp-label-text {

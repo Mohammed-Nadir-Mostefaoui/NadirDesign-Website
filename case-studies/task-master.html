@@ -67,9 +67,17 @@
   <header>
     <nav class="navbar" id="navbar" aria-label="Main navigation">
       <div class="nav-inner">
-        <a href="../index.html" class="nav-logo" id="nav-logo" aria-label="Nadir: Home">
-          <img src="../assets/icons/logo.svg" alt="Nadir" width="70" height="45" class="nav-logo-img nav-logo-img--en">
-          <img src="../assets/icons/logo-ar.svg" alt="نذير" width="72" height="45" class="nav-logo-img nav-logo-img--ar">
+        <!-- Identity. Replaces the signature logo (removed 2026-08-05).
+             Deliberately just the name in the site's own typeface, with no
+             mark of any kind — nothing here is an image, so it needs no
+             light/dark asset swap and no per-language file: `nav.name`
+             carries the script. -->
+        <a href="../index.html" class="nav-identity" id="nav-logo" aria-label="Nadir Mostefaoui: Home">
+          <!-- Two spans, not one JS-swapped string: js/i18n.js writes each
+               [data-i18n] node independently, so a single node can only ever
+               hold one key. CSS picks which is visible per breakpoint. -->
+          <span class="nav-identity-name nav-identity-name--full" data-i18n="nav.name">Nadir Mostefaoui</span>
+          <span class="nav-identity-name nav-identity-name--short" data-i18n="nav.name_short">Nadir</span>
         </a>
 
         <ul class="nav-links" id="nav-links" role="list">
