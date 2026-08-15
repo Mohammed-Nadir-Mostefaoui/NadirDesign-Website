@@ -28,6 +28,23 @@ assets/images/iksir/IksirDesignSystemThumbnail.png
 # Internal working files — keep local, do NOT publish on the public site
 positioning-copy.md
 *.docx
+*.dotx
+*.md
+*.pptx
+*.xlsx
+
+# PDFs are blocked by default. The CV is the ONE public exception below.
+# Anything else exported to PDF (strategy docs, client reports) stays local.
+*.pdf
+!assets/Nadir Mostefaoui - Product Designer - CV.pdf
+
+# Client materials — under NDA, never publish
+Iksir design System/
+Iksir Charte graphique (25_02_2026)/
+
+# Everything private lives here. Nothing in this folder ever reaches the website.
+# Put strategy docs, pricing, proposals and client files in _internal/.
+_internal/
 
 # Stray sandbox test files
 _wtest
