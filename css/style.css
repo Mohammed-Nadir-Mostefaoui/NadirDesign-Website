@@ -1035,15 +1035,29 @@ html {
      full-bleed backdrop, centering it and the text together reads as one
      deliberate layout instead of a left-aligned column with a small
      photo floating below it. */
+  /* GRID, not a flex column, since 2026-08-20: the two stats now sit
+     BESIDE the portrait (one per side) instead of stacking under the
+     CTAs, and a 3-column grid is the only way to get that without
+     changing the HTML. Columns are [stat | portrait | stat]; every other
+     child spans 1 / -1 and auto-places into the rows below.
+
+     The side columns are minmax(0, 1fr) rather than 1fr so a long
+     unbreakable label can never blow the track out past the viewport —
+     plain 1fr floors at min-content and would push the portrait
+     off-centre. `.stat-item` is then pulled toward the photo with
+     justify-self (end / start), which mirrors itself in RTL for free, so
+     the pair stays visually attached to the card at every width instead
+     of drifting into the middle of two wide empty columns on tablets. */
   .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    justify-items: center;
+    align-content: center;
     min-height: 100svh;
     text-align: center;
     padding: calc(var(--nav-height) + 28px) 24px calc(env(safe-area-inset-bottom) + 28px);
-    gap: 18px;
+    row-gap: 18px;
+    column-gap: clamp(6px, 2vw, 22px);
   }
 
   .hero-content { display: contents; }
@@ -1057,18 +1071,31 @@ html {
   .hero-divider,
   .hero-bio,
   .hero-actions,
-  .hero-stats {
+  .stat-item {
     position: relative;
     z-index: 1;
   }
 
-  /* Renumbered from 2-7 after the greeting (order: 1) was removed. */
-  .hero-portrait-wrap  { order: 1; }
-  .hero-title          { order: 2; }
-  .hero-divider        { order: 3; margin-inline: auto; }
-  .hero-bio            { order: 4; margin-inline: auto; }
-  .hero-actions        { order: 5; justify-content: center; }
-  .hero-stats          { order: 6; justify-content: center; }
+  /* Explicit placement replaces the old `order` chain (flex order has no
+     effect on an explicitly-placed grid item). Only row 1 is spelled out;
+     title / divider / bio / actions carry no grid-row and auto-place into
+     rows 2-5 in DOM order. `.scroll-cue` is position:absolute, so it never
+     enters the grid at all. */
+  .hero-portrait-wrap { grid-column: 2; grid-row: 1; }
+
+  .stat-item:first-child { grid-column: 1; grid-row: 1; justify-self: end;   align-self: center; }
+  .stat-item:last-child  { grid-column: 3; grid-row: 1; justify-self: start; align-self: center; }
+
+  /* width:100% rather than justify-self:stretch — .hero-bio has a
+     max-width, and stretch on a max-width-capped box resolves to `start`,
+     which would silently left-align the bio. width:100% lets the
+     max-width cap it and `justify-items: center` re-centre it. */
+  .hero-title,
+  .hero-bio,
+  .hero-actions        { grid-column: 1 / -1; width: 100%; }
+  .hero-divider        { grid-column: 1 / -1; margin-inline: auto; }
+  .hero-bio            { margin-inline: auto; }
+  .hero-actions        { justify-content: center; }
 
   .hero-title {
     font-size: clamp(32px, 8.5vw, 48px);
@@ -1079,35 +1106,122 @@ html {
     max-width: 380px;
   }
 
-  .hero-stats {
-    gap: 14px;
-    width: 100%;
-    max-width: 320px;
-  }
+  /* display: contents dissolves the flex row so each .stat-item becomes a
+     direct grid item of .hero and can be placed in its own column. The
+     element is a plain <div> with an aria-label and no role, which is not
+     exposed to assistive tech anyway, so nothing is lost semantically.
+     NOTE this also kills the entrance animation that was hooked on
+     .hero-stats (a display:contents box generates no box for opacity or
+     animation to apply to) — it is re-hooked onto .stat-item at the
+     bottom of this block. */
+  .hero-stats { display: contents; }
 
-  /* Mobile-only stat chips: replaces the desktop accent-bar layout with
-     small rounded cards, echoing the portrait card + pill buttons already
-     used at this breakpoint. Overriding [dir="rtl"] .stat-item explicitly
-     here too (not just .stat-item) so this treatment isn't outranked by
-     the higher-specificity RTL divider rule further up the file — the
-     same cascade trap fixed for .hero/.hero-title elsewhere in this file. */
+  /* Mobile/tablet stats: spec callouts flanking the portrait, replacing
+     the rounded chips that used to sit in their own full-width row under
+     the CTAs (2026-08-20). The chips cost roughly 90px of vertical space
+     in the most crowded part of the page; beside the photo the stats cost
+     nothing and read as measurements taken off the card.
+
+     No container of any kind here on purpose: a bordered chip 80px wide
+     next to a photo looks like a UI control, an unboxed numeral + rule +
+     caption looks like an annotation. The connector is the site's own
+     dotted leader (same device as .exp-label-line and .cs-eyebrow::after),
+     which is what makes these read as part of the numbering system rather
+     than as decoration.
+
+     Both .stat-item AND [dir="rtl"] .stat-item are listed so this isn't
+     outranked by the higher-specificity RTL border rule further up the
+     file — the same cascade trap fixed for .hero / .hero-title elsewhere. */
   .stat-item,
   [dir="rtl"] .stat-item {
-    flex: 1;
+    flex: none;
+    /* min(118px, 100%): the 118px cap stops the pair sprawling across two
+       wide tracks on a tablet, and the 100% stops a long Latin label
+       ("CONTRIBUTED" is the worst case) from spilling out of its own
+       track and past the hero padding at 360px and below, which it did
+       before this was added. */
+    max-width: min(118px, 100%);
+    overflow-wrap: break-word;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 7px;
     text-align: center;
-    padding: 16px 8px;
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-lg);
-    background-color: var(--bg-secondary);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
   }
 
-  .stat-num   { font-size: clamp(22px, 6vw, 28px); }
-  .stat-label { font-size: 11px; }
-  [dir="rtl"] .stat-label { font-size: 12.5px; }
+  /* The leader has to sit BETWEEN the two spans, and ::before normally
+     paints before both — so it is reordered with flex `order`, exactly the
+     technique .cs-eyebrow uses for its index + leader pair.
+
+     Two things that will look broken if changed: the box must be the full
+     5px background tile tall, because the gradient circle's centre sits at
+     2.5px and a 2px-tall box clips it to an invisible sliver; and it must
+     be its own box rather than a background painted into .stat-num's
+     padding, because repeat-x tiles across the whole background area and
+     the dots would run behind the digits. */
+  .stat-item::before {
+    content: '';
+    order: 2;
+    width: 26px;
+    height: 5px;
+    color: var(--accent-blue);
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 5px 5px;
+    background-repeat: repeat-x;
+    opacity: 0.75;
+  }
+  [data-theme="dark"] .stat-item::before { color: var(--accent-blue-light); }
+
+  .stat-num {
+    order: 1;
+    font-size: clamp(23px, 6.2vw, 28px);
+    font-weight: 700;
+    color: var(--accent-blue);
+    font-variant-numeric: tabular-nums;
+  }
+  [data-theme="dark"] .stat-num { color: var(--accent-blue-light); }
+
+  .stat-label {
+    order: 3;
+    /* Fluid rather than flat 10px: uppercase + 0.06em tracking makes the
+       English labels the widest thing in a ~70px column on a small phone. */
+    font-size: clamp(9px, 2.6vw, 10px);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+  /* Arabic runs a little larger and lighter, with no tracking and no
+     uppercasing (neither means anything in Arabic script) — same policy as
+     every other tracked label class on the site. */
+  [dir="rtl"] .stat-label {
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.55;
+    text-transform: none;
+  }
+
+  /* Entrance, re-hooked from .hero-stats (now display: contents, so it has
+     no box for opacity or animation to land on) onto the two items
+     themselves. Same keyframe and easing as before; the pair simply
+     arrives last and slightly staggered, so the annotations settle onto
+     the photo after it rather than with it. */
+  @media (prefers-reduced-motion: no-preference) {
+    body.hero-pending .stat-item { opacity: 0; }
+
+    body.hero-in .stat-item {
+      animation-name: hero-rise;
+      animation-duration: 0.7s;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      animation-fill-mode: backwards;
+    }
+    body.hero-in .stat-item:first-child { animation-delay: 0.63s; }
+    body.hero-in .stat-item:last-child  { animation-delay: 0.71s; }
+  }
 
   /* ── Photo: a real card, sized to be smaller and centered — not the
      full-bleed backdrop this replaces. object-fit isn't cropping
@@ -1167,7 +1281,12 @@ html {
   .hero-portrait-img {
     width: auto;
     height: auto;
-    max-width: min(64vw, 280px);
+    /* Down from min(64vw, 280px): the stats now need a column on either
+       side, and at 390px the old width left them ~70px each, which wrapped
+       the Arabic labels into three cramped lines. Purely proportional (42vw)
+       up to the cap, so the side columns scale with the viewport instead of
+       collapsing on the narrowest phones. */
+    max-width: min(42vw, 250px);
     max-height: 42vh;
     object-fit: contain;
     object-position: center;
@@ -1197,7 +1316,11 @@ html {
      apply them to. The equivalent spacing lives on .hero itself. */
   .hero { padding-inline: 16px; gap: 14px; }
   .hero-title { font-size: clamp(30px, 9vw, 44px); }
-  .hero-portrait-img { max-width: min(58vw, 220px); max-height: 34vh; }
+  /* max-width is deliberately NOT re-declared here: the ≤900px rule is
+     already proportional (42vw), so letting it carry through avoids the
+     hard size jump this breakpoint used to introduce at exactly 561→560px.
+     Only the height cap tightens, to keep the hero on one screen. */
+  .hero-portrait-img { max-height: 34vh; }
 }
 
 /* ── Mobile nav: open state ──
