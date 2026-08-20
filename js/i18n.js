@@ -58,7 +58,7 @@
       hero: {
         greeting:      "Hi, I'm Nadir Mostefaoui",
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Product</span><span class="ht-l">Designer</span></span>',
-        bio:           'I design product interfaces for B2B SaaS, ERP modules, sales dashboards, mobile-first apps, and multi-role enterprise platforms. I lead this work today as the founder of Nawat Studio.',
+        bio:           'I design complex, data-heavy products. B2B SaaS, ERP modules, dashboards, internal tools, and the design systems underneath them. In Arabic and English side by side (RTL and LTR).<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>',
         cta_primary:   "Let's Talk",
         cta_secondary: 'View My Work',
         cta_cv:        'View CV',
@@ -423,7 +423,7 @@
       hero: {
         greeting:      'Bonjour, je suis Nadir Mostefaoui',
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Designer</span><span class="ht-l">Produit</span></span>',
-        bio:           'Je conçois des interfaces pour des solutions B2B SaaS, des modules ERP, des tableaux de bord de ventes, des applications mobiles et des plateformes d\'entreprise multi-rôles. Je dirige aujourd\'hui ce travail en tant que fondateur de Nawat Studio.',
+        bio:           'Je conçois des produits complexes et riches en données. Solutions B2B SaaS, modules ERP, tableaux de bord, outils internes, et les design systems qui les soutiennent. En arabe et en anglais en parallèle (RTL et LTR).<span class="hero-bio-sig">Je dirige aujourd\'hui ce travail en tant que fondateur de <a href="#studio">Nawat Studio</a>.</span>',
         cta_primary:   'Discutons',
         cta_secondary: 'Voir mon travail',
         cta_cv:        'Voir le CV',
@@ -782,7 +782,7 @@
       hero: {
         greeting:      'مرحباً، أنا نَذِير مصطفاوي',
         title:         '<span class="ht-ghost" aria-hidden="true">Product Designer</span><span class="ht-main"><span class="ht-l">مُصَمِّم</span><span class="ht-l">مُنتَجَات</span></span>',
-        bio:           'أصمم واجهات المنتجات لحلول B2B SaaS ووحدات ERP ولوحات تحكم المبيعات والتطبيقات ذات الأولوية للجوال ومنصات المؤسسات متعددة الأدوار. أقود هذا العمل اليوم بصفتي مؤسس استوديو نواة.',
+        bio:           'أصمم المنتجات المعقّدة وكثيفة البيانات. حلول B2B SaaS، وأنظمة ERP، ولوحات المعلومات، والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. بالعربية والإنجليزية معًا (RTL و LTR).<span class="hero-bio-sig">أقود هذا العمل اليوم بصفتي مؤسس <a href="#studio">استوديو نواة</a>.</span>',
         cta_primary:   'لنتحدث',
         cta_secondary: 'شاهد أعمالي',
         cta_cv:        'عرض السيرة الذاتية',

@@ -838,13 +838,59 @@ html {
   border-radius: 2px;
 }
 
-/* Bio */
+/* Bio
+   Two tiers since 2026-08-20, not one flat block. The pitch sits in primary
+   ink; the closing credential sentence is wrapped in .hero-bio-sig inside the
+   same <p> and drops to a small tertiary caption. That split is why the <p>
+   carries data-i18n-html and why the span markup is duplicated into all three
+   locale strings in js/i18n.js (switchLang overwrites this node's innerHTML on
+   every language change, so markup authored only in index.html would not
+   survive the first switch). */
 .hero-bio {
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.72;
+  color: var(--text-primary);
+  line-height: 1.68;
   max-width: 320px;
+}
+
+/* The credential line. The studio name inside it is a real link into the
+   Studio section, which is what earns it the accent colour: per the brand
+   system the accent is reserved for meaning (links, active states, stat
+   numbers) and never for emphasis, so an accent-tinted non-link here would
+   be exactly the decoration that rule forbids. Underline is a border rather
+   than text-decoration so its colour and offset are tunable, and so Arabic
+   descenders are not struck through. */
+.hero-bio-sig {
+  display: block;
+  margin-block-start: 13px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--text-tertiary);
+}
+
+.hero-bio-sig a {
+  color: var(--accent-blue);
+  font-weight: 600;
+  text-decoration: none;
+  border-block-end: 1px solid rgba(29, 78, 216, 0.32);
+  padding-block-end: 1px;
+  transition: border-color var(--transition-fast, 0.2s ease),
+              color var(--transition-fast, 0.2s ease);
+}
+.hero-bio-sig a:hover,
+.hero-bio-sig a:focus-visible { border-block-end-color: var(--accent-blue); }
+
+/* #1D4ED8 sits too close to the dark page background, so the link and its
+   underline both step up to the lighter accent there. */
+[data-theme="dark"] .hero-bio-sig a {
+  color: var(--accent-blue-light);
+  border-block-end-color: rgba(59, 130, 246, 0.34);
+}
+[data-theme="dark"] .hero-bio-sig a:hover,
+[data-theme="dark"] .hero-bio-sig a:focus-visible {
+  border-block-end-color: var(--accent-blue-light);
 }
 
 /* CTA buttons */
@@ -1101,9 +1147,17 @@ html {
     font-size: clamp(32px, 8.5vw, 48px);
   }
 
+  /* Up from 15px on a wider 380px measure. The stat row that used to sit
+     under the CTAs is gone from the vertical stack, so the pitch can take
+     the space it freed: bigger type on a narrower measure reads as a
+     statement rather than as filler between the title and the buttons. */
   .hero-bio {
-    font-size: 15px;
-    max-width: 380px;
+    font-size: 16.5px;
+    max-width: 336px;
+  }
+  .hero-bio-sig {
+    font-size: 12px;
+    margin-block-start: 12px;
   }
 
   /* display: contents dissolves the flex row so each .stat-item becomes a

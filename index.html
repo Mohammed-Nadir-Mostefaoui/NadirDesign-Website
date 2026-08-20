@@ -303,8 +303,16 @@
 
           <div class="hero-divider" aria-hidden="true"></div>
 
-          <p class="hero-bio" data-i18n="hero.bio">
-            I design product interfaces for B2B SaaS, ERP modules, sales dashboards, mobile-first apps, and multi-role enterprise platforms. I lead this work today as the founder of Nawat Studio.
+          <!-- data-i18n-html because the string now carries markup: the closing
+               credential sentence is wrapped in .hero-bio-sig so it can be set
+               as a smaller caption, and the studio name is a real link into the
+               Studio section. i18n.js only writes innerHTML for H1/H2 or when
+               this attribute is present, otherwise it would print the tags as
+               text. The markup MUST also live in all three locale strings in
+               js/i18n.js, since switchLang() overwrites this node on every
+               language change. The copy below is only the first-paint fallback. -->
+          <p class="hero-bio" data-i18n="hero.bio" data-i18n-html>
+            I design complex, data-heavy products. B2B SaaS, ERP modules, dashboards, internal tools, and the design systems underneath them. In Arabic and English side by side (RTL and LTR).<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>
           </p>
 
           <div class="hero-actions">
