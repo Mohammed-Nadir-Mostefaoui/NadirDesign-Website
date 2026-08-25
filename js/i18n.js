@@ -21,7 +21,7 @@
       meta: {
         home: {
           title: 'Nadir Mostefaoui · Product Designer and Founder of Nawat Studio',
-          desc:  'Product designer specialising in enterprise UX and data-heavy interfaces (ERP, SaaS, internal tools). Founder of Nawat Studio, designing natively in Arabic and English.',
+          desc:  'Product designer specialising in enterprise UX and data-heavy interfaces (ERP, SaaS, internal tools). Founder of Nawat Studio, designing Arabic and English from one system.',
           og:    'I turn complex workflows into clear, usable, consistent interfaces. Founder of Nawat Studio.'
         },
         cs1: {
@@ -58,7 +58,7 @@
       hero: {
         greeting:      "Hi, I'm Nadir Mostefaoui",
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Product</span><span class="ht-l">Designer</span></span>',
-        bio:           'I design complex, data-heavy products. B2B SaaS, ERP modules, dashboards, internal tools, and the design systems underneath them. In Arabic and English side by side (RTL and LTR).<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>',
+        bio:           'I design complex, data-heavy products. B2B SaaS, ERP modules, dashboards, internal tools, and the design systems underneath them. Arabic and English are built into the same system, so neither ends up a mirrored afterthought.<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>',
         cta_primary:   "Let's Talk",
         cta_secondary: 'View My Work',
         cta_cv:        'View CV',
@@ -145,6 +145,13 @@
           stat2_num: '24', stat2_suffix: '', stat2_label: 'components shipped',
           tag1: 'Design Systems', tag2: 'Accessibility', tag3: 'Design Tokens'
         }
+      },
+      proof: {
+        label:   'People I have worked with',
+        q1:      "Nadir's design prioritizes functional beauty over mere aesthetics. By combining logical placement with visual harmony, the interface respects the user's time and makes complex tasks feel effortless. It is a sophisticated, user-centric work that balances modern style with high-level utility.",
+        q1_role: 'Software Engineer',
+        q2:      'Working with Nadir was a great experience. He combines strong UI/UX skills with clear communication and a practical problem-solving mindset. What stood out most was his attention to detail, responsiveness, and ability to create clean, user-friendly designs while making collaboration smooth and efficient.',
+        q2_role: 'Colleague'
       },
       experience: {
         /* NOTE on nawat/dma/atqin `duration` below: these three roles are
@@ -386,7 +393,7 @@
       meta: {
         home: {
           title: 'Nadir Mostefaoui · Designer Produit et Fondateur de Nawat Studio',
-          desc:  'Designer produit spécialisé en UX d\'entreprise et interfaces à forte densité de données (ERP, SaaS, outils internes). Fondateur de Nawat Studio, conception native en arabe et en anglais.',
+          desc:  'Designer produit spécialisé en UX d\'entreprise et interfaces à forte densité de données (ERP, SaaS, outils internes). Fondateur de Nawat Studio, l\'arabe et l\'anglais conçus depuis un seul système.',
           og:    'Je transforme des workflows complexes en interfaces claires, utilisables et cohérentes. Fondateur de Nawat Studio.'
         },
         cs1: {
@@ -423,7 +430,7 @@
       hero: {
         greeting:      'Bonjour, je suis Nadir Mostefaoui',
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Designer</span><span class="ht-l">Produit</span></span>',
-        bio:           'Je conçois des produits complexes et riches en données. Solutions B2B SaaS, modules ERP, tableaux de bord, outils internes, et les design systems qui les soutiennent. En arabe et en anglais en parallèle (RTL et LTR).<span class="hero-bio-sig">Je dirige aujourd\'hui ce travail en tant que fondateur de <a href="#studio">Nawat Studio</a>.</span>',
+        bio:           'Je conçois des produits complexes et riches en données. Solutions B2B SaaS, modules ERP, tableaux de bord, outils internes, et les design systems qui les soutiennent. L\'arabe et l\'anglais sont construits dans le même système, aucun des deux ne finit en simple miroir ajouté après coup.<span class="hero-bio-sig">Je dirige aujourd\'hui ce travail en tant que fondateur de <a href="#studio">Nawat Studio</a>.</span>',
         cta_primary:   'Discutons',
         cta_secondary: 'Voir mon travail',
         cta_cv:        'Voir le CV',
@@ -510,6 +517,13 @@
           stat2_num: '24', stat2_suffix: '', stat2_label: 'composants livrés',
           tag1: 'Systèmes de Design', tag2: 'Accessibilité', tag3: 'Design Tokens'
         }
+      },
+      proof: {
+        label:   'Des personnes avec qui j\'ai travaillé',
+        q1:      "Le design de Nadir privilégie la beauté fonctionnelle plutôt que la simple esthétique. En combinant un placement logique et une harmonie visuelle, l'interface respecte le temps de l'utilisateur et rend les tâches complexes fluides. C'est un travail sophistiqué et centré sur l'utilisateur, qui équilibre style moderne et utilité de haut niveau.",
+        q1_role: 'Ingénieur logiciel',
+        q2:      "Travailler avec Nadir a été une excellente expérience. Il allie de solides compétences UI/UX à une communication claire et à un état d'esprit pragmatique face aux problèmes. Ce qui ressort le plus, c'est son souci du détail, sa réactivité et sa capacité à créer des designs clairs et faciles à utiliser, tout en rendant la collaboration fluide et efficace.",
+        q2_role: 'Collègue'
       },
       experience: {
         label:    'PARCOURS PROFESSIONNEL',
@@ -745,7 +759,7 @@
       meta: {
         home: {
           title: 'نذير مصطفاوي · مصمم منتجات ومؤسس استوديو نواة',
-          desc:  'مصمم منتجات متخصص في تجربة مستخدم المؤسسات والواجهات كثيفة البيانات (ERP وSaaS والأدوات الداخلية). مؤسس استوديو نواة، نصمم أصلاً بالعربية والإنجليزية.',
+          desc:  'مصمم منتجات متخصص في تجربة مستخدم المؤسسات والواجهات كثيفة البيانات (ERP وSaaS والأدوات الداخلية). مؤسس استوديو نواة، العربية والإنجليزية من نظام واحد.',
           og:    'أحوّل مسارات العمل المعقدة إلى واجهات واضحة وسهلة الاستخدام ومتسقة. مؤسس استوديو نواة.'
         },
         cs1: {
@@ -782,7 +796,7 @@
       hero: {
         greeting:      'مرحباً، أنا نَذِير مصطفاوي',
         title:         '<span class="ht-ghost" aria-hidden="true">Product Designer</span><span class="ht-main"><span class="ht-l">مُصَمِّم</span><span class="ht-l">مُنتَجَات</span></span>',
-        bio:           'أصمم المنتجات المعقّدة وكثيفة البيانات. حلول B2B SaaS، وأنظمة ERP، ولوحات المعلومات، والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. بالعربية والإنجليزية معًا (RTL و LTR).<span class="hero-bio-sig">أقود هذا العمل اليوم بصفتي مؤسس <a href="#studio">استوديو نواة</a>.</span>',
+        bio:           'أصمم المنتجات المعقّدة وكثيفة البيانات. حلول B2B SaaS، وأنظمة ERP، ولوحات المعلومات، والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. العربية والإنجليزية مبنيتان داخل النظام نفسه، فلا تنتهي إحداهما نسخة معكوسة مضافة لاحقًا.<span class="hero-bio-sig">أقود هذا العمل اليوم بصفتي مؤسس <a href="#studio">استوديو نواة</a>.</span>',
         cta_primary:   'لنتحدث',
         cta_secondary: 'شاهد أعمالي',
         cta_cv:        'عرض السيرة الذاتية',
@@ -869,6 +883,13 @@
           stat2_num: '24', stat2_suffix: '', stat2_label: 'مكوّنًا مُطلقًا',
           tag1: 'أنظمة التصميم', tag2: 'إمكانية الوصول', tag3: 'الـDesign Tokens'
         }
+      },
+      proof: {
+        label:   'أشخاص عملتُ معهم',
+        q1:      'يقدّم تصميم نذير الجمال الوظيفي على مجرّد الشكل. بالجمع بين الترتيب المنطقي والانسجام البصري، تحترم الواجهة وقت المستخدم وتجعل المهام المعقّدة تبدو سهلة. إنه عمل متقن ومتمحور حول المستخدم، يوازن بين الأسلوب الحديث والفائدة العالية.',
+        q1_role: 'مهندس برمجيات',
+        q2:      'كان العمل مع نذير تجربة رائعة. يجمع بين مهارات قوية في تصميم واجهة وتجربة المستخدم، وتواصل واضح، وعقلية عملية في حل المشكلات. أكثر ما لفت انتباهي هو اهتمامه بالتفاصيل، وسرعة استجابته، وقدرته على إنتاج تصاميم نظيفة وسهلة الاستخدام، مع جعل التعاون سلسًا وفعّالًا.',
+        q2_role: 'زميل'
       },
       experience: {
         label:    'المسيرة المهنية',
