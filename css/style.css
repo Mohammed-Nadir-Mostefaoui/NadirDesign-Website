@@ -2833,6 +2833,273 @@ main {
 }
 
 /* ============================================================
+   SERVICES SECTION
+   Rebuilt for scanning. Three cards of identical shape (promise line +
+   four bullets + note + foot + link), so they are the same height by
+   construction rather than by luck, and a buyer reads a list instead of
+   a paragraph. Only card 01 carries a figure and a chip: it is the
+   cheapest, fastest yes, so it is where the eye should land first.
+   ============================================================ */
+.services-section {
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: clamp(80px, 12vw, 160px) var(--container-pad);
+}
+.services-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] .services-section::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+}
+
+.services-container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 4.5vw, 56px);
+}
+
+/* ── The three cards ── */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 1.8vw, 24px);
+  align-items: stretch;
+}
+
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 2.4vw, 30px);
+  background-color: var(--surface-light-card);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .svc-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+}
+/* The entry point gets a hairline of accent along the top edge, not a
+   coloured fill: enough to catch the eye first without turning the row
+   into a pricing table with a "recommended" tier. */
+.svc-card--entry { border-block-start: 2px solid var(--accent-blue); }
+
+.svc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-block-end: 14px;
+}
+.svc-idx {
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+}
+.svc-chip {
+  padding: 4px 10px;
+  border-radius: 50px;
+  background-color: rgba(29, 78, 216, 0.10);
+  color: var(--accent-blue);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+[data-theme="dark"] .svc-chip {
+  background-color: rgba(59, 130, 246, 0.16);
+  color: var(--accent-blue-light);
+}
+/* Arabic script never carries Latin-style tracking or forced casing. */
+[dir="rtl"] .svc-idx,
+[dir="rtl"] .svc-chip { letter-spacing: 0; }
+[dir="rtl"] .svc-chip { text-transform: none; }
+
+.svc-title {
+  margin: 0 0 8px;
+  font-size: clamp(19px, 1.9vw, 22px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+.svc-promise {
+  margin: 0 0 18px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Four bullets, always. Uniform length is what keeps the row even. */
+.svc-list {
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.svc-list li {
+  position: relative;
+  padding-inline-start: 16px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+/* Same small accent square the case-study lists use. */
+.svc-list li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.55em;
+  inline-size: 5px;
+  block-size: 5px;
+  background-color: var(--accent-blue);
+  opacity: 0.55;
+}
+
+/* The honest exclusion on 01, the scope boundary on 02, the proof
+   artifact on 03. Same slot, deliberately quieter than the bullets. */
+.svc-note {
+  margin: 0;
+  margin-block-start: auto;
+  padding-block-start: 14px;
+  border-block-start: 1px solid var(--border-default);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+}
+
+/* auto margin pins the foot and link to the bottom, so the three links
+   align on one baseline whatever the copy above does. */
+.svc-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 14px;
+  padding-block-start: 18px;
+}
+.svc-meta { font-size: 12.5px; color: var(--text-tertiary); }
+.svc-price {
+  font-size: 13.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+.svc-price--figure {
+  font-size: clamp(17px, 1.7vw, 20px);
+  color: var(--accent-blue);
+}
+[data-theme="dark"] .svc-price--figure { color: var(--accent-blue-light); }
+
+.svc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-block-start: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-block-end: 1px solid var(--border-default);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.svc-cta--primary { color: var(--accent-blue); border-block-end-color: currentColor; }
+[data-theme="dark"] .svc-cta--primary { color: var(--accent-blue-light); }
+.svc-cta:hover,
+.svc-cta:focus-visible { color: var(--accent-blue); border-block-end-color: var(--accent-blue); }
+[data-theme="dark"] .svc-cta:hover,
+[data-theme="dark"] .svc-cta:focus-visible { color: var(--accent-blue-light); border-block-end-color: var(--accent-blue-light); }
+/* .btn-arrow is collapsed to zero width at rest and only opens inside a
+   .btn. These are text links, so the arrow is shown permanently and
+   slides on hover. RTL keeps the mirror flip. */
+.svc-cta .btn-arrow { width: 14px; opacity: 1; margin-inline-start: 0; transform: none; }
+[dir="rtl"] .svc-cta .btn-arrow { transform: scaleX(-1); }
+.svc-cta:hover .btn-arrow { transform: translateX(4px); }
+[dir="rtl"] .svc-cta:hover .btn-arrow { transform: translateX(-4px) scaleX(-1); }
+
+/* ── The closing band ──
+   What used to be three stacked blocks. The split statement answers "who
+   actually does the work" only after the offer has been seen, and the
+   custom route sits beside it so the last thing on the section is a way
+   in rather than a policy. */
+.svc-close {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(20px, 2.5vw, 40px);
+  align-items: start;
+}
+.svc-split {
+  padding-inline-start: clamp(18px, 2vw, 26px);
+  border-inline-start: 2px solid var(--accent-blue);
+}
+.svc-split-lead {
+  margin: 0 0 10px;
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+.svc-split-body {
+  margin: 0 0 10px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.svc-escalation {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-tertiary);
+}
+
+.svc-custom {
+  padding: clamp(22px, 2.4vw, 30px);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+}
+.svc-custom-title {
+  margin: 0 0 6px;
+  font-size: clamp(16px, 1.6vw, 18px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+.svc-custom-body {
+  margin: 0 0 18px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc-close { grid-template-columns: 1fr; }
+  .svc-note { margin-block-start: 0; }
+}
+
+/* ============================================================
    SKILLS SECTION  (from Figma "SkillsSectionAlt")
    ============================================================ */
 .skills-section {
