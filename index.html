@@ -320,10 +320,16 @@
               <span data-i18n="hero.cta_primary">Let's Talk</span>
               <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <button type="button" class="btn btn-cv" data-cv-open>
-              <svg class="btn-cv-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
-              <span data-i18n="hero.cta_cv">View CV</span>
-            </button>
+            <!-- Secondary action. The CV trigger that used to sit here was
+                 removed 2026-08-25: the CV is no longer a primary hero action
+                 and stays available from the footer contact list only. The
+                 slot is filled by the site's original secondary CTA, whose
+                 i18n key was already translated in all three locales, so the
+                 first action after the pitch now leads to the case studies. -->
+            <a href="#work" class="btn btn-ghost-fill">
+              <span data-i18n="hero.cta_secondary">View My Work</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
           </div>
 
           <!-- Stats -->
