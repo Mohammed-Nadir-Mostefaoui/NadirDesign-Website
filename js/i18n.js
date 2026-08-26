@@ -20,7 +20,7 @@
          shared links stop showing English copy. */
       meta: {
         home: {
-          title: 'Nadir Mostefaoui · Product Designer for ERP and Data-Heavy UX',
+          title: 'Nadir Mostefaoui · Product Designer for Enterprise and Data-Heavy UX',
           desc:  'Product designer for ERP, SaaS and internal tools. Data-heavy workflows made legible, on token-first design systems: 1,033 variables, 24 components, three languages.',
           og:    'ERP, SaaS and internal tools made legible, and the design systems behind them. Last one shipped: 1,033 variables, 24 components, three languages.'
         },
@@ -448,7 +448,7 @@
     fr: {
       meta: {
         home: {
-          title: "Nadir Mostefaoui · Designer Produit, ERP et UX d'entreprise",
+          title: "Nadir Mostefaoui · Designer Produit, UX d'entreprise et dense en données",
           desc:  "Designer produit pour ERP, SaaS et outils internes. Des workflows denses en données rendus lisibles, sur des design systems orientés tokens : 1 033 variables, 24 composants, trois langues.",
           og:    "ERP, SaaS et outils internes rendus lisibles, et les design systems derrière. Le dernier livré : 1 033 variables, 24 composants, trois langues."
         },
@@ -870,7 +870,7 @@
     ar: {
       meta: {
         home: {
-          title: 'نذير مصطفاوي · مصمم منتجات لأنظمة ERP والواجهات كثيفة البيانات',
+          title: 'نذير مصطفاوي · مصمم منتجات لأنظمة المؤسسات والواجهات كثيفة البيانات',
           desc:  'مصمم منتجات لأنظمة ERP وSaaS والأدوات الداخلية. مسارات عمل كثيفة البيانات تصبح واضحة، على أنظمة تصميم قائمة على الـtokens: 1,033 متغيّرًا، و24 مكوّنًا، وثلاث لغات.',
           og:    'أنظمة ERP وSaaS والأدوات الداخلية تصبح واضحة، ومعها أنظمة التصميم التي تقوم عليها. آخر نظام سُلّم: 1,033 متغيّرًا، و24 مكوّنًا، وثلاث لغات.'
         },
