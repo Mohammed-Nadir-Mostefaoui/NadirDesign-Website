@@ -3570,7 +3570,39 @@ main {
 
 .studio-cta {
   margin-block-start: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px 22px;
+  flex-wrap: wrap;
 }
+
+/* The outbound link to nawat.studio, demoted to secondary (2026-08-26).
+   It used to be the section's only action, which sent the warmest visitor
+   on the page to a second site. The primary action now stays here and
+   this stays available as a text link beside it.
+   ⚠️ .studio-card locally redefines --text-primary/--text-secondary so its
+   subtree renders dark in BOTH themes, so these tokens already resolve to
+   the light-on-dark values inside the card. Do not hard-code colours here
+   or the link breaks the moment the card's palette changes. */
+.studio-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-block-end: 1px solid var(--border-default);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.studio-cta-secondary:hover,
+.studio-cta-secondary:focus-visible {
+  color: var(--text-primary);
+  border-block-end-color: var(--text-primary);
+}
+/* The box-arrow glyph points up-and-out, which reads as "leaves this site"
+   in LTR. In RTL the whole layout mirrors, so mirror the glyph with it. */
+[dir="rtl"] .studio-cta-secondary svg { transform: scaleX(-1); }
 
 /* ── The spectrum: the studio's scope as a numbered progression rather
    than a flat row of chips, so it reads as a process with direction. ── */
@@ -3802,6 +3834,30 @@ main {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-secondary);
+}
+
+/* ── Scroll cue ──
+   The footer intro is centered and tall, so on a short viewport (or a
+   laptop at default zoom) it can fill the screen with nothing but the
+   heading, leaving no sign the contact form is directly below. This is a
+   pure affordance: decorative in the markup (aria-hidden), since a screen
+   reader continues into the form anyway and has no such problem.
+   No margin-block-start of its own, so it inherits .footer-intro's gap. */
+.footer-scroll-cue {
+  display: inline-flex;
+  color: var(--text-tertiary);
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .footer-scroll-cue { animation: footer-cue-bob 2s ease-in-out infinite; }
+}
+
+/* Travels a short distance and rests at both ends, so it reads as a hint
+   rather than a demand for attention. */
+@keyframes footer-cue-bob {
+  0%, 55%, 100% { transform: translateY(0); }
+  25%           { transform: translateY(7px); }
 }
 
 /* ── Main: form + contacts, side by side ──

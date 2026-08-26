@@ -20,9 +20,9 @@
          shared links stop showing English copy. */
       meta: {
         home: {
-          title: 'Nadir Mostefaoui · Product Designer and Founder of Nawat Studio',
-          desc:  'Product designer specialising in enterprise UX and data-heavy interfaces (ERP, SaaS, internal tools). Founder of Nawat Studio, designing Arabic and English from one system.',
-          og:    'I turn complex workflows into clear, usable, consistent interfaces. Founder of Nawat Studio.'
+          title: 'Nadir Mostefaoui · Product Designer for ERP and Data-Heavy UX',
+          desc:  'Product designer for ERP, SaaS and internal tools. Data-heavy workflows made legible, on token-first design systems: 1,033 variables, 24 components, three languages.',
+          og:    'ERP, SaaS and internal tools made legible, and the design systems behind them. Last one shipped: 1,033 variables, 24 components, three languages.'
         },
         cs1: {
           title: 'Iksir Design System (Case Study) · Nadir Mostefaoui',
@@ -245,16 +245,17 @@
       studio: {
         eyebrow:        'The Studio',
         title:          'I Lead Nawat Studio',
-        subtitle:       'Where this work continues, at studio scale.',
+        subtitle:       'A wider range of work, with the same person leading it.',
         watermark:      'NAWAT',
-        lead:           'Nawat Studio is where I take this work further. Brand and product design for founders and decision-makers, delivered as structured, dev-ready outcomes. I hold that work to the same standard as the case studies above, in Arabic and in English.',
+        lead:           'Some work needs more than product design. Nawat Studio is where a second designer joins and the range widens to identity, research and testing. I stay the one leading it, at the same standard as the case studies above.',
         spectrum_label: 'From identity to testing',
         tag1:           'Visual Identity',
         tag2:           'Design Systems',
         tag3:           'UX Design',
         tag4:           'Prototyping',
         tag5:           'User Testing',
-        cta:            'Visit Nawat Studio'
+        cta:            'Talk about a bigger project',
+        cta_secondary:  'Visit nawat.studio'
       },
       services: {
         label:        'Services',
@@ -447,9 +448,9 @@
     fr: {
       meta: {
         home: {
-          title: 'Nadir Mostefaoui · Designer Produit et Fondateur de Nawat Studio',
-          desc:  'Designer produit spécialisé en UX d\'entreprise et interfaces à forte densité de données (ERP, SaaS, outils internes). Fondateur de Nawat Studio, l\'arabe et l\'anglais conçus depuis un seul système.',
-          og:    'Je transforme des workflows complexes en interfaces claires, utilisables et cohérentes. Fondateur de Nawat Studio.'
+          title: "Nadir Mostefaoui · Designer Produit, ERP et UX d'entreprise",
+          desc:  "Designer produit pour ERP, SaaS et outils internes. Des workflows denses en données rendus lisibles, sur des design systems orientés tokens : 1 033 variables, 24 composants, trois langues.",
+          og:    "ERP, SaaS et outils internes rendus lisibles, et les design systems derrière. Le dernier livré : 1 033 variables, 24 composants, trois langues."
         },
         cs1: {
           title: 'Iksir Design System (Étude de cas) · Nadir Mostefaoui',
@@ -666,16 +667,17 @@
       studio: {
         eyebrow:        'Le Studio',
         title:          'Je dirige Nawat Studio',
-        subtitle:       'Là où ce travail continue, à l\'échelle d\'un studio.',
+        subtitle:       "Un champ d'action plus large, dirigé par la même personne.",
         watermark:      'NAWAT',
-        lead:           'Nawat Studio est l\'endroit où je pousse ce travail plus loin. Identité de marque et design produit pour des fondateurs et décideurs, livrés sous forme de résultats structurés et prêts au développement. Je tiens ce travail au même niveau d\'exigence que les études de cas ci-dessus, en arabe comme en anglais.',
+        lead:           "Certains projets demandent plus que du design produit. Nawat Studio, c'est là qu'un second designer rejoint le travail et que le champ s'élargit à l'identité, la recherche et les tests. J'en reste le responsable, au même niveau d'exigence que les études de cas ci-dessus.",
         spectrum_label: 'De l\'identité aux tests',
         tag1:           'Identité Visuelle',
         tag2:           'Systèmes de Design',
         tag3:           'Design UX',
         tag4:           'Prototypage',
         tag5:           'Tests Utilisateurs',
-        cta:            'Visiter Nawat Studio'
+        cta:            "Parlons d'un projet plus large",
+        cta_secondary:  'Visiter nawat.studio'
       },
       services: {
         label:        'Services',
@@ -868,9 +870,9 @@
     ar: {
       meta: {
         home: {
-          title: 'نذير مصطفاوي · مصمم منتجات ومؤسس استوديو نواة',
-          desc:  'مصمم منتجات متخصص في تجربة مستخدم المؤسسات والواجهات كثيفة البيانات (ERP وSaaS والأدوات الداخلية). مؤسس استوديو نواة، العربية والإنجليزية من نظام واحد.',
-          og:    'أحوّل مسارات العمل المعقدة إلى واجهات واضحة وسهلة الاستخدام ومتسقة. مؤسس استوديو نواة.'
+          title: 'نذير مصطفاوي · مصمم منتجات لأنظمة ERP والواجهات كثيفة البيانات',
+          desc:  'مصمم منتجات لأنظمة ERP وSaaS والأدوات الداخلية. مسارات عمل كثيفة البيانات تصبح واضحة، على أنظمة تصميم قائمة على الـtokens: 1,033 متغيّرًا، و24 مكوّنًا، وثلاث لغات.',
+          og:    'أنظمة ERP وSaaS والأدوات الداخلية تصبح واضحة، ومعها أنظمة التصميم التي تقوم عليها. آخر نظام سُلّم: 1,033 متغيّرًا، و24 مكوّنًا، وثلاث لغات.'
         },
         cs1: {
           title: 'نظام تصميم Iksir (دراسة حالة) · نذير مصطفاوي',
@@ -1087,16 +1089,17 @@
       studio: {
         eyebrow:        'الاستوديو',
         title:          'أقود استوديو نواة',
-        subtitle:       'حيث يستمر هذا العمل، بحجم استوديو متكامل.',
+        subtitle:       'نطاق أوسع من العمل، يقوده الشخص نفسه.',
         watermark:      'نواة',
-        lead:           'استوديو نواة هو المكان الذي أطوّر فيه هذا العمل أكثر. هوية بصرية وتصميم منتجات للمؤسّسين وصناع القرار، بمخرجات منظمة وجاهزة للتطوير. وألتزم في هذا العمل بنفس الدقة الموجودة في دراسات الحالة أعلاه، بالعربية والإنجليزية معًا.',
+        lead:           'بعض الأعمال تحتاج إلى أكثر من تصميم المنتج. في استوديو نواة ينضم مصمّم ثانٍ ويتّسع النطاق ليشمل الهوية والبحث والاختبار. وأبقى أنا من يقوده، بنفس الدقة الموجودة في دراسات الحالة أعلاه.',
         spectrum_label: 'من الهوية إلى الاختبار',
         tag1:           'الهوية البصرية',
         tag2:           'أنظمة التصميم',
         tag3:           'تصميم تجربة المستخدم',
         tag4:           'النمذجة التفاعلية',
         tag5:           'اختبار المستخدم',
-        cta:            'زيارة استوديو نواة'
+        cta:            'لنتحدّث عن مشروع أكبر',
+        cta_secondary:  'زيارة nawat.studio'
       },
       services: {
         label:        'الخدمات',
