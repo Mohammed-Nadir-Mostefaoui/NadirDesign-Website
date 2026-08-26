@@ -13,6 +13,18 @@
   <meta property="og:description" content="ERP, SaaS and internal tools made legible, and the design systems behind them. Last one shipped: 1,033 variables, 24 components, three languages.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
+  <!-- Social preview. og:image is a real 1200x630 render of the hero, not a
+       logo card, so a shared link shows the actual page. It is deliberately
+       ONE image for all three languages: crawlers read this static head
+       before js/i18n.js runs, so a per-language swap would never be seen.
+       The URL must stay absolute — relative og:image paths are ignored. -->
+  <meta property="og:url" content="https://nadirdesign.com/">
+  <meta property="og:image" content="https://nadirdesign.com/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nadir Mostefaoui, Product Designer, beside the headline Product Designer on nadirdesign.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://nadirdesign.com/assets/images/og-image.jpg">
 
   <title>Nadir Mostefaoui · Product Designer for ERP and Data-Heavy UX</title>
 
