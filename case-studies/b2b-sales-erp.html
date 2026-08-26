@@ -581,26 +581,31 @@
                 <button type="button" class="cs-ptype-chip" data-value="Product Audit" data-i18n="cs.form.pt_audit">Product Audit</button>
                 <button type="button" class="cs-ptype-chip" data-value="Product Design" data-i18n="cs.form.pt_design">Product Design</button>
                 <button type="button" class="cs-ptype-chip" data-value="Design System" data-i18n="cs.form.pt_system">Design System</button>
+                <button type="button" class="cs-ptype-chip" data-value="Design Partner" data-i18n="cs.form.pt_dpartner">Design Partner</button>
                 <button type="button" class="cs-ptype-chip" data-value="More than one of these" data-i18n="cs.form.pt_multi">More than one of these</button>
-                <button type="button" class="cs-ptype-chip" data-value="Partnership" data-i18n="cs.form.pt_partner">Partnership</button>
                 <button type="button" class="cs-ptype-chip" data-value="Something else" data-i18n="cs.form.pt_other">Something else</button>
               </div>
               <input type="hidden" name="project_type" id="ff-project-type" value="">
+              <input type="hidden" name="language" id="ff-language" value="">
             </div>
             <div class="ff-field">
               <input class="ff-input" type="text" id="ff-name" name="name" required autocomplete="name" placeholder=" ">
               <label class="ff-label" for="ff-name" data-i18n="footer.form_name">Name</label>
               <span class="ff-underline" aria-hidden="true"></span>
+              <span class="ff-error" id="ff-name-error" aria-live="polite"></span>
             </div>
             <div class="ff-field">
               <input class="ff-input" type="email" id="ff-email" name="email" required autocomplete="email" placeholder=" ">
               <label class="ff-label" for="ff-email" data-i18n="footer.form_email">Email</label>
               <span class="ff-underline" aria-hidden="true"></span>
+              <span class="ff-error" id="ff-email-error" aria-live="polite"></span>
             </div>
             <div class="ff-field">
               <textarea class="ff-input ff-textarea" id="ff-message" name="message" rows="4" required placeholder=" "></textarea>
               <label class="ff-label" for="ff-message" data-i18n="footer.form_message">Message</label>
               <span class="ff-underline" aria-hidden="true"></span>
+              <span class="ff-error" id="ff-message-error" aria-live="polite"></span>
+            <span class="ff-hint" data-i18n="footer.form_hint">What are you building, and what is in the way?</span>
             </div>
             <button type="submit" class="footer-submit" id="footer-submit">
               <span class="footer-submit-label" data-i18n="footer.form_send">Send Message</span>
@@ -609,6 +614,7 @@
                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
               </span>
             </button>
+            <p class="ff-reply" data-i18n="footer.form_reply">I read every message myself and usually reply within a day.</p>
             <p class="ff-status" id="ff-status" role="status" aria-live="polite"></p>
           </form>
         </div>

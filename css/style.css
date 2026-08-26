@@ -2465,31 +2465,12 @@ main {
 }
 
 .work-tab {
-  position: relative;
-  z-index: 1;
   display: flex;
   align-items: flex-start;
   gap: 14px;
   width: 100%;
-  padding: 16px 18px;
-  border-radius: var(--radius-md);
   background: transparent;
   text-align: start;
-  transition: background-color 0.25s ease;
-}
-
-.work-tab:hover {
-  background-color: rgba(0, 0, 0, 0.035);
-}
-[data-theme="dark"] .work-tab:hover {
-  background-color: rgba(255, 255, 255, 0.045);
-}
-
-.work-tab[aria-selected="true"] {
-  background-color: rgba(0, 0, 0, 0.045);
-}
-[data-theme="dark"] .work-tab[aria-selected="true"] {
-  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .work-tab-num {
@@ -2552,6 +2533,135 @@ main {
   background-color: var(--accent-blue-light);
 }
 [dir="rtl"] .work-tab-indicator { left: auto; right: 0; }
+
+/* The tab row: this element now carries the card look (background,
+   padding, rounding) that used to live on .work-tab directly, so that the
+   "open case study" button added below renders INSIDE the same card as
+   the tab text rather than floating past its edge. Left position:static
+   on purpose — js/work.js's sliding indicator measures .work-tab's
+   offsetTop against its nearest POSITIONED ancestor, which needs to stay
+   .work-tablist. Selected/hover state is read straight off the button
+   via :has() rather than a class js/work.js would need to maintain. */
+.work-tab-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  transition: background-color 0.25s ease;
+}
+
+.work-tab-item:hover {
+  background-color: rgba(0, 0, 0, 0.035);
+}
+[data-theme="dark"] .work-tab-item:hover {
+  background-color: rgba(255, 255, 255, 0.045);
+}
+
+.work-tab-item:has(.work-tab[aria-selected="true"]) {
+  background-color: rgba(0, 0, 0, 0.045);
+}
+[data-theme="dark"] .work-tab-item:has(.work-tab[aria-selected="true"]) {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.work-tab-item .work-tab {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+}
+
+/* Compact "open case study" pill, shown only on the selected tab's row, so
+   the case study can be opened right there instead of scrolling down to
+   the CTA at the bottom of the (often tall) detail panel on the right.
+   display:none by default rather than an opacity/visibility fade — it
+   also removes the other three (currently unselected) copies from the
+   keyboard tab order for free, same guarantee the fade version needed
+   visibility:hidden for. */
+.work-tab-open {
+  flex-shrink: 0;
+  display: none;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.work-tab-open svg { flex-shrink: 0; }
+
+.work-tab-open:hover,
+.work-tab-open:focus-visible {
+  background-color: var(--accent-blue);
+  color: #fff;
+}
+[data-theme="dark"] .work-tab-open:hover,
+[data-theme="dark"] .work-tab-open:focus-visible {
+  background-color: var(--accent-blue-light);
+  color: var(--bg-primary);
+}
+
+/* aria-selected is already toggled by js/work.js on every tab switch, so
+   no extra JS is needed here to show/hide the pill. */
+.work-tab[aria-selected="true"] ~ .work-tab-open {
+  display: inline-flex;
+}
+
+@media (max-width: 900px) {
+  /* .work-tab-item stays a real, laid-out box here rather than
+     display:contents — Safari has a long-standing bug where a
+     display:contents element's children don't reliably pick up the
+     parent flex container's `gap`, which is exactly what produced the
+     overlapping tab pills reported on the tablet/phone build. inline-flex
+     shrink-wraps the item to .work-tab's own content width instead,
+     matching the sizing .work-tab already handled on its own before this
+     wrapper existed. The open button is out of scope for mobile/tablet
+     (the tab strip is already compact at this width), so the wrapper's
+     desktop card look (background, padding, rounding) is reset here and
+     handed back to .work-tab directly — again, exactly as it was before
+     the open button existed. Selectors are repeated at matching
+     specificity to the unscoped rules they override, so source order (this
+     block comes later in the file) settles the cascade regardless of which
+     tab is selected. */
+  .work-tab-item {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+  }
+  .work-tab-item:hover,
+  .work-tab-item:has(.work-tab[aria-selected="true"]) {
+    background-color: transparent;
+  }
+
+  .work-tab {
+    border-radius: var(--radius-md);
+    transition: background-color 0.25s ease;
+  }
+  .work-tab:hover {
+    background-color: rgba(0, 0, 0, 0.035);
+  }
+  [data-theme="dark"] .work-tab:hover {
+    background-color: rgba(255, 255, 255, 0.045);
+  }
+  .work-tab[aria-selected="true"] {
+    background-color: rgba(0, 0, 0, 0.045);
+  }
+  [data-theme="dark"] .work-tab[aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .work-tab[aria-selected="true"] ~ .work-tab-open,
+  .work-tab-open {
+    display: none;
+  }
+}
 
 /* ── Detail panels (right) ── */
 .work-panels {
@@ -3037,6 +3147,51 @@ main {
 [dir="rtl"] .svc-cta .btn-arrow { transform: scaleX(-1); }
 .svc-cta:hover .btn-arrow { transform: translateX(4px); }
 [dir="rtl"] .svc-cta:hover .btn-arrow { transform: translateX(-4px) scaleX(-1); }
+
+/* ── Design Partner ──
+   Its own entry, deliberately not a fourth card and not part of the closing
+   band. A wide, low row reads as a different kind of offer: not a project you
+   buy once, but an arrangement that continues. Keeps a text link rather than a
+   button so the section still has exactly one dark button on it. */
+.svc-partner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px clamp(24px, 3vw, 48px);
+  padding: clamp(22px, 2.4vw, 30px) clamp(24px, 2.6vw, 34px);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  background-color: var(--bg-primary);
+}
+.svc-partner-text { flex: 1 1 460px; min-inline-size: 0; }
+.svc-partner-label {
+  display: block;
+  margin-block-end: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+[dir="rtl"] .svc-partner-label { letter-spacing: 0; text-transform: none; }
+.svc-partner-title {
+  margin: 0 0 8px;
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+.svc-partner-body {
+  margin: 0;
+  max-width: 72ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+/* .svc-cta carries align-self: flex-start for the cards, which would pin
+   this one to the top of a much taller row. */
+.svc-partner .svc-cta { margin-block-start: 0; flex-shrink: 0; align-self: center; }
 
 /* ── The closing band ──
    What used to be three stacked blocks. The split statement answers "who
@@ -3818,6 +3973,38 @@ main {
 
 /* Inline status text (sending / sent / error) — empty and invisible until
    JS sets content, so it never reserves visible space in the idle state */
+/* ── Inline field errors, the message hint, the reply promise ──
+   Errors replace the browser's native validation bubbles, which render in
+   the browser's language rather than the site's and sit on the wrong side
+   in RTL. */
+.ff-error {
+  display: none;
+  margin-block-start: 6px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--accent-error);
+}
+.ff-error.is-visible { display: block; }
+.ff-input.is-invalid ~ .ff-underline { background-color: var(--accent-error); }
+.ff-input.is-invalid { border-block-end-color: var(--accent-error); }
+
+/* A question rather than a label: it produces a message worth replying to
+   instead of "hi, interested". */
+.ff-hint {
+  display: block;
+  margin-block-start: 6px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+}
+
+.ff-reply {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+}
+
 .ff-status {
   margin: 10px 0 0;
   font-size: 13.5px;

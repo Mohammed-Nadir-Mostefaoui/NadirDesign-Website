@@ -53,10 +53,69 @@
       status.classList.toggle('is-visible', !!text);
     }
 
+    /* Inline, translated validation. Replaces reportValidity(), whose
+       bubbles come out in the browser's language and land on the wrong
+       side in RTL. Each field gets aria-invalid + aria-describedby so a
+       screen reader announces the message, not just the red text. */
+    const setFieldError = function (input, message) {
+      if (!input) return;
+      const slot = document.getElementById(input.id + '-error');
+      if (slot) {
+        slot.textContent = message || '';
+        slot.classList.toggle('is-visible', !!message);
+      }
+      input.classList.toggle('is-invalid', !!message);
+      if (message) {
+        input.setAttribute('aria-invalid', 'true');
+        input.setAttribute('aria-describedby', input.id + '-error');
+      } else {
+        input.removeAttribute('aria-invalid');
+        input.removeAttribute('aria-describedby');
+      }
+    };
+
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const validate = function () {
+      const name = document.getElementById('ff-name');
+      const mail = document.getElementById('ff-email');
+      const msg  = document.getElementById('ff-message');
+      let first = null;
+
+      const check = function (input, empty, bad) {
+        if (!input) return;
+        const v = (input.value || '').trim();
+        let err = '';
+        if (!v) err = empty;
+        else if (bad && !EMAIL_RE.test(v)) err = bad;
+        setFieldError(input, err);
+        if (err && !first) first = input;
+      };
+
+      check(name, t('footer.form_err_name', 'Please add your name.'), null);
+      check(mail, t('footer.form_err_email', 'Please add your email.'),
+                  t('footer.form_err_email_bad', 'That email address does not look right.'));
+      check(msg,  t('footer.form_err_message', 'Please add a short message.'), null);
+
+      if (first) { first.focus(); return false; }
+      return true;
+    };
+
+    /* Clear a field's error as soon as the person starts fixing it. */
+    ['ff-name', 'ff-email', 'ff-message'].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', function () {
+        if (el.classList.contains('is-invalid')) setFieldError(el, '');
+      });
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      if (!form.reportValidity()) return;
+      if (!validate()) return;
+
+      const langField = document.getElementById('ff-language');
+      if (langField) langField.value = document.documentElement.lang || '';
 
       clearTimeout(resetTimer);
       submit.disabled = true;
@@ -75,6 +134,10 @@
           submit.classList.add('is-sent');
           if (label) label.textContent = t('footer.form_sent', 'Message sent!');
           form.reset();
+          // form.reset() only restores native inputs. The chips are buttons,
+          // so without this they stay visually selected after a successful
+          // send while the hidden field they drive is already empty.
+          if (window.__ffClearChips) window.__ffClearChips();
 
           resetTimer = setTimeout(() => {
             submit.disabled = false;
@@ -164,13 +227,40 @@
       });
       if (ptypeHidden) ptypeHidden.value = val || '';
     };
-    ptypeChips.forEach((c) => {
+    /* Roving tabindex + arrow keys. These carry role="radio" inside a
+       role="radiogroup", which promises arrow-key navigation and a single
+       tab stop. Without it, seven chips were seven tab stops and the arrow
+       keys did nothing, which is worse than no role at all. */
+    const focusChip = function (i) {
+      const n = (i + ptypeChips.length) % ptypeChips.length;
+      ptypeChips.forEach((c, j) => c.setAttribute('tabindex', j === n ? '0' : '-1'));
+      ptypeChips[n].focus();
+      selectType(ptypeChips[n].getAttribute('data-value'));
+    };
+
+    ptypeChips.forEach((c, i) => {
       c.setAttribute('role', 'radio');
       c.setAttribute('aria-checked', 'false');
-      c.addEventListener('click', () => selectType(c.getAttribute('data-value')));
+      c.setAttribute('tabindex', i === 0 ? '0' : '-1');
+      c.addEventListener('click', () => {
+        ptypeChips.forEach((o, j) => o.setAttribute('tabindex', j === i ? '0' : '-1'));
+        selectType(c.getAttribute('data-value'));
+      });
+      c.addEventListener('keydown', (e) => {
+        // In RTL the visual order is mirrored, so left/right must swap.
+        const rtl = document.documentElement.dir === 'rtl';
+        const fwd = rtl ? 'ArrowLeft' : 'ArrowRight';
+        const back = rtl ? 'ArrowRight' : 'ArrowLeft';
+        if (e.key === fwd || e.key === 'ArrowDown') { e.preventDefault(); focusChip(i + 1); }
+        else if (e.key === back || e.key === 'ArrowUp') { e.preventDefault(); focusChip(i - 1); }
+        else if (e.key === 'Home') { e.preventDefault(); focusChip(0); }
+        else if (e.key === 'End') { e.preventDefault(); focusChip(ptypeChips.length - 1); }
+      });
     });
     document.querySelectorAll('[data-project-type]').forEach((a) => {
       a.addEventListener('click', () => selectType(a.getAttribute('data-project-type')));
     });
+
+    window.__ffClearChips = function () { selectType(''); };
   }
 })();
