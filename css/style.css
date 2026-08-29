@@ -4092,6 +4092,7 @@ main {
 .footer-contact--linkedin   { --fc-brand: #0A66C2; }
 .footer-contact--whatsapp   { --fc-brand: #25D366; }
 .footer-contact--instagram  { --fc-brand: #E1306C; }
+.footer-contact--behance    { --fc-brand: #1769FF; }
 
 .fc-link {
   display: flex;
