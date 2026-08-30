@@ -3494,6 +3494,25 @@ main {
   align-items: center;
 }
 
+/* When the right-hand spectrum column is hidden, collapse the grid to a
+   single centered column and center the copy block inside the card. */
+.studio-card:not(:has(.studio-spectrum)) {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+.studio-card:not(:has(.studio-spectrum)) .studio-col {
+  grid-column: 1 / -1;
+  width: min(100%, 720px);
+  align-items: center;
+  text-align: center;
+}
+.studio-card:not(:has(.studio-spectrum)) .studio-lead {
+  max-width: 60ch;
+}
+.studio-card:not(:has(.studio-spectrum)) .studio-cta {
+  justify-content: center;
+}
+
 /* In dark mode the near-black panel (#080808) sat DARKER than the page
    background (#0D0D0D), so the card visually disappeared. Match the other
    cards on the page instead (--bg-secondary = #171717 in dark), which sits
