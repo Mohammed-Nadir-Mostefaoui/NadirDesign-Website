@@ -3485,32 +3485,14 @@ main {
   padding: clamp(32px, 5vw, 64px);
   color: var(--text-primary);
 
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(32px, 5vw, 64px);
-  /* Center, not start: the spectrum list (5 rows) runs taller than the
-     narrative + CTA column, so top-aligning left it stranded near the
-     top edge — centering pulls it down to sit level with the list. */
+  /* Single centered column. This card used to carry a second column (a
+     numbered list, then a rail, then a tag cloud) naming the studio's
+     wider range, but every itemized version of that list read as a menu
+     of separate services — the fix that stuck was cutting the list
+     entirely and letting .studio-lead's prose carry it alone. */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-/* When the right-hand spectrum column is hidden, collapse the grid to a
-   single centered column and center the copy block inside the card. */
-.studio-card:not(:has(.studio-spectrum)) {
-  grid-template-columns: 1fr;
-  justify-items: center;
-}
-.studio-card:not(:has(.studio-spectrum)) .studio-col {
-  grid-column: 1 / -1;
-  width: min(100%, 720px);
-  align-items: center;
-  text-align: center;
-}
-.studio-card:not(:has(.studio-spectrum)) .studio-lead {
-  max-width: 60ch;
-}
-.studio-card:not(:has(.studio-spectrum)) .studio-cta {
-  justify-content: center;
 }
 
 /* In dark mode the near-black panel (#080808) sat DARKER than the page
@@ -3570,27 +3552,33 @@ main {
 }
 
 .studio-col {
-  /* Left-aligned (reverted 2026-08-02) — vertical balance against the
-     taller spectrum list is handled by .studio-card's align-items:center
-     instead, so this column keeps its original left-aligned text. */
+  /* Centered: this used to sit beside a second column (a list naming the
+     studio's wider range) and stayed left-aligned against it. That column
+     is gone now — every itemized version of it read as a service menu,
+     so .studio-lead's prose carries the point alone — and the card is a
+     single centered column, so this centers with it. */
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
+  width: min(100%, 720px);
 }
 
 .studio-lead {
   font-size: 1.02rem;
   line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 52ch;
+  max-width: 60ch;
+  text-align: center;
 }
 
 .studio-cta {
   margin-block-start: 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px 22px;
   flex-wrap: wrap;
 }
@@ -3622,63 +3610,6 @@ main {
 /* The box-arrow glyph points up-and-out, which reads as "leaves this site"
    in LTR. In RTL the whole layout mirrors, so mirror the glyph with it. */
 [dir="rtl"] .studio-cta-secondary svg { transform: scaleX(-1); }
-
-/* ── The spectrum: the studio's scope as a numbered progression rather
-   than a flat row of chips, so it reads as a process with direction. ── */
-.studio-spectrum {
-  position: relative;
-  z-index: 1;
-}
-
-.studio-spectrum-label {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin-block-end: 18px;
-}
-[dir="rtl"] .studio-spectrum-label {
-  font-size: 14px;
-  letter-spacing: 0;
-}
-
-.studio-step {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding-block: 14px;
-  border-block-start: 1px solid var(--border-default);
-}
-.studio-step:first-of-type { border-block-start: 0; padding-block-start: 0; }
-
-.studio-step-num {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: var(--accent-blue-light);
-  font-variant-numeric: tabular-nums;
-  flex-shrink: 0;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
-[dir="rtl"] .studio-step-num { letter-spacing: 0; }
-
-.studio-step-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  transition: color 0.25s ease;
-}
-
-.studio-step:hover .studio-step-name { color: var(--accent-blue-light); }
-.studio-step:hover .studio-step-num  { transform: translateX(2px); }
-[dir="rtl"] .studio-step:hover .studio-step-num { transform: translateX(-2px); }
-
-@media (prefers-reduced-motion: reduce) {
-  .studio-step-num { transition: none; }
-  .studio-step:hover .studio-step-num { transform: none; }
-}
 
 @media (max-width: 900px) {
   .studio-section { padding-block: 64px; }

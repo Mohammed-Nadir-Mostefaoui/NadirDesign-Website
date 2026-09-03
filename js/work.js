@@ -18,6 +18,17 @@
   var mobileQuery = window.matchMedia('(max-width: 900px)');
 
   /* ── Count-up stat animation ─────────────────────────────── */
+  /* Locale for the final frame''''''s thousands grouping only, matching the
+     copy convention already used in js/i18n.js (services.s3_note etc.):
+     en and ar both render Western digits with a comma (1,033), fr renders
+     a narrow no-break space (1 033). Decimal stats (e.g. 9.1) are
+     version-style numbers and stay a plain period in every language, same
+     as the copy does, so they never route through this map. */
+  function localeForCount() {
+    var lang = (window.i18n && window.i18n.current) ? window.i18n.current() : 'en';
+    return lang === 'fr' ? 'fr-FR' : 'en-US';
+  }
+
   function animateStat(el) {
     var raw = el.getAttribute('data-count');
     var target = parseFloat(raw);
@@ -35,7 +46,7 @@
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
-        el.textContent = isDecimal ? target.toFixed(1) : String(target);
+        el.textContent = isDecimal ? target.toFixed(1) : target.toLocaleString(localeForCount());
       }
     }
     requestAnimationFrame(step);
