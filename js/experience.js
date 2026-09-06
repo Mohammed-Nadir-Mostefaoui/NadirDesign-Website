@@ -46,12 +46,13 @@
 
   /* start month is 1-indexed (1 = January). Verified against the
      currently-authored duration strings (EN/FR/AR) at time of writing.
-     Datamaster ('dma') is intentionally NOT in this list as of 2026-08-02:
-     the role closed Dec 2025 (employee/freelancer period) when the
-     relationship became a Nawat Studio client engagement instead — its
-     duration is now fixed authored text, not live-computed. See 'nawat'. */
+     Datamaster ('dma') is an ongoing design-partner relationship since
+     September 2024 (never closed; Nawat Studio, launched Jan 2026, is
+     where part of that partnership scaled to, starting with the Iksir
+     Design System project in Feb 2026 -- see 'nawat'). */
   var ONGOING_ROLES = [
     { id: 'nawat', startYear: 2026, startMonth: 1 },
+    { id: 'dma', startYear: 2024, startMonth: 9 },
     { id: 'atqin', startYear: 2023, startMonth: 6 }
   ];
 
