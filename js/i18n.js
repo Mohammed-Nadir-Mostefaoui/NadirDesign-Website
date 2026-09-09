@@ -281,8 +281,8 @@
         s3_cta:       "Let's scope it",
         dp_label:      'Ongoing',
         dp_title:      'Already have a product and a design system?',
-        dp_body:       'Design Partner keeps it moving. A set number of days each month for new features and improvements, whether we have worked together before or not. We start with a paid trial month, so we both find out whether it fits.',
-        dp_cta:        'Ask about Design Partner',
+        dp_body:       'Product Design Partner keeps it moving. A set number of days each month for new features and improvements, whether we have worked together before or not. We start with a paid trial month, so we both find out whether it fits.',
+        dp_cta:        'Ask about Product Design Partner',
         split_lead:   'Nadir is who you hire. Nawat Studio is how the work scales.',
         split_body:   'Work runs directly with Nadir until a project needs more than one person. Then it runs as Nawat Studio, with a second designer, on the same price list. The trigger is scope, not budget, and neither name is hidden from anyone.',
         escalation:   'If that happens mid-project, I tell you in the conversation where it happens, not in a revised document a week later.',
@@ -403,7 +403,7 @@
         reflect: { eyebrow: "Reflection", quote: "Leading a system means designing the <span>decisions</span>, not just the screens.", p1: "The hardest (and most rewarding) part wasn't drawing components. It was making choices that had to hold up across two engineering stacks, three languages, two colour modes, and a second designer's hands. Getting the architecture and the accessibility right early is what let the library scale without collapsing into exceptions.", p2: "It also reshaped how I work: treating documentation as a product, writing rules that other people can follow without me in the room, and staying accountable for a system long after its first release." },
         closing: { eyebrow: "Let's talk", title: "Have a system like this in mind?", lead: "I design systems, products, and the foundations under them. Tell me what you're building, and let's make it consistent, accessible, and fast to ship." },
         pager: { all: "Back to homepage", contact: "Get in touch" }, more: { eyebrow: "Keep exploring", title: "More case studies" },
-        form: { ptype_label: "What can I help with?", pt_audit: "Product Audit", pt_design: "Product Design", pt_system: "Design System", pt_dpartner: "Design Partner", pt_multi: "More than one of these", pt_other: "Something else" }
+        form: { ptype_label: "What can I help with?", pt_audit: "Product Audit", pt_design: "Product Design", pt_system: "Design System", pt_dpartner: "Product Design Partner", pt_multi: "More than one of these", pt_other: "Something else" }
       },
       cs2: {
         hero: { eyebrow: "Case Study 02 · Retail Operations App", title: "Task Master", sub: "A task-management app for retail store teams, purchasing, inventory, stock corrections, and shelf operations turned into one clear, scannable workflow across mobile, tablet, and desktop.", role_k: "Role", role_v: "Product Designer, sole designer", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Team", team_v: "BA · tech lead · 3 dev teams", platforms_k: "Platforms", platforms_v: "Mobile · Tablet · Desktop", cta: "Let's build something like this", status: "In use by retail teams · new modules in design" },
@@ -691,8 +691,8 @@
         s3_cta:       'Cadrons-le ensemble',
         dp_label:      'En continu',
         dp_title:      'Vous avez déjà un produit et un design system ?',
-        dp_body:       "Design Partner le fait avancer. Un nombre de jours défini chaque mois pour de nouvelles fonctionnalités et des améliorations, que nous ayons déjà travaillé ensemble ou non. On commence par un mois d'essai payant, pour que nous sachions tous les deux si ça colle.",
-        dp_cta:        'Parlons de Design Partner',
+        dp_body:       "Product Design Partner le fait avancer. Un nombre de jours défini chaque mois pour de nouvelles fonctionnalités et des améliorations, que nous ayons déjà travaillé ensemble ou non. On commence par un mois d'essai payant, pour que nous sachions tous les deux si ça colle.",
+        dp_cta:        'Parlons de Product Design Partner',
         split_lead:   "Nadir est la personne que vous engagez. Nawat Studio est la façon dont le travail passe à l'échelle.",
         split_body:   "Le travail se déroule directement avec Nadir jusqu'à ce qu'un projet demande plus d'une personne. Il se déroule alors sous le nom de Nawat Studio, avec un second designer, sur la même grille tarifaire. Le déclencheur est le périmètre, pas le budget, et aucun des deux noms n'est caché à qui que ce soit.",
         escalation:   'Si cela arrive en cours de projet, je vous le dis dans la conversation où cela arrive, pas dans un document révisé une semaine plus tard.',
@@ -813,7 +813,7 @@
         reflect: { eyebrow: "Réflexion", quote: "Piloter un système, c'est concevoir les <span>décisions</span>, pas seulement les écrans.", p1: "Le plus difficile (et le plus gratifiant) n'était pas de dessiner des composants. C'était de faire des choix qui devaient tenir sur deux stacks techniques, trois langues, deux modes de couleur et entre les mains d'un second designer. Avoir posé tôt l'architecture et l'accessibilité, c'est ce qui a permis à la bibliothèque de grandir sans s'effondrer en exceptions.", p2: "Cela a aussi transformé ma façon de travailler : traiter la documentation comme un produit, écrire des règles que d'autres peuvent suivre sans moi dans la pièce, et rester responsable d'un système bien après sa première version." },
         closing: { eyebrow: "Discutons", title: "Un système comme celui-ci en tête ?", lead: "Je conçois des systèmes, des produits et les fondations en dessous. Dites-moi ce que vous construisez, et rendons-le cohérent, accessible et rapide à livrer." },
         pager: { all: "Retour à l'accueil", contact: "Me contacter" }, more: { eyebrow: "À explorer", title: "Plus d'études de cas" },
-        form: { ptype_label: "Comment puis-je aider ?", pt_audit: "Audit Produit", pt_design: "Design Produit", pt_system: "Design System", pt_dpartner: "Design Partner", pt_multi: "Plusieurs de ces offres", pt_other: "Autre chose" }
+        form: { ptype_label: "Comment puis-je aider ?", pt_audit: "Audit Produit", pt_design: "Design Produit", pt_system: "Design System", pt_dpartner: "Product Design Partner", pt_multi: "Plusieurs de ces offres", pt_other: "Autre chose" }
       },
       cs2: {
         hero: { eyebrow: "Étude de cas 02 · Application d'opérations retail", title: "Task Master", sub: "Une application de gestion des tâches pour les équipes de magasin, achats, inventaire, corrections de stock et opérations en rayon réunis en un flux clair, lisible d'un coup d'œil, sur mobile, tablette et desktop.", role_k: "Rôle", role_v: "Designer Produit, designer unique", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Équipe", team_v: "BA · lead technique · 3 équipes dev", platforms_k: "Plateformes", platforms_v: "Mobile · Tablette · Desktop", cta: "Lançons un projet comme celui-ci", status: "Utilisée par les équipes retail · nouveaux modules en conception" },
@@ -1101,8 +1101,8 @@
         s3_cta:       'لنحدّد النطاق',
         dp_label:      'عمل مستمر',
         dp_title:      'لديك بالفعل منتج ونظام تصميم؟',
-        dp_body:       'يبقيه شريك التصميم متحرّكًا. عدد أيام محدّد كل شهر لميزات جديدة وتحسينات، سواء عملنا معًا من قبل أو لا. نبدأ بشهر تجريبي مدفوع، لنعرف كلانا إن كان الأمر مناسبًا.',
-        dp_cta:        'اسأل عن شريك التصميم',
+        dp_body:       'يبقيه شريك تصميم المنتج متحرّكًا. عدد أيام محدّد كل شهر لميزات جديدة وتحسينات، سواء عملنا معًا من قبل أو لا. نبدأ بشهر تجريبي مدفوع، لنعرف كلانا إن كان الأمر مناسبًا.',
+        dp_cta:        'اسأل عن شريك تصميم المنتج',
         split_lead:   'نذير هو من توظّفه. استوديو نواة هو كيف يتّسع العمل.',
         split_body:   'يجري العمل مباشرة مع نذير إلى أن يحتاج المشروع إلى أكثر من شخص. عندها يجري باسم استوديو نواة، ومعه مصمّم ثانٍ، وبنفس قائمة الأسعار. المُحفِّز هو نطاق العمل لا الميزانية، ولا يُخفى أيّ من الاسمين عن أحد.',
         escalation:   'وإذا حدث ذلك أثناء المشروع، أقول لك في المحادثة التي يحدث فيها، لا في مستند مُعدَّل بعد أسبوع.',
@@ -1223,7 +1223,7 @@
         reflect: { eyebrow: "خلاصة", quote: "قيادة نظام تعني تصميم <span>القرارات</span>، لا الشاشات فحسب.", p1: "الجزء الأصعب (والأكثر إرضاءً) لم يكن رسم المكوّنات. بل اتخاذ خيارات تصمد عبر منصّتين تقنيتين، وثلاث لغات، ووضعين للألوان، وبين يدَي مصمّم ثانٍ. إرساء البنية وإمكانية الوصول مبكرًا هو ما سمح للمكتبة بالنمو دون أن تنهار إلى استثناءات.", p2: "كما أعاد ذلك تشكيل طريقة عملي: التعامل مع التوثيق كمنتج، وكتابة قواعد يستطيع الآخرون اتّباعها دون وجودي في الغرفة، والبقاء مسؤولًا عن نظام بعد إصداره الأول بوقت طويل." },
         closing: { eyebrow: "لنتحدّث", title: "هل لديك نظام مثل هذا في ذهنك؟", lead: "أصمّم أنظمة ومنتجات والأساسات التي تحتها. أخبرني بما تبنيه، ولنجعله متسقًا وسهل الوصول وسريع الإطلاق." },
         pager: { all: "العودة إلى الصفحة الرئيسية", contact: "تواصل معي" }, more: { eyebrow: "تابِع الاستكشاف", title: "المزيد من دراسات الحالة" },
-        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_audit: "تدقيق المنتج", pt_design: "تصميم المنتج", pt_system: "نظام التصميم", pt_dpartner: "شريك التصميم", pt_multi: "أكثر من واحدة من هذه", pt_other: "شيء آخر" }
+        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_audit: "تدقيق المنتج", pt_design: "تصميم المنتج", pt_system: "نظام التصميم", pt_dpartner: "شريك تصميم المنتج", pt_multi: "أكثر من واحدة من هذه", pt_other: "شيء آخر" }
       },
       cs2: {
         hero: { eyebrow: "دراسة حالة 02 · تطبيق عمليات التجزئة", title: "Task Master", sub: "تطبيق لإدارة المهام لفرق متاجر التجزئة، الشراء والجرد وتصحيح المخزون وعمليات الأرفف في مسار عمل واحد واضح يُقرأ بلمحة، على الجوال والجهاز اللوحي وسطح المكتب.", role_k: "الدور", role_v: "مصمم منتجات، المصمم الوحيد", client_k: "العميل", client_v: "Datamaster Analytics · ERP، فرنسا", team_k: "الفريق", team_v: "محلّل أعمال · قائد تقني · 3 فرق تطوير", platforms_k: "المنصات", platforms_v: "جوال · جهاز لوحي · سطح مكتب", cta: "لنبدأ مشروعًا مثل هذا", status: "قيد الاستخدام لدى فرق التجزئة · وحدات جديدة قيد التصميم" },
