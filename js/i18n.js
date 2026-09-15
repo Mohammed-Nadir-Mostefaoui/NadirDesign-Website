@@ -285,7 +285,6 @@
         dp_cta:        'Ask about Product Design Partner',
         split_lead:   'Nadir is who you hire. Nawat Studio is how the work scales.',
         split_body:   'Work runs directly with Nadir until a project needs more than one person. Then it runs as Nawat Studio, with a second designer, on the same price list. The trigger is scope, not budget, and neither name is hidden from anyone.',
-        escalation:   'If that happens mid-project, I tell you in the conversation where it happens, not in a revised document a week later.',
         custom_title: 'Something bigger, or not sure which one?',
         custom_body:  'Tell me what you are building and I will scope it with you.',
         custom_cta:   'Start a conversation'
@@ -695,7 +694,6 @@
         dp_cta:        'Parlons de Product Design Partner',
         split_lead:   "Nadir est la personne que vous engagez. Nawat Studio est la façon dont le travail passe à l'échelle.",
         split_body:   "Le travail se déroule directement avec Nadir jusqu'à ce qu'un projet demande plus d'une personne. Il se déroule alors sous le nom de Nawat Studio, avec un second designer, sur la même grille tarifaire. Le déclencheur est le périmètre, pas le budget, et aucun des deux noms n'est caché à qui que ce soit.",
-        escalation:   'Si cela arrive en cours de projet, je vous le dis dans la conversation où cela arrive, pas dans un document révisé une semaine plus tard.',
         custom_title: 'Quelque chose de plus large, ou vous hésitez ?',
         custom_body:  'Dites-moi ce que vous construisez et je le cadrerai avec vous.',
         custom_cta:   'Démarrer la conversation'
@@ -1105,7 +1103,6 @@
         dp_cta:        'اسأل عن شريك تصميم المنتج',
         split_lead:   'نذير هو من توظّفه. استوديو نواة هو كيف يتّسع العمل.',
         split_body:   'يجري العمل مباشرة مع نذير إلى أن يحتاج المشروع إلى أكثر من شخص. عندها يجري باسم استوديو نواة، ومعه مصمّم ثانٍ، وبنفس قائمة الأسعار. المُحفِّز هو نطاق العمل لا الميزانية، ولا يُخفى أيّ من الاسمين عن أحد.',
-        escalation:   'وإذا حدث ذلك أثناء المشروع، أقول لك في المحادثة التي يحدث فيها، لا في مستند مُعدَّل بعد أسبوع.',
         custom_title: 'شيء أكبر، أو غير متأكّد أيّها يناسبك؟',
         custom_body:  'أخبرني بما تبنيه وسأحدّد نطاقه معك.',
         custom_cta:   'لنبدأ الحديث'
