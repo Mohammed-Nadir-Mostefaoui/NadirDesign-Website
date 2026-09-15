@@ -2990,7 +2990,10 @@ main {
   display: flex;
   flex-direction: column;
   padding: clamp(22px, 2.4vw, 30px);
-  background-color: var(--surface-light-card);
+  /* Same gray fill as .work-panels, .skill-card and the Experience
+     accordion — one card color across the page (bg-secondary auto-
+     resolves per theme, so dark mode is unaffected). */
+  background-color: var(--bg-secondary);
   border: 1px solid var(--border-default);
   border-radius: 20px;
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
@@ -3162,7 +3165,9 @@ main {
   padding: clamp(22px, 2.4vw, 30px) clamp(24px, 2.6vw, 34px);
   border: 1px solid var(--border-default);
   border-radius: 20px;
-  background-color: var(--bg-primary);
+  /* Matches .svc-card now: same gray fill as .work-panels, .skill-card
+     and the Experience accordion. */
+  background-color: var(--bg-secondary);
 }
 .svc-partner-text { flex: 1 1 460px; min-inline-size: 0; }
 .svc-partner-label {
