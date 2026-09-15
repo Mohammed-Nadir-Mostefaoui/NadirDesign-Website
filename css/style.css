@@ -3207,7 +3207,12 @@ main {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
   gap: clamp(20px, 2.5vw, 40px);
-  align-items: start;
+  /* Centered, not top-aligned: the split statement is now just two short
+     paragraphs (the escalation line under it was cut 2026-09), so at
+     align-items: start it sat noticeably shorter than the custom-route
+     card beside it. Centering balances the two against the card's height
+     instead of pinning both to the row's top edge. */
+  align-items: center;
 }
 .svc-split {
   padding-inline-start: clamp(18px, 2vw, 26px);
@@ -3226,13 +3231,6 @@ main {
   line-height: 1.7;
   color: var(--text-secondary);
 }
-.svc-escalation {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.65;
-  color: var(--text-tertiary);
-}
-
 .svc-custom {
   padding: clamp(22px, 2.4vw, 30px);
   background-color: var(--bg-secondary);
