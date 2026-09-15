@@ -3089,26 +3089,16 @@ main {
   opacity: 0.55;
 }
 
-/* The honest exclusion on 01, the scope boundary on 02, the proof
-   artifact on 03. Same slot, deliberately quieter than the bullets. */
-.svc-note {
-  margin: 0;
-  margin-block-start: auto;
-  padding-block-start: 14px;
-  border-block-start: 1px solid var(--border-default);
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--text-tertiary);
-}
-
 /* auto margin pins the foot and link to the bottom, so the three links
-   align on one baseline whatever the copy above does. */
+   align on one baseline whatever the copy above does (the notes that
+   used to carry this margin were removed 2026-09-15). */
 .svc-foot {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 4px 14px;
+  margin-block-start: auto;
   padding-block-start: 18px;
 }
 .svc-meta { font-size: 12.5px; color: var(--text-tertiary); }
@@ -3254,7 +3244,6 @@ main {
 @media (max-width: 900px) {
   .svc-grid { grid-template-columns: 1fr; }
   .svc-close { grid-template-columns: 1fr; }
-  .svc-note { margin-block-start: 0; }
 }
 
 /* ============================================================
