@@ -68,7 +68,7 @@
         stat2_num:     '20+',
         stat2_label:   'Projects\ncontributed',
         stat3_num:     '03',
-        stat3_label:   'Countries\nexperience'
+        stat3_label:   'Regions\nexperience'
       },
       work: {
         label:         'SELECTED WORK',
@@ -481,7 +481,7 @@
         stat2_num:     '20+',
         stat2_label:   'Projets\naccompagnés',
         stat3_num:     '03',
-        stat3_label:   "Pays\nd'expérience"
+        stat3_label:   "Régions\nd'expérience"
       },
       work: {
         label:         'TRAVAUX SÉLECTIONNÉS',
@@ -888,7 +888,7 @@
         stat2_num:     '+20',
         stat2_label:   'مشروع\nساهمتُ فيه',
         stat3_num:     '03',
-        stat3_label:   'دول\nعملت فيها'
+        stat3_label:   'مناطق\nعملت فيها'
       },
       work: {
         label:         'أعمال مختارة',
