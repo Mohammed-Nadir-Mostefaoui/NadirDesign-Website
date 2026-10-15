@@ -7,10 +7,10 @@
        description and social-share tags follow the selected language
        instead of staying English. -->
   <meta name="i18n-page" content="home">
-  <meta name="description" content="Product designer for ERP, SaaS and internal tools: data-heavy workflows on token-first design systems. 1,033 variables, 24 components, three languages.">
+  <meta name="description" content="Product and UX design for apps, dashboards, ERP modules and internal tools, and the design systems behind them. In Arabic, French and English.">
   <meta name="author" content="Nadir Mostefaoui">
-  <meta property="og:title" content="Nadir Mostefaoui · Product Designer for Enterprise and Data-Heavy UX">
-  <meta property="og:description" content="ERP, SaaS and internal tools made legible, and the design systems behind them. Last one shipped: 1,033 variables, 24 components, three languages.">
+  <meta property="og:title" content="Nadir Mostefaoui · Product Designer · UX and design systems">
+  <meta property="og:description" content="Apps, dashboards and internal tools, and the design systems behind them. The last system shipped 1,033 variables and 24 components. Start with a free look at one flow of your product, no charge and no pitch.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
   <!-- Social preview. 1200x630 services card: the same artwork used on the
@@ -32,7 +32,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://nadirdesign.com/assets/images/og-services.png">
 
-  <title>Nadir Mostefaoui · Product Designer for Enterprise and Data-Heavy UX</title>
+  <title>Nadir Mostefaoui · Product Designer · UX and design systems</title>
 
   <!-- Scroll position on load — three scenarios:
 
@@ -131,7 +131,7 @@
        before the browser requests it, for the same reason. -->
   <script>
     (function(){
-      const lang  = localStorage.getItem('nadir-lang') || 'en';
+      const lang  = localStorage.getItem('nadir-lang') || 'ar';
       const isRTL = lang === 'ar';
       document.documentElement.setAttribute('lang', lang);
       document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
@@ -331,7 +331,7 @@
                js/i18n.js, since switchLang() overwrites this node on every
                language change. The copy below is only the first-paint fallback. -->
           <p class="hero-bio" data-i18n="hero.bio" data-i18n-html>
-            I design complex, data-heavy products. B2B SaaS, ERP modules, dashboards, internal tools, and the design systems underneath them. Arabic and English are built into the same system, so neither ends up a mirrored afterthought.<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>
+            Product and UX design for digital products: web and mobile apps, dashboards, internal tools, and the design systems underneath them. In Arabic, French and English. Some of that work gets dense, and the case studies below are the densest of it.<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>
           </p>
 
           <div class="hero-actions">
@@ -412,7 +412,7 @@ experience</span>
           </div>
           <div class="exp-title-row">
             <h2 class="exp-title" id="work-title" data-i18n="work.title">Case Studies</h2>
-            <p class="exp-subtitle" data-i18n="work.subtitle">A closer look at how I turn complex, data-heavy workflows into usable products.</p>
+            <p class="exp-subtitle" data-i18n="work.subtitle">A closer look at how a complex workflow becomes a product people can actually use.</p>
           </div>
         </div>
 
@@ -734,14 +734,32 @@ experience</span>
           </div>
         </div>
 
+        <!-- The opening offer. B&OS v5.1 §15/§20: the free one-flow look sits
+             above the three services, never inside them, and states its own cap
+             on the page. It carries the section's single dark button, which is why
+             the custom route at the bottom is now a text link. -->
+        <aside class="svc-look">
+          <div class="svc-look-text">
+            <div class="svc-look-head">
+              <span class="svc-look-label" data-i18n="services.look_label">Start here</span>
+              <span class="svc-chip" data-i18n="services.look_chip">Free</span>
+            </div>
+            <h3 class="svc-look-title" data-i18n="services.look_title">Show me where your product gets stuck</h3>
+            <p class="svc-look-body" data-i18n="services.look_body">There is a part of your product people get stuck in, and you probably already know which one. Show me that workflow and I will analyse it screen by screen, then send you a short recording, under fifteen minutes, of where the experience breaks down, where their time goes, and what I would change.</p>
+          </div>
+          <div class="svc-look-aside">
+            <a class="btn btn-dark" href="#contact" data-project-type="Free look at one flow"><span data-i18n="services.look_cta">Ask for the free analysis</span><svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </aside>
+
         <div class="svc-grid">
-          <article class="svc-card svc-card--entry">
+          <article class="svc-card">
             <div class="svc-top">
               <span class="svc-idx" aria-hidden="true">01</span>
             <span class="svc-chip" data-i18n="services.chip">Start here</span>
             </div>
             <h3 class="svc-title" data-i18n="services.s1_title">Product Audit</h3>
-            <p class="svc-promise" data-i18n="services.s1_promise">A full read of your product, written up and prioritised.</p>
+            <p class="svc-promise" data-i18n="services.s1_promise">A full UX read of your product, written up and prioritised.</p>
             <ul class="svc-list">
               <li data-i18n="services.s1_b1">Heuristics, information architecture, hierarchy</li>
               <li data-i18n="services.s1_b2">Accessibility against WCAG 2.1 AA</li>
@@ -750,7 +768,7 @@ experience</span>
             </ul>
             <div class="svc-foot">
               <span class="svc-meta" data-i18n="services.s1_meta">About a week</span>
-              <span class="svc-price svc-price--figure" data-i18n="services.s1_price" hidden>From $1,300</span>
+              <span class="svc-price" data-i18n="services.s1_price">Fixed price</span>
             </div>
             <a class="svc-cta svc-cta--primary" href="#contact" data-project-type="Product Audit"><span data-i18n="services.s1_cta">Book an audit</span><svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
@@ -759,7 +777,7 @@ experience</span>
               <span class="svc-idx" aria-hidden="true">02</span>
             </div>
             <h3 class="svc-title" data-i18n="services.s2_title">Product Design</h3>
-            <p class="svc-promise" data-i18n="services.s2_promise">One module, workflow, dashboard or app, designed and ready to build.</p>
+            <p class="svc-promise" data-i18n="services.s2_promise">The UX and the interface of one module, workflow, dashboard or app, ready to build.</p>
             <ul class="svc-list">
               <li data-i18n="services.s2_b1">User flows and wireframes</li>
               <li data-i18n="services.s2_b2">Final screens with every state</li>
@@ -767,7 +785,7 @@ experience</span>
               <li data-i18n="services.s2_b4">Developer handoff and a session with the engineers</li>
             </ul>
             <div class="svc-foot">
-              <span class="svc-meta" data-i18n="services.s2_meta">Two to four weeks per module</span>
+              <span class="svc-meta" data-i18n="services.s2_meta">Six to ten weeks per module</span>
               <span class="svc-price" data-i18n="services.s2_price">Scoped per project</span>
             </div>
             <a class="svc-cta" href="#contact" data-project-type="Product Design"><span data-i18n="services.s2_cta">Let's scope it</span><svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -785,7 +803,7 @@ experience</span>
               <li data-i18n="services.s3_b4">Documentation and governance rules</li>
             </ul>
             <div class="svc-foot">
-              <span class="svc-meta" data-i18n="services.s3_meta">Six to twelve weeks</span>
+              <span class="svc-meta" data-i18n="services.s3_meta">Three to six months</span>
               <span class="svc-price" data-i18n="services.s3_price">Scoped per project</span>
             </div>
             <a class="svc-cta" href="#contact" data-project-type="Design System"><span data-i18n="services.s3_cta">Let's scope it</span><svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -819,7 +837,7 @@ experience</span>
           <div class="svc-custom">
             <h3 class="svc-custom-title" data-i18n="services.custom_title">Something bigger, or not sure which one?</h3>
             <p class="svc-custom-body" data-i18n="services.custom_body">Tell me what you are building and I will scope it with you.</p>
-            <a class="btn btn-dark" href="#contact" data-project-type="More than one of these"><span data-i18n="services.custom_cta">Start a conversation</span><svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="svc-cta" href="#contact" data-project-type="More than one of these"><span data-i18n="services.custom_cta">Start a conversation</span><svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
 
@@ -839,7 +857,7 @@ experience</span>
           </div>
           <div class="exp-title-row">
             <h2 class="exp-title" id="studio-title" data-i18n="studio.title">I Lead Nawat Studio</h2>
-            <p class="exp-subtitle" data-i18n="studio.subtitle">A wider range of work, with the same person leading it.</p>
+            <p class="exp-subtitle" data-i18n="studio.subtitle">More hands when a project needs them, with the same person leading it.</p>
           </div>
         </div>
 
@@ -847,7 +865,7 @@ experience</span>
           <span class="studio-watermark" aria-hidden="true" data-i18n="studio.watermark">NAWAT</span>
 
           <div class="studio-col">
-            <p class="studio-lead" data-i18n="studio.lead">Some work needs more than product design. Nawat Studio is where a second designer joins and the range widens to identity, research and testing. I stay the one leading it, at the same standard as the case studies above.</p>
+            <p class="studio-lead" data-i18n="studio.lead">Some work needs more than one person. Nawat Studio is where a second designer joins production, at the same standard as the case studies above. I stay the one leading it.</p>
             <div class="studio-cta">
               <a class="btn btn-dark" href="#contact" data-project-type="More than one of these">
                 <span data-i18n="studio.cta">Talk about a bigger project</span>
@@ -877,7 +895,7 @@ experience</span>
           </div>
           <div class="exp-title-row">
             <h2 class="exp-title" data-i18n="experience.title">My Experience</h2>
-            <p class="exp-subtitle" data-i18n="experience.subtitle">Over the years, I've had the privilege to work with amazing teams and clients.</p>
+            <p class="exp-subtitle" data-i18n="experience.subtitle">The teams and the clients I have worked with.</p>
           </div>
         </div>
 
@@ -1141,7 +1159,7 @@ experience</span>
           </div>
           <div class="exp-title-row">
             <h2 class="exp-title" id="skills-title" data-i18n="skills.title">My Skills</h2>
-            <p class="exp-subtitle" data-i18n="skills.subtitle">A comprehensive skill set developed through years of hands-on experience.</p>
+            <p class="exp-subtitle" data-i18n="skills.subtitle">What I actually work with, day to day.</p>
           </div>
         </div>
 
@@ -1299,8 +1317,8 @@ experience</span>
           <span class="footer-badge-dot" aria-hidden="true"></span>
           <span data-i18n="footer.badge">Available for new projects</span>
         </div>
-        <h2 class="footer-heading" data-i18n="footer.heading">Let's build something great</h2>
-        <p class="footer-subtitle" data-i18n="footer.subtitle">Have an idea or a project in mind? I'd love to hear about it, send a message or reach out directly below.</p>
+        <h2 class="footer-heading" data-i18n="footer.heading">Tell me what you are building</h2>
+        <p class="footer-subtitle" data-i18n="footer.subtitle">Two lines is enough. Or reach me directly from the links below.</p>
         <!-- Scroll cue. On short viewports the intro fills the screen and the
              form below it is invisible, so this says "keep going". Decorative
              only (aria-hidden): a screen reader reads straight on into the
@@ -1320,6 +1338,7 @@ experience</span>
             <div class="ff-ptype-field">
               <span class="ff-ptype-label" data-i18n="cs.form.ptype_label">What can I help with?</span>
               <div class="cs-ptype" role="radiogroup" aria-label="Project type">
+                <button type="button" class="cs-ptype-chip" data-value="Free look at one flow" data-i18n="cs.form.pt_look">A free analysis of a workflow</button>
                 <button type="button" class="cs-ptype-chip" data-value="Product Audit" data-i18n="cs.form.pt_audit">Product Audit</button>
                 <button type="button" class="cs-ptype-chip" data-value="Product Design" data-i18n="cs.form.pt_design">Product Design</button>
                 <button type="button" class="cs-ptype-chip" data-value="Design System" data-i18n="cs.form.pt_system">Design System</button>

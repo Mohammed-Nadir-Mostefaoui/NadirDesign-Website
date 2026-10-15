@@ -44,7 +44,7 @@
   <!-- Language/direction before paint -->
   <script>
     (function(){
-      const lang  = localStorage.getItem('nadir-lang') || 'en';
+      const lang  = localStorage.getItem('nadir-lang') || 'ar';
       const isRTL = lang === 'ar';
       document.documentElement.setAttribute('lang', lang);
       document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
@@ -607,6 +607,7 @@
             <div class="ff-ptype-field">
               <span class="ff-ptype-label" data-i18n="cs.form.ptype_label">What can I help with?</span>
               <div class="cs-ptype" role="radiogroup" aria-label="Project type">
+                <button type="button" class="cs-ptype-chip" data-value="Free look at one flow" data-i18n="cs.form.pt_look">A free analysis of a workflow</button>
                 <button type="button" class="cs-ptype-chip" data-value="Product Audit" data-i18n="cs.form.pt_audit">Product Audit</button>
                 <button type="button" class="cs-ptype-chip" data-value="Product Design" data-i18n="cs.form.pt_design">Product Design</button>
                 <button type="button" class="cs-ptype-chip" data-value="Design System" data-i18n="cs.form.pt_system">Design System</button>

@@ -2978,6 +2978,64 @@ main {
   gap: clamp(36px, 4.5vw, 56px);
 }
 
+/* ── The opening offer: the free one-flow look ──
+   B&OS v5.1 §15 + §20. The free look is the opening offer, so it sits ABOVE the
+   three services rather than inside them, and its cap is stated in public: a cap
+   stated on the page is a cap that never has to be defended in a conversation.
+   Deliberately NOT a fourth card. A wide two-column band reads as an invitation
+   rather than a tier, and it carries the accent hairline that used to mark the
+   Product Audit card, because the entry point moved here. */
+.svc-look {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(22px, 3vw, 48px);
+  align-items: center;
+  padding: clamp(26px, 3vw, 40px);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-block-start: 2px solid var(--accent-blue);
+  border-radius: 20px;
+}
+.svc-look-text { min-inline-size: 0; }
+.svc-look-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-block-end: 12px;
+}
+.svc-look-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+/* Arabic script never carries Latin-style tracking or forced casing. */
+[dir="rtl"] .svc-look-label { letter-spacing: 0; text-transform: none; }
+.svc-look-title {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+.svc-look-body {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.svc-look-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, 2vw, 22px);
+}
+@media (max-width: 900px) {
+  .svc-look { grid-template-columns: 1fr; align-items: start; }
+}
+
 /* ── The three cards ── */
 .svc-grid {
   display: grid;

@@ -20,9 +20,9 @@
          shared links stop showing English copy. */
       meta: {
         home: {
-          title: 'Nadir Mostefaoui · Product Designer for Enterprise and Data-Heavy UX',
-          desc:  'Product designer for ERP, SaaS and internal tools: data-heavy workflows on token-first design systems. 1,033 variables, 24 components, three languages.',
-          og:    'ERP, SaaS and internal tools made legible, and the design systems behind them. Last one shipped: 1,033 variables, 24 components, three languages.'
+          title: 'Nadir Mostefaoui · Product Designer · UX and design systems',
+          desc:  'Product and UX design for apps, dashboards, ERP modules and internal tools, and the design systems behind them. In Arabic, French and English.',
+          og:    'Apps, dashboards and internal tools, and the design systems behind them. The last system shipped 1,033 variables and 24 components. Start with a free look at one flow of your product, no charge and no pitch.'
         },
         cs1: {
           title: 'Iksir Design System (Case Study) · Nadir Mostefaoui',
@@ -59,7 +59,7 @@
       hero: {
         greeting:      "Hi, I'm Nadir Mostefaoui",
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Product</span><span class="ht-l">Designer</span></span>',
-        bio:           'I design complex, data-heavy products. B2B SaaS, ERP modules, dashboards, internal tools, and the design systems underneath them. Arabic and English are built into the same system, so neither ends up a mirrored afterthought.<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>',
+        bio:           'Product and UX design for digital products: web and mobile apps, dashboards, internal tools, and the design systems underneath them. In Arabic, French and English. Some of that work gets dense, and the case studies below are the densest of it.<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>',
         cta_primary:   "Let's Talk",
         cta_secondary: 'View My Work',
         cta_cv:        'View CV',
@@ -73,7 +73,7 @@
       work: {
         label:         'SELECTED WORK',
         title:         'Case Studies',
-        subtitle:      'A closer look at how I turn complex, data-heavy workflows into usable products.',
+        subtitle:      'A closer look at how a complex workflow becomes a product people can actually use.',
         nda:           'NDA: specifics generalized, no confidential data shown',
         cta:           'View Case Study',
         open_aria:     'Open case study',
@@ -152,7 +152,7 @@
            editing nearby content, but don't worry about them drifting. */
         label:    'TRACK RECORD',
         title:    'My Experience',
-        subtitle: 'Over the years, I\'ve had the privilege to work with amazing teams and clients.',
+        subtitle: 'The teams and the clients I have worked with.',
         tag_pd:   'Product Design',
         tag_ds:   'Design Systems',
         tag_lead: 'Leadership',
@@ -239,28 +239,33 @@
       studio: {
         eyebrow:        'The Studio',
         title:          'I Lead Nawat Studio',
-        subtitle:       'A wider range of work, with the same person leading it.',
+        subtitle:       'More hands when a project needs them, with the same person leading it.',
         watermark:      'NAWAT',
-        lead:           'Some work needs more than product design. Nawat Studio is where a second designer joins and the range widens to identity, research and testing. I stay the one leading it, at the same standard as the case studies above.',
+        lead:           'Some work needs more than one person. Nawat Studio is where a second designer joins production, at the same standard as the case studies above. I stay the one leading it.',
         cta:            'Talk about a bigger project',
         cta_secondary:  'Visit nawat.studio'
       },
       services: {
         label:        'Services',
-        title:        'Three ways to start',
-        subtitle:     'Start with a read of what you already have, or go straight to the system underneath.',
-        chip:         'Start here',
+        title:        'Three ways to work together',
+        subtitle:     'After the free look, or straight away if you already know what you need.',
+        chip:         'First paid step',
+        look_label:   'Start here',
+        look_chip:    'Free',
+        look_title:   'Show me where your product gets stuck',
+        look_body:    'There is a part of your product people get stuck in, and you probably already know which one. Show me that workflow and I will analyse it screen by screen, then send you a short recording, under fifteen minutes, of where the experience breaks down, where their time goes, and what I would change.',
+        look_cta:     'Ask for the free analysis',
         s1_title:     'Product Audit',
-        s1_promise:   'A full read of your product, written up and prioritised.',
+        s1_promise:   'A full UX read of your product, written up and prioritised.',
         s1_b1:        'Heuristics, information architecture, hierarchy',
         s1_b2:        'Accessibility against WCAG 2.1 AA',
         s1_b3:        'Arabic and right-to-left readiness',
         s1_b4:        'Report, ranked issue list, roadmap, call',
         s1_meta:      'About a week',
-        s1_price:     'From $1,300',
+        s1_price:     'Fixed price',
         s1_cta:       'Book an audit',
         s2_title:     'Product Design',
-        s2_promise:   'One module, workflow, dashboard or app, designed and ready to build.',
+        s2_promise:   'The UX and the interface of one module, workflow, dashboard or app, ready to build.',
         s2_b1:        'User flows and wireframes',
         s2_b2:        'Final screens with every state',
         s2_b3:        'A working prototype',
@@ -290,7 +295,7 @@
       skills: {
         label:    'CAPABILITIES',
         title:    'My Skills',
-        subtitle: 'A comprehensive skill set developed through years of hands-on experience.',
+        subtitle: 'What I actually work with, day to day.',
         studio: {
           title: 'Studio & Leadership',
           t1:    'Design Direction',
@@ -351,8 +356,8 @@
       },
       footer: {
         badge:            'Available for new projects',
-        heading:          "Let's build something great",
-        subtitle:         "Have an idea or a project in mind? I'd love to hear about it, send a message or reach out directly below.",
+        heading:          'Tell me what you are building',
+        subtitle:         'Two lines is enough. Or reach me directly from the links below.',
         watermark:        'NADIR',
         form_title:       'Send a Message',
         form_name:        'Name',
@@ -400,7 +405,7 @@
         reflect: { eyebrow: "Reflection", quote: "Leading a system means designing the <span>decisions</span>, not just the screens.", p1: "The hardest (and most rewarding) part wasn't drawing components. It was making choices that had to hold up across two engineering stacks, three languages, two colour modes, and a second designer's hands. Getting the architecture and the accessibility right early is what let the library scale without collapsing into exceptions.", p2: "It also reshaped how I work: treating documentation as a product, writing rules that other people can follow without me in the room, and staying accountable for a system long after its first release." },
         closing: { eyebrow: "Let's talk", title: "Have a system like this in mind?", lead: "I design systems, products, and the foundations under them. Tell me what you're building, and let's make it consistent, accessible, and fast to ship." },
         pager: { all: "Back to homepage", contact: "Get in touch" }, more: { eyebrow: "Keep exploring", title: "More case studies" },
-        form: { ptype_label: "What can I help with?", pt_audit: "Product Audit", pt_design: "Product Design", pt_system: "Design System", pt_dpartner: "Product Design Partner", pt_multi: "More than one of these", pt_other: "Something else" }
+        form: { ptype_label: "What can I help with?", pt_look: "A free analysis of a workflow", pt_audit: "Product Audit", pt_design: "Product Design", pt_system: "Design System", pt_dpartner: "Product Design Partner", pt_multi: "More than one of these", pt_other: "Something else" }
       },
       cs2: {
         hero: { eyebrow: "Case Study 02 · Retail Operations App", title: "Task Master", sub: "A task-management app for retail store teams, purchasing, inventory, stock corrections, and shelf operations turned into one clear, scannable workflow across mobile, tablet, and desktop.", role_k: "Role", role_v: "Product Designer, sole designer", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Team", team_v: "BA · tech lead · 3 dev teams", platforms_k: "Platforms", platforms_v: "Mobile · Tablet · Desktop", cta: "Let's build something like this", status: "In use by retail teams · new modules in design" },
@@ -433,9 +438,9 @@
     fr: {
       meta: {
         home: {
-          title: "Nadir Mostefaoui · Designer Produit, UX d'entreprise et dense en données",
-          desc:  "Designer produit pour ERP, SaaS et outils internes. Workflows denses en données, design systems orientés tokens. 1 033 variables, 24 composants, trois langues.",
-          og:    "ERP, SaaS et outils internes rendus lisibles, et les design systems derrière. Le dernier livré : 1 033 variables, 24 composants, trois langues."
+          title: 'Nadir Mostefaoui · Designer Produit · UX et design systems',
+          desc:  'Design produit et UX pour applications, tableaux de bord, modules ERP et outils internes, ainsi que les design systems qui les soutiennent. En arabe, en français et en anglais.',
+          og:    'Applications, tableaux de bord et outils internes, et les design systems derrière. Le dernier livré : 1 033 variables, 24 composants. Commencez par un regard gratuit sur un parcours de votre produit, sans frais et sans proposition commerciale.'
         },
         cs1: {
           title: 'Iksir Design System (Étude de cas) · Nadir Mostefaoui',
@@ -472,7 +477,7 @@
       hero: {
         greeting:      'Bonjour, je suis Nadir Mostefaoui',
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Designer</span><span class="ht-l">Produit</span></span>',
-        bio:           'Je conçois des produits complexes et riches en données. Solutions B2B SaaS, modules ERP, tableaux de bord, outils internes, et les design systems qui les soutiennent. L\'arabe et l\'anglais sont construits dans le même système, aucun des deux ne finit en simple miroir ajouté après coup.<span class="hero-bio-sig">Je dirige aujourd\'hui ce travail en tant que fondateur de <a href="#studio">Nawat Studio</a>.</span>',
+        bio:           'Design produit et UX pour des produits numériques : applications web et mobiles, tableaux de bord, outils internes, et les design systems qui les soutiennent. En arabe, en français et en anglais. Une partie de ce travail est dense, et les études de cas ci-dessous en sont la partie la plus dense.<span class="hero-bio-sig">Je dirige aujourd\'hui ce travail en tant que fondateur de <a href="#studio">Nawat Studio</a>.</span>',
         cta_primary:   'Discutons',
         cta_secondary: 'Voir mon travail',
         cta_cv:        'Voir le CV',
@@ -486,7 +491,7 @@
       work: {
         label:         'TRAVAUX SÉLECTIONNÉS',
         title:         'Études de Cas',
-        subtitle:      'Un regard plus proche sur la façon dont je transforme des workflows complexes et riches en données en produits utilisables.',
+        subtitle:      'De plus près : comment un workflow complexe devient un produit réellement utilisable.',
         nda:           'Confidentialité : détails généralisés, aucune donnée confidentielle',
         cta:           'Voir l\'étude de cas',
         open_aria:     'Ouvrir l\'étude de cas',
@@ -559,7 +564,7 @@
       experience: {
         label:    'EXPÉRIENCE PROFESSIONNELLE',
         title:    'Mon Expérience',
-        subtitle: 'Au fil des années, j\'ai eu le privilège de travailler avec des équipes et des clients formidables.',
+        subtitle: 'Les équipes et les clients avec qui j\'ai travaillé.',
         tag_pd:   'Design Produit',
         tag_ds:   'Systèmes de Design',
         tag_lead: 'Leadership',
@@ -646,28 +651,33 @@
       studio: {
         eyebrow:        'Le Studio',
         title:          'Je dirige Nawat Studio',
-        subtitle:       "Un champ d'action plus large, dirigé par la même personne.",
+        subtitle:       'Plus de mains quand un projet en demande, toujours dirigé par la même personne.',
         watermark:      'NAWAT',
-        lead:           "Certains projets demandent plus que du design produit. Nawat Studio, c'est là qu'un second designer rejoint le travail et que le champ s'élargit à l'identité, la recherche et les tests. J'en reste le responsable, au même niveau d'exigence que les études de cas ci-dessus.",
+        lead:           "Certains projets demandent plus d'une personne. Nawat Studio, c'est là qu'un second designer rejoint la production, au même niveau d'exigence que les études de cas ci-dessus. J'en reste le responsable.",
         cta:            "Parlons d'un projet plus large",
         cta_secondary:  'Visiter nawat.studio'
       },
       services: {
         label:        'Services',
-        title:        'Trois façons de commencer',
-        subtitle:     'Commencez par une lecture de ce que vous avez déjà, ou allez droit au système en dessous.',
-        chip:         'Commencez ici',
+        title:        'Trois façons de travailler ensemble',
+        subtitle:     'Après le regard gratuit, ou directement si vous savez déjà ce dont vous avez besoin.',
+        chip:         'Première étape payante',
+        look_label:   'Commencez ici',
+        look_chip:    'Gratuit',
+        look_title:   'Montrez-moi où votre produit coince',
+        look_body:    'Il y a un endroit de votre produit où les gens bloquent, et vous savez probablement lequel. Montrez-moi ce parcours : je l\'analyse écran par écran, puis je vous envoie un court enregistrement, moins de quinze minutes, sur les points où l\'expérience se casse, ce qui leur fait perdre du temps, et ce que je changerais.',
+        look_cta:     'Demander l\'analyse gratuite',
         s1_title:     'Audit Produit',
-        s1_promise:   'Une lecture complète de votre produit, rédigée et priorisée.',
+        s1_promise:   'Une lecture UX complète de votre produit, rédigée et priorisée.',
         s1_b1:        "Heuristiques, architecture de l'information, hiérarchie",
         s1_b2:        "Accessibilité au regard du WCAG 2.1 AA",
         s1_b3:        "Préparation à l'arabe et au sens droite-à-gauche",
         s1_b4:        'Rapport, liste classée, feuille de route, appel',
         s1_meta:      'Environ une semaine',
-        s1_price:     'À partir de 1 300 $',
+        s1_price:     'Prix fixe',
         s1_cta:       'Réserver un audit',
         s2_title:     'Design Produit',
-        s2_promise:   'Un module, un parcours, un tableau de bord ou une application, prêt à être développé.',
+        s2_promise:   'L\'UX et l\'interface d\'un module, d\'un parcours, d\'un tableau de bord ou d\'une application, prêts à être développés.',
         s2_b1:        'Parcours utilisateur et wireframes',
         s2_b2:        'Écrans finaux avec tous les états',
         s2_b3:        'Un prototype fonctionnel',
@@ -697,7 +707,7 @@
       skills: {
         label:    'COMPÉTENCES',
         title:    'Mes Compétences',
-        subtitle: 'Un ensemble de compétences complet, développé au fil d\'années d\'expérience pratique.',
+        subtitle: 'Ce avec quoi je travaille, au quotidien.',
         studio: {
           title: 'Studio & Direction',
           t1:    'Direction de Design',
@@ -758,8 +768,8 @@
       },
       footer: {
         badge:            'Disponible pour de nouveaux projets',
-        heading:          'Créons quelque chose de formidable',
-        subtitle:         "Un projet ou une idée en tête ? J'aimerais en discuter, envoyez un message ou contactez-moi directement ci-dessous.",
+        heading:          'Dites-moi ce que vous construisez',
+        subtitle:         'Deux lignes suffisent. Ou contactez-moi directement depuis les liens ci-dessous.',
         watermark:        'NADIR',
         form_title:       'Envoyer un message',
         form_name:        'Nom',
@@ -807,7 +817,7 @@
         reflect: { eyebrow: "Réflexion", quote: "Piloter un système, c'est concevoir les <span>décisions</span>, pas seulement les écrans.", p1: "Le plus difficile (et le plus gratifiant) n'était pas de dessiner des composants. C'était de faire des choix qui devaient tenir sur deux stacks techniques, trois langues, deux modes de couleur et entre les mains d'un second designer. Avoir posé tôt l'architecture et l'accessibilité, c'est ce qui a permis à la bibliothèque de grandir sans s'effondrer en exceptions.", p2: "Cela a aussi transformé ma façon de travailler : traiter la documentation comme un produit, écrire des règles que d'autres peuvent suivre sans moi dans la pièce, et rester responsable d'un système bien après sa première version." },
         closing: { eyebrow: "Discutons", title: "Un système comme celui-ci en tête ?", lead: "Je conçois des systèmes, des produits et les fondations en dessous. Dites-moi ce que vous construisez, et rendons-le cohérent, accessible et rapide à livrer." },
         pager: { all: "Retour à l'accueil", contact: "Me contacter" }, more: { eyebrow: "À explorer", title: "Plus d'études de cas" },
-        form: { ptype_label: "Comment puis-je aider ?", pt_audit: "Audit Produit", pt_design: "Design Produit", pt_system: "Design System", pt_dpartner: "Product Design Partner", pt_multi: "Plusieurs de ces offres", pt_other: "Autre chose" }
+        form: { ptype_label: "Comment puis-je aider ?", pt_look: "Une analyse gratuite d'un parcours", pt_audit: "Audit Produit", pt_design: "Design Produit", pt_system: "Design System", pt_dpartner: "Product Design Partner", pt_multi: "Plusieurs de ces offres", pt_other: "Autre chose" }
       },
       cs2: {
         hero: { eyebrow: "Étude de cas 02 · Application d'opérations retail", title: "Task Master", sub: "Une application de gestion des tâches pour les équipes de magasin, achats, inventaire, corrections de stock et opérations en rayon réunis en un flux clair, lisible d'un coup d'œil, sur mobile, tablette et desktop.", role_k: "Rôle", role_v: "Designer Produit, designer unique", client_k: "Client", client_v: "Datamaster Analytics · ERP, France", team_k: "Équipe", team_v: "BA · lead technique · 3 équipes dev", platforms_k: "Plateformes", platforms_v: "Mobile · Tablette · Desktop", cta: "Lançons un projet comme celui-ci", status: "Utilisée par les équipes retail · nouveaux modules en conception" },
@@ -840,9 +850,9 @@
     ar: {
       meta: {
         home: {
-          title: 'نذير مصطفاوي · مصمم منتجات لأنظمة المؤسسات والواجهات كثيفة البيانات',
-          desc:  'مصمم منتجات لأنظمة ERP وSaaS والأدوات الداخلية. مسارات عمل كثيفة البيانات تصبح واضحة، على أنظمة تصميم قائمة على الـtokens: 1,033 متغيّرًا، و24 مكوّنًا، وثلاث لغات.',
-          og:    'أنظمة ERP وSaaS والأدوات الداخلية تصبح واضحة، ومعها أنظمة التصميم التي تقوم عليها. آخر نظام سُلّم: 1,033 متغيّرًا، و24 مكوّنًا، وثلاث لغات.'
+          title: 'نذير مصطفاوي · مصمم منتجات · تجربة المستخدم وأنظمة التصميم',
+          desc:  'تصميم المنتجات وتجربة المستخدم للتطبيقات ولوحات المعلومات وأنظمة ERP والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. بالعربية والفرنسية والإنجليزية.',
+          og:    'التطبيقات ولوحات المعلومات والأدوات الداخلية، ومعها أنظمة التصميم التي تقوم عليها. آخر نظام سُلّم: 1,033 متغيّرًا و24 مكوّنًا. ابدأ بنظرة مجانية على مسار واحد في منتجك، دون مقابل ودون عرض بيع.'
         },
         cs1: {
           title: 'نظام تصميم Iksir (دراسة حالة) · نذير مصطفاوي',
@@ -879,7 +889,7 @@
       hero: {
         greeting:      'مرحباً، أنا نَذِير مصطفاوي',
         title:         '<span class="ht-ghost" aria-hidden="true">Product Designer</span><span class="ht-main"><span class="ht-l">مُصَمِّم</span><span class="ht-l">مُنتَجَات</span></span>',
-        bio:           'أصمم المنتجات المعقّدة وكثيفة البيانات. حلول B2B SaaS، وأنظمة ERP، ولوحات المعلومات، والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. العربية والإنجليزية مبنيتان داخل النظام نفسه، فلا تنتهي إحداهما نسخة معكوسة مضافة لاحقًا.<span class="hero-bio-sig">أقود هذا العمل اليوم بصفتي مؤسس <a href="#studio">استوديو نواة</a>.</span>',
+        bio:           'أصمّم المنتجات الرقمية وتجربة المستخدم فيها: تطبيقات الويب والجوال، ولوحات المعلومات، والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. بالعربية والفرنسية والإنجليزية. وفي هذا العمل ما هو كثيف البيانات، ودراسات الحالة تحت هي الأكثف منه.<span class="hero-bio-sig">أقود هذا العمل اليوم بصفتي مؤسس <a href="#studio">استوديو نواة</a>.</span>',
         cta_primary:   'لنتحدث',
         cta_secondary: 'شاهد أعمالي',
         cta_cv:        'عرض السيرة الذاتية',
@@ -893,7 +903,7 @@
       work: {
         label:         'أعمال مختارة',
         title:         'دراسات الحالة',
-        subtitle:      'نظرة أقرب على كيفية تحويلي لسير عمل معقد وكثيف البيانات إلى منتجات سهلة الاستخدام.',
+        subtitle:      'نظرة أقرب على طريقة العمل: من مسار معقّد وكثيف البيانات إلى منتج يسهل استعماله.',
         nda:           'اتفاقية سرية: التفاصيل مُعمَّمة، دون أي بيانات سرّية',
         cta:           'عرض دراسة الحالة',
         open_aria:     'فتح دراسة الحالة',
@@ -966,7 +976,7 @@
       experience: {
         label:    'الخبرة المهنية',
         title:    'تجربتي المهنية',
-        subtitle: 'على مرّ السنين، أتيحت لي فرصة العمل مع فرق وعملاء رائعين.',
+        subtitle: 'الفرق والعملاء الذين اشتغلت معهم.',
         tag_pd:   'تصميم المنتج',
         tag_ds:   'أنظمة التصميم',
         tag_lead: 'القيادة',
@@ -1053,28 +1063,33 @@
       studio: {
         eyebrow:        'الاستوديو',
         title:          'أقود استوديو نواة',
-        subtitle:       'نطاق أوسع من العمل، يقوده الشخص نفسه.',
+        subtitle:       'أيدٍ أكثر عندما يحتاج المشروع إليها، ويقوده الشخص نفسه.',
         watermark:      'نواة',
-        lead:           'بعض الأعمال تحتاج إلى أكثر من تصميم المنتج. في استوديو نواة ينضم مصمّم ثانٍ ويتّسع النطاق ليشمل الهوية والبحث والاختبار. وأبقى أنا من يقوده، بنفس الدقة الموجودة في دراسات الحالة أعلاه.',
+        lead:           'بعض الأعمال تحتاج إلى أكثر من شخص واحد. في استوديو نواة ينضم مصمّم ثانٍ إلى الإنتاج، بنفس المستوى الموجود في دراسات الحالة أعلاه. وأبقى أنا من يقوده.',
         cta:            'لنتحدّث عن مشروع أكبر',
         cta_secondary:  'زيارة nawat.studio'
       },
       services: {
         label:        'الخدمات',
-        title:        'ثلاث طرق للبدء',
-        subtitle:     'ابدأ بقراءة ما لديك الآن، أو اذهب مباشرة إلى النظام الذي تقوم عليه المنتجات.',
-        chip:         'ابدأ من هنا',
+        title:        'ثلاث طرق للعمل معي',
+        subtitle:     'بعد النظرة، أو مباشرة إذا كنت تعرف ما تحتاجه.',
+        chip:         'أول خطوة مدفوعة',
+        look_label:   'ابدأ من هنا',
+        look_chip:    'مجانًا',
+        look_title:   'تحب أشوف منتجك؟',
+        look_body:    'في منتجك جزء يعلق فيه المستخدمون، وعلى الأرجح تعرفه. أرِني ذلك المسار وأحلّله شاشة بشاشة، ثم أبعث لك تسجيلًا في أقل من خمس عشرة دقيقة: أين تتعثّر تجربة المستخدم، وأين يضيع وقتهم، وما الذي كنت سأغيّره.',
+        look_cta:     'اطلب التحليل المجاني',
         s1_title:     'تدقيق المنتج',
-        s1_promise:   'قراءة كاملة لمنتجك، مكتوبة ومرتّبة حسب الأولوية.',
+        s1_promise:   'قراءة كاملة لتجربة المستخدم في منتجك، مكتوبة ومرتّبة حسب الأولوية.',
         s1_b1:        'مراجعة إرشادية، ومعمارية المعلومات، والتسلسل',
         s1_b2:        'إمكانية الوصول وفق WCAG 2.1 AA',
         s1_b3:        'جاهزية العربية والاتجاه من اليمين إلى اليسار',
         s1_b4:        'تقرير، وقائمة مشكلات مرتّبة، وخارطة طريق، ومكالمة',
         s1_meta:      'نحو أسبوع',
-        s1_price:     'من 1,300 دولار',
+        s1_price:     'سعر ثابت',
         s1_cta:       'احجز تدقيقًا',
         s2_title:     'تصميم المنتج',
-        s2_promise:   'وحدة أو مسار عمل أو لوحة معلومات أو تطبيق، جاهز للتطوير.',
+        s2_promise:   'تجربة المستخدم والواجهة لوحدة أو مسار عمل أو لوحة معلومات أو تطبيق، جاهزة للتطوير.',
         s2_b1:        'مسارات المستخدم والـwireframes',
         s2_b2:        'شاشات نهائية بكل حالاتها',
         s2_b3:        'نموذج تفاعلي',
@@ -1104,7 +1119,7 @@
       skills: {
         label:    'المهارات',
         title:    'مهاراتي',
-        subtitle: 'مجموعة مهارات شاملة اكتسبتها عبر سنوات من الخبرة العملية.',
+        subtitle: 'ما أشتغل به يوميًا.',
         studio: {
           title: 'الاستوديو والقيادة',
           t1:    'التوجيه التصميمي',
@@ -1165,8 +1180,8 @@
       },
       footer: {
         badge:            'متاح لمشاريع جديدة',
-        heading:          'لنبنِ شيئًا رائعًا معًا',
-        subtitle:         'لديك فكرة أو مشروع في ذهنك؟ يسعدني معرفة المزيد، أرسل رسالة أو تواصل معي مباشرة أدناه.',
+        heading:          'خبّرني بما تبنيه',
+        subtitle:         'اكتب سطرين فقط، أو تواصل معي مباشرة من الروابط تحت.',
         watermark:        'نذير',
         form_title:       'أرسل رسالة',
         form_name:        'الاسم',
@@ -1214,7 +1229,7 @@
         reflect: { eyebrow: "خلاصة", quote: "قيادة نظام تعني تصميم <span>القرارات</span>، لا الشاشات فحسب.", p1: "الجزء الأصعب (والأكثر إرضاءً) لم يكن رسم المكوّنات. بل اتخاذ خيارات تصمد عبر منصّتين تقنيتين، وثلاث لغات، ووضعين للألوان، وبين يدَي مصمّم ثانٍ. إرساء البنية وإمكانية الوصول مبكرًا هو ما سمح للمكتبة بالنمو دون أن تنهار إلى استثناءات.", p2: "كما أعاد ذلك تشكيل طريقة عملي: التعامل مع التوثيق كمنتج، وكتابة قواعد يستطيع الآخرون اتّباعها دون وجودي في الغرفة، والبقاء مسؤولًا عن نظام بعد إصداره الأول بوقت طويل." },
         closing: { eyebrow: "لنتحدّث", title: "هل لديك نظام مثل هذا في ذهنك؟", lead: "أصمّم أنظمة ومنتجات والأساسات التي تحتها. أخبرني بما تبنيه، ولنجعله متسقًا وسهل الوصول وسريع الإطلاق." },
         pager: { all: "العودة إلى الصفحة الرئيسية", contact: "تواصل معي" }, more: { eyebrow: "تابِع الاستكشاف", title: "المزيد من دراسات الحالة" },
-        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_audit: "تدقيق المنتج", pt_design: "تصميم المنتج", pt_system: "نظام التصميم", pt_dpartner: "شريك تصميم المنتج", pt_multi: "أكثر من واحدة من هذه", pt_other: "شيء آخر" }
+        form: { ptype_label: "بماذا يمكنني المساعدة؟", pt_look: "تحليل مجاني لمسار عمل", pt_audit: "تدقيق المنتج", pt_design: "تصميم المنتج", pt_system: "نظام التصميم", pt_dpartner: "شريك تصميم المنتج", pt_multi: "أكثر من واحدة من هذه", pt_other: "شيء آخر" }
       },
       cs2: {
         hero: { eyebrow: "دراسة حالة 02 · تطبيق عمليات التجزئة", title: "Task Master", sub: "تطبيق لإدارة المهام لفرق متاجر التجزئة، الشراء والجرد وتصحيح المخزون وعمليات الأرفف في مسار عمل واحد واضح يُقرأ بلمحة، على الجوال والجهاز اللوحي وسطح المكتب.", role_k: "الدور", role_v: "مصمم منتجات، المصمم الوحيد", client_k: "العميل", client_v: "Datamaster Analytics · ERP، فرنسا", team_k: "الفريق", team_v: "محلّل أعمال · قائد تقني · 3 فرق تطوير", platforms_k: "المنصات", platforms_v: "جوال · جهاز لوحي · سطح مكتب", cta: "لنبدأ مشروعًا مثل هذا", status: "قيد الاستخدام لدى فرق التجزئة · وحدات جديدة قيد التصميم" },
