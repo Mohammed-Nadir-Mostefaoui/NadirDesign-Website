@@ -59,8 +59,8 @@
       hero: {
         greeting:      "Hi, I'm Nadir Mostefaoui",
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Product</span><span class="ht-l">Designer</span></span>',
-        bio:           'Product and UX design for digital products: web and mobile apps, dashboards, internal tools, and the design systems underneath them. In Arabic, French and English. Some of that work gets dense, and the case studies below are the densest of it.<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>',
-        cta_primary:   "Let's Talk",
+        bio:           'Product and UX design for digital products: web and mobile apps, dashboards, internal tools, and the design systems underneath them. In Arabic, French and English. Some of that work gets dense, and the case studies below are the densest of it.',
+        cta_primary:   'Get a free UX analysis',
         cta_secondary: 'View My Work',
         cta_cv:        'View CV',
         scroll:        'Scroll',
@@ -477,8 +477,8 @@
       hero: {
         greeting:      'Bonjour, je suis Nadir Mostefaoui',
         title:         '<span class="ht-ghost" aria-hidden="true">مصمم منتجات</span><span class="ht-main"><span class="ht-l">Designer</span><span class="ht-l">Produit</span></span>',
-        bio:           'Design produit et UX pour des produits numériques : applications web et mobiles, tableaux de bord, outils internes, et les design systems qui les soutiennent. En arabe, en français et en anglais. Une partie de ce travail est dense, et les études de cas ci-dessous en sont la partie la plus dense.<span class="hero-bio-sig">Je dirige aujourd\'hui ce travail en tant que fondateur de <a href="#studio">Nawat Studio</a>.</span>',
-        cta_primary:   'Discutons',
+        bio:           'Design produit et UX pour des produits numériques : applications web et mobiles, tableaux de bord, outils internes, et les design systems qui les soutiennent. En arabe, en français et en anglais. Une partie de ce travail est dense, et les études de cas ci-dessous en sont la partie la plus dense.',
+        cta_primary:   'Obtenir une analyse UX gratuite',
         cta_secondary: 'Voir mon travail',
         cta_cv:        'Voir le CV',
         scroll:        'Défiler',
@@ -889,8 +889,8 @@
       hero: {
         greeting:      'مرحباً، أنا نَذِير مصطفاوي',
         title:         '<span class="ht-ghost" aria-hidden="true">Product Designer</span><span class="ht-main"><span class="ht-l">مُصَمِّم</span><span class="ht-l">مُنتَجَات</span></span>',
-        bio:           'أصمّم المنتجات الرقمية وتجربة المستخدم فيها: تطبيقات الويب والجوال، ولوحات المعلومات، والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. بالعربية والفرنسية والإنجليزية. وفي هذا العمل ما هو كثيف البيانات، ودراسات الحالة تحت هي الأكثف منه.<span class="hero-bio-sig">أقود هذا العمل اليوم بصفتي مؤسس <a href="#studio">استوديو نواة</a>.</span>',
-        cta_primary:   'لنتحدث',
+        bio:           'أصمّم المنتجات الرقمية وتجربة المستخدم فيها: تطبيقات الويب والجوال، ولوحات المعلومات، والأدوات الداخلية، وأنظمة التصميم التي تقوم عليها. بالعربية والفرنسية والإنجليزية. وفي هذا العمل ما هو كثيف البيانات، ودراسات الحالة تحت هي الأكثف منه.',
+        cta_primary:   'اطلب تحليل UX مجاني',
         cta_secondary: 'شاهد أعمالي',
         cta_cv:        'عرض السيرة الذاتية',
         scroll:        'مرّر',

@@ -323,20 +323,25 @@
           <div class="hero-divider" aria-hidden="true"></div>
 
           <!-- data-i18n-html because the string now carries markup: the closing
-               credential sentence is wrapped in .hero-bio-sig so it can be set
-               as a smaller caption, and the studio name is a real link into the
-               Studio section. i18n.js only writes innerHTML for H1/H2 or when
+               Nawat credential line that used to sit here as a .hero-bio-sig
+               caption was removed 2026-10-16. i18n.js only writes innerHTML for
+               H1/H2 or when
                this attribute is present, otherwise it would print the tags as
                text. The markup MUST also live in all three locale strings in
                js/i18n.js, since switchLang() overwrites this node on every
                language change. The copy below is only the first-paint fallback. -->
           <p class="hero-bio" data-i18n="hero.bio" data-i18n-html>
-            Product and UX design for digital products: web and mobile apps, dashboards, internal tools, and the design systems underneath them. In Arabic, French and English. Some of that work gets dense, and the case studies below are the densest of it.<span class="hero-bio-sig">I lead this work today as the founder of <a href="#studio">Nawat Studio</a>.</span>
+            Product and UX design for digital products: web and mobile apps, dashboards, internal tools, and the design systems underneath them. In Arabic, French and English. Some of that work gets dense, and the case studies below are the densest of it.
           </p>
 
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-dark">
-              <span data-i18n="hero.cta_primary">Let's Talk</span>
+            <!-- The hero's primary action is the free offer itself, not a generic
+                 "let's talk". It lands on the free-analysis block rather than the
+                 form, so a first-time visitor reads what they are being offered
+                 before they are asked for their name. The nav keeps the direct
+                 "Contact Me" route for anyone who just wants to write. -->
+            <a href="#free-analysis" class="btn btn-dark">
+              <span data-i18n="hero.cta_primary">Get a free UX analysis</span>
               <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
             <!-- Secondary action. The CV trigger that used to sit here was
@@ -738,7 +743,7 @@ experience</span>
              above the three services, never inside them, and states its own cap
              on the page. It carries the section's single dark button, which is why
              the custom route at the bottom is now a text link. -->
-        <aside class="svc-look">
+        <aside class="svc-look" id="free-analysis">
           <div class="svc-look-text">
             <div class="svc-look-head">
               <span class="svc-look-label" data-i18n="services.look_label">Start here</span>
